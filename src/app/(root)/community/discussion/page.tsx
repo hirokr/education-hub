@@ -1,5 +1,5 @@
-import DiscussionForm from "@/app/components/DiscussionForm";
-import DiscussionList from "@/app/components/DiscussionList";
+import DiscussionForm from "@/components/DiscussionForm";
+import DiscussionList from "@/components/DiscussionList";
 
 
 

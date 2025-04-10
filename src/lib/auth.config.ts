@@ -16,13 +16,16 @@ export default {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
-      authorize: async (credentials: { email: string; password: string }) => {
-        if (!credentials?.email || !credentials?.password) return null;
+      authorize: async (credentials: Partial<Record<"email" | "password", unknown>>) => {
+        const email = credentials?.email as string | undefined;
+        const password = credentials?.password as string | undefined;
 
-        console.log(credentials.email);
+        if (!email || !password) return null;
+
+        console.log(email);
         const user = await prisma.user.findUnique({
           where: {
-            email: credentials.email,
+            email: credentials.email as string,
           },
         });
 
