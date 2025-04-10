@@ -1,7 +1,9 @@
-import GitHub from "next-auth/providers/github";
 import type { NextAuthConfig } from "next-auth";
 import Google from "next-auth/providers/google";
+import GitHub from "next-auth/providers/github";
 import Credentials from "next-auth/providers/credentials";
+import bcrypt from "bcryptjs";
+import {prisma} from "./prisma";
 
 export default {
   providers: [
@@ -11,28 +13,31 @@ export default {
       id: "credentials",
       name: "Credentials",
       credentials: {
-        email: {},
-        password: {},
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
       },
-      authorize: async (credentials) => {
-        let user = null;
+      authorize: async (credentials: Partial<Record<"email" | "password", unknown>>) => {
+        const email = credentials?.email as string | undefined;
+        const password = credentials?.password as string | undefined;
 
-        // logic to salt and hash password
-        // const pwHash = saltAndHashPassword(credentials.password);
+        if (!email || !password) return null;
 
-        // logic to verify if the user exists
-        // user = await getUserFromDb(credentials.email, pwHash);
-        console.log(credentials);
-        console.log(user)
-        user = {name:"alll"}
+        console.log(email);
+        const user = await prisma.user.findUnique({
+          where: {
+            email: credentials.email as string,
+          },
+        });
 
-        if (!user) {
-          // No user found, so this is their first attempt to login
-          // Optionally, this is also the place you could do a user registration
-          throw new Error("Invalid credentials.");
-        }
+        if (!user || !user?.email) return null;
 
-        // return user object with their profile data
+        const isValid = await bcrypt.compare(
+          typeof credentials.password === "string" ? credentials.password : "",
+          typeof user.password === "string" ? user.password : ""
+        );
+
+        if (!isValid) return null;
+
         return user;
       },
     }),

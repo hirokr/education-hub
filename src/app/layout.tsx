@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
+import { SessionProvider } from "next-auth/react";
+import { ThemeProvider } from "../providers/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
 
 const openSans = Open_Sans({
   variable: "--font-geist-mono",
@@ -20,7 +23,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${openSans.className} antialiased`}>{children}</body>
+      <body className={`${openSans.className} antialiased`}>
+        <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+          <SessionProvider>
+            {children}
+            <Toaster />
+          </SessionProvider>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
