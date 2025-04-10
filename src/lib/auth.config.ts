@@ -22,6 +22,8 @@ export default {
 
         // logic to verify if the user exists
         // user = await getUserFromDb(credentials.email, pwHash);
+        console.log(credentials);
+        console.log(user)
 
         if (!user) {
           // No user found, so this is their first attempt to login
