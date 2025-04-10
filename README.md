@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Project Setup Guide
 
-## Getting Started
+Welcome to the project! This guide will help you set up the development environment and follow best practices for collaboration.
 
-First, run the development server:
+---
+
+## 📦 Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/hirokr/education-hub.git
+   cd education-hub
+   ```
+
+2. Install the project dependencies using:
+   ```bash
+   npm install
+   ```
+
+---
+
+## 💠 Running the Development Server
+
+To start the development server, you can use either:
 
 ```bash
 npm run dev
 # or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+bun run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🔐 Environment Configuration
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Create a `.env` file in the root directory.
+2. Fill it with appropriate values using the `.env.example` file as a reference.
 
-## Learn More
+```bash
+cp .env.example .env
+```
 
-To learn more about Next.js, take a look at the following resources:
+Make sure to update the `.env` file with your environment-specific variables.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🤝 Collaborator Guidelines
 
-## Deploy on Vercel
+- Always create a new branch for your feature or bug fix:
+  ```bash
+  git checkout -b your-feature-branch
+  ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Once your feature is complete and tested, merge it into the `development` branch for integration testing:
+  ```bash
+  git switch development
+  git merge your-feature-branch
+  ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Do **not** push directly to the `main` branch. All features should be tested via the `development` branch first.
+
+---
+
+## 💪 Testing & QA
+
+Make sure to test your changes locally before merging. You may also write unit or integration tests depending on the scope of your contribution.
+
+---
+
+## 📬 Questions?
+
+If you encounter any issues or have questions, feel free to open an issue or contact.
+
+---
+
+Happy coding! 🎉
