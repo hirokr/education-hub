@@ -1,6 +1,5 @@
 "use client";
 import { signOut, useSession } from "next-auth/react";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import {
   Navbar,
   NavBody,
@@ -13,16 +12,10 @@ import {
   MobileNavMenu,
 } from "./resizable-navbar";
 import { useState } from "react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-import Link from "next/link";
+
 import { usePathname } from "next/navigation";
+import GetUser from "./getUser";
+import { ModeToggle } from "./themeToggle";
 
 export function Header() {
   const { data: session } = useSession();
@@ -63,44 +56,15 @@ export function Header() {
         <NavBody>
           <NavbarLogo />
           <NavItems items={navItems} />
-          <div className='flex items-center gap-4'>
+          <div className='flex items-center gap-4 mr-20'>
+            <ModeToggle />
             {!session?.user && pathname !== "/sign-in" && (
               <NavbarButton variant='primary' href='/sign-in'>
                 Login
               </NavbarButton>
             )}
             {session?.user && (
-              <DropdownMenu>
-                <DropdownMenuTrigger>
-                  <Avatar>
-                    <AvatarImage src={session?.user?.image as string} />
-                    <AvatarFallback>U</AvatarFallback>
-                  </Avatar>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuLabel>{session.user?.name}</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <Link href='/dashboard'>
-                    <DropdownMenuItem>Profile</DropdownMenuItem>
-                  </Link>
-                  <Link href='/resume-analyze'>
-                    <DropdownMenuItem>Analyse </DropdownMenuItem>
-                  </Link>
-                  <Link href='/dashboard'>
-                    <DropdownMenuItem>Profile</DropdownMenuItem>
-                  </Link>
-                  <NavbarButton
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    variant='primary'
-                    className='w-full'
-                    onClickCapture={() => {
-                      signOut();
-                    }}
-                  >
-                    Sign Out
-                  </NavbarButton>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <GetUser setIsMobileMenuOpen={setIsMobileMenuOpen} />
             )}
           </div>
         </NavBody>
@@ -109,12 +73,17 @@ export function Header() {
         <MobileNav>
           <MobileNavHeader>
             <NavbarLogo />
-            <MobileNavToggle
-              isOpen={isMobileMenuOpen}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            />
+            <div className='flex items-center gap-4 '>
+            <ModeToggle />
+              {session?.user && pathname !== "/sign-in" && (
+                <GetUser setIsMobileMenuOpen={setIsMobileMenuOpen} />
+              )}
+              <MobileNavToggle
+                isOpen={isMobileMenuOpen}
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              />
+            </div>
           </MobileNavHeader>
-
           <MobileNavMenu
             isOpen={isMobileMenuOpen}
             onClose={() => setIsMobileMenuOpen(false)}
