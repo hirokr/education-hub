@@ -1,6 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
 
 export default function DiscussionForm() {
   const [title, setTitle] = useState("");
@@ -17,11 +20,11 @@ export default function DiscussionForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white p-6 rounded-xl shadow-md space-y-4"
+      className="bg-primary p-6 rounded-xl shadow-md space-y-4"
     >
       <h2 className="text-xl font-semibold">Start a New Discussion</h2>
 
-      <input
+      <Input
         type="text"
         placeholder="Enter a title"
         value={title}
@@ -30,7 +33,7 @@ export default function DiscussionForm() {
         required
       />
 
-      <textarea
+      <Textarea
         placeholder="Write your discussion..."
         value={content}
         onChange={(e) => setContent(e.target.value)}
@@ -38,12 +41,12 @@ export default function DiscussionForm() {
         required
       />
 
-      <button
+      <Button
         type="submit"
-        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        className="bg-blue-600 px-4 py-2 rounded hover:bg-blue-700"
       >
         Post Discussion
-      </button>
+      </Button>
     </form>
   );
 }
