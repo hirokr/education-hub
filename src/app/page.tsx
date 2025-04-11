@@ -12,7 +12,6 @@ export default async function Home() {
           await signOut();
         }}
       >
-        {" "}
         signout
       </Button>
     </main>

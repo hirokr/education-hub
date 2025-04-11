@@ -4,6 +4,7 @@ import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "../providers/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
+import { Header } from "@/components/global/Header";
 
 const openSans = Open_Sans({
   variable: "--font-geist-mono",
@@ -24,8 +25,14 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`${openSans.className} antialiased`}>
-        <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+        <ThemeProvider
+          attribute='class'
+          defaultTheme='dark'
+          enableSystem
+          disableTransitionOnChange
+        >
           <SessionProvider>
+            <Header />
             {children}
             <Toaster />
           </SessionProvider>
