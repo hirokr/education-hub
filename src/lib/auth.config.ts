@@ -3,7 +3,8 @@ import Google from "next-auth/providers/google";
 import GitHub from "next-auth/providers/github";
 import Credentials from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
-import {prisma} from "./prisma";
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 
 export default {
   providers: [
@@ -16,7 +17,9 @@ export default {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
-      authorize: async (credentials: Partial<Record<"email" | "password", unknown>>) => {
+      authorize: async (
+        credentials: Partial<Record<"email" | "password", unknown>>
+      ) => {
         const email = credentials?.email as string | undefined;
         const password = credentials?.password as string | undefined;
 
