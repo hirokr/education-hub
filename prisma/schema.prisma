@@ -66,6 +66,7 @@ model Discussion {
   id        String     @id @default(cuid())
   title     String
   content   String
+  category  String
   authorId  String
   author    User       @relation(fields: [authorId], references: [id])
   replies   Reply[]
