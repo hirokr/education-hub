@@ -20,7 +20,7 @@ export default function DiscussionForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-primary p-6 rounded-xl shadow-md space-y-4"
+      className=" p-6 rounded-xl shadow-md space-y-4"
     >
       <h2 className="text-xl font-semibold">Start a New Discussion</h2>
 
