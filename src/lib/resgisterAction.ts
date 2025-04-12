@@ -2,11 +2,13 @@
 import { hash } from "bcryptjs";
 import { z } from "zod";
 import { registerSchema } from "@/lib/validation";
-import {prisma} from "./prisma";
+import { PrismaClient } from "@prisma/client";
+// import {prisma} from "./prisma";
+
+const prisma =  new PrismaClient();
 
 
 export async function registerUser(data: z.infer<typeof registerSchema>) {
-  console.log(data, "rahul")
   const { name, email, password } = registerSchema.parse(data);
 
   // Check if user already exists

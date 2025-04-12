@@ -1,22 +1,27 @@
 // File: pages/api/discussions/index.ts
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient()
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const { title, content, category, authorId } = body;
-    console.log(title, content, category, authorId);
-    
 
     const discussion = await prisma.discussion.create({
-      data: { title, content, category,  authorId },
+      data: { title, content, category, authorId },
     });
-
+    console.log(discussion);
     return NextResponse.json(discussion, { status: 201 });
   } catch (error) {
+
     return NextResponse.json(
-      { error: "Failed to create discussion" },
+      {
+        error:
+          error instanceof Error
+            ? error.message
+            : "Failed to create discussion",
+      },
       { status: 500 }
     );
   }
@@ -41,7 +46,12 @@ export async function GET() {
     return NextResponse.json(discussions);
   } catch (error) {
     return NextResponse.json(
-      { error: "Failed to fetch discussions" },
+      {
+        error:
+          error instanceof Error
+            ? error.message
+            : "Failed to create discussion",
+      },
       { status: 500 }
     );
   }

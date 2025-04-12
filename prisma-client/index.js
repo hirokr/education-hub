@@ -205,7 +205,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\SUPRIO\\Web Development\\Nextjs\\education-hub\\prisma\\node_modules\\.prisma\\client",
+      "value": "E:\\WEB DEV\\Projects\\education-hub\\prisma-client",
       "fromEnvVar": null
     },
     "config": {
@@ -219,14 +219,14 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\SUPRIO\\Web Development\\Nextjs\\education-hub\\prisma\\schema.prisma",
+    "sourceFilePath": "E:\\WEB DEV\\Projects\\education-hub\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
     "rootEnvPath": null,
-    "schemaEnvPath": "../../../../.env"
+    "schemaEnvPath": "../.env"
   },
-  "relativePath": "../../..",
+  "relativePath": "../prisma",
   "clientVersion": "6.6.0",
   "engineVersion": "f676762280b54cd07c770017ed3711ddde35f37a",
   "datasourceNames": [
@@ -237,12 +237,12 @@ const config = {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgresql://educationhub_owner:npg_yQzC5nN3VFJe@ep-orange-rain-a17nrvs2-pooler.ap-southeast-1.aws.neon.tech/educationhub?sslmode=require"
+        "value": "postgresql://educationhub_owner:npg_yQzC5nN3VFJe@ep-orange-rain-a17nrvs2-pooler.ap-southeast-1.aws.neon.tech/eduhub?sslmode=require"
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"./node_modules/.prisma/client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Account {\n  id                String  @id @default(cuid())\n  userId            String\n  type              String\n  provider          String\n  providerAccountId String\n  refresh_token     String? @db.Text\n  access_token      String? @db.Text\n  expires_at        Int?\n  token_type        String?\n  scope             String?\n  id_token          String? @db.Text\n  session_state     String?\n\n  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@unique([provider, providerAccountId])\n}\n\nmodel Session {\n  id           String   @id @default(cuid())\n  sessionToken String   @unique\n  userId       String\n  expires      DateTime\n  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)\n}\n\nmodel User {\n  id            String       @id @default(cuid())\n  name          String?\n  email         String?      @unique\n  emailVerified DateTime?\n  password      String?\n  image         String?\n  accounts      Account[]\n  sessions      Session[]\n  discussions   Discussion[]\n  replies       Reply[]\n  reviews       Review[]\n  votes         Vote[]\n  bookmarks     Bookmark[]\n}\n\nmodel VerificationToken {\n  identifier String\n  token      String   @unique\n  expires    DateTime\n\n  @@unique([identifier, token])\n}\n\nmodel Discussion {\n  id        String     @id @default(cuid())\n  title     String\n  content   String\n  category  String\n  authorId  String\n  author    User       @relation(fields: [authorId], references: [id])\n  replies   Reply[]\n  bookmarks Bookmark[]\n  createdAt DateTime   @default(now())\n}\n\nmodel Reply {\n  id           String  @id @default(cuid())\n  content      String\n  authorId     String\n  discussionId String\n  parentId     String?\n\n  author     User       @relation(fields: [authorId], references: [id])\n  discussion Discussion @relation(fields: [discussionId], references: [id])\n  parent     Reply?     @relation(\"ReplyToReply\", fields: [parentId], references: [id])\n  children   Reply[]    @relation(\"ReplyToReply\")\n  votes      Vote[]\n  createdAt  DateTime   @default(now())\n}\n\nmodel Review {\n  id        String   @id @default(cuid())\n  content   String\n  rating    Int\n  authorId  String\n  user      User     @relation(fields: [authorId], references: [id])\n  votes     Vote[]\n  createdAt DateTime @default(now())\n}\n\nmodel Vote {\n  id       String  @id @default(cuid())\n  userId   String\n  reviewId String?\n  replyId  String?\n  value    Int\n\n  user   User    @relation(fields: [userId], references: [id])\n  review Review? @relation(fields: [reviewId], references: [id])\n  reply  Reply?  @relation(fields: [replyId], references: [id])\n}\n\nmodel Bookmark {\n  id           String  @id @default(cuid())\n  userId       String\n  discussionId String?\n\n  user       User        @relation(fields: [userId], references: [id])\n  discussion Discussion? @relation(fields: [discussionId], references: [id])\n}\n",
-  "inlineSchemaHash": "6037aea764df2d5173414867d2b050b2998834edca32015d448ce1969a30a93b",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../prisma-client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Account {\n  id                String  @id @default(cuid())\n  userId            String\n  type              String\n  provider          String\n  providerAccountId String\n  refresh_token     String? @db.Text\n  access_token      String? @db.Text\n  expires_at        Int?\n  token_type        String?\n  scope             String?\n  id_token          String? @db.Text\n  session_state     String?\n\n  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@unique([provider, providerAccountId])\n}\n\nmodel Session {\n  id           String   @id @default(cuid())\n  sessionToken String   @unique\n  userId       String\n  expires      DateTime\n  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)\n}\n\nmodel User {\n  id            String       @id @default(cuid())\n  name          String?\n  email         String?      @unique\n  emailVerified DateTime?\n  password      String?\n  image         String?\n  accounts      Account[]\n  sessions      Session[]\n  discussions   Discussion[]\n  replies       Reply[]\n  reviews       Review[]\n  votes         Vote[]\n  bookmarks     Bookmark[]\n}\n\nmodel VerificationToken {\n  identifier String\n  token      String   @unique\n  expires    DateTime\n\n  @@unique([identifier, token])\n}\n\nmodel Discussion {\n  id        String     @id @default(cuid())\n  title     String\n  content   String\n  category  String\n  authorId  String\n  author    User       @relation(fields: [authorId], references: [id])\n  replies   Reply[]\n  bookmarks Bookmark[]\n  createdAt DateTime   @default(now())\n}\n\nmodel Reply {\n  id           String  @id @default(cuid())\n  content      String\n  authorId     String\n  discussionId String\n  parentId     String?\n\n  author     User       @relation(fields: [authorId], references: [id])\n  discussion Discussion @relation(fields: [discussionId], references: [id])\n  parent     Reply?     @relation(\"ReplyToReply\", fields: [parentId], references: [id])\n  children   Reply[]    @relation(\"ReplyToReply\")\n  votes      Vote[]\n  createdAt  DateTime   @default(now())\n}\n\nmodel Review {\n  id        String   @id @default(cuid())\n  content   String\n  rating    Int\n  authorId  String\n  user      User     @relation(fields: [authorId], references: [id])\n  votes     Vote[]\n  createdAt DateTime @default(now())\n}\n\nmodel Vote {\n  id       String  @id @default(cuid())\n  userId   String\n  reviewId String?\n  replyId  String?\n  value    Int\n\n  user   User    @relation(fields: [userId], references: [id])\n  review Review? @relation(fields: [reviewId], references: [id])\n  reply  Reply?  @relation(fields: [replyId], references: [id])\n}\n\nmodel Bookmark {\n  id           String  @id @default(cuid())\n  userId       String\n  discussionId String?\n\n  user       User        @relation(fields: [userId], references: [id])\n  discussion Discussion? @relation(fields: [discussionId], references: [id])\n}\n",
+  "inlineSchemaHash": "8bcd5f460ec8b18a2d37da75b29dc17ff626f66ddfd9e1b6a92b69c2a2f9c1aa",
   "copyEngine": true
 }
 
@@ -251,8 +251,8 @@ const fs = require('fs')
 config.dirname = __dirname
 if (!fs.existsSync(path.join(__dirname, 'schema.prisma'))) {
   const alternativePaths = [
-    "prisma/node_modules/.prisma/client",
-    "node_modules/.prisma/client",
+    "prisma-client",
+    "",
   ]
   
   const alternativePath = alternativePaths.find((altPath) => {
@@ -282,7 +282,7 @@ Object.assign(exports, Prisma)
 
 // file annotations for bundling tools to include these files
 path.join(__dirname, "query_engine-windows.dll.node");
-path.join(process.cwd(), "prisma/node_modules/.prisma/client/query_engine-windows.dll.node")
+path.join(process.cwd(), "prisma-client/query_engine-windows.dll.node")
 // file annotations for bundling tools to include these files
 path.join(__dirname, "schema.prisma");
-path.join(process.cwd(), "prisma/node_modules/.prisma/client/schema.prisma")
+path.join(process.cwd(), "prisma-client/schema.prisma")

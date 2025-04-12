@@ -1,5 +1,5 @@
 "use client";
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import {
   Navbar,
   NavBody,
@@ -40,12 +40,6 @@ export function Header() {
     },
   ];
 
-  if (session?.user) {
-    navItems.push({
-      name: "Dashboard",
-      link: "/dashboard",
-    });
-  }
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -99,18 +93,7 @@ export function Header() {
               </a>
             ))}
             <div className='flex w-full flex-col gap-4'>
-              {session?.user ? (
-                <NavbarButton
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  variant='primary'
-                  className='w-full'
-                  onClickCapture={() => {
-                    signOut();
-                  }}
-                >
-                  Sign Out
-                </NavbarButton>
-              ) : (
+              {!session?.user && (
                 <NavbarButton
                   onClick={() => setIsMobileMenuOpen(false)}
                   variant='primary'
