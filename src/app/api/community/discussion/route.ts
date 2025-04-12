@@ -5,12 +5,12 @@ import { prisma } from "@/lib/prisma";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { title, content, authorId } = body;
-    console.log(title, content, authorId);
+    const { title, content, category, authorId } = body;
+    console.log(title, content, category, authorId);
     
 
     const discussion = await prisma.discussion.create({
-      data: { title, content, authorId },
+      data: { title, content, category,  authorId },
     });
 
     return NextResponse.json(discussion, { status: 201 });
@@ -25,8 +25,17 @@ export async function POST(req: NextRequest) {
 export async function GET() {
   try {
     const discussions = await prisma.discussion.findMany({
-      include: { author: true, replies: true },
-      orderBy: { createdAt: "desc" },
+      include: {
+        author: {
+          select: {
+            name: true,
+          },
+        },
+        replies: true,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
     });
 
     return NextResponse.json(discussions);
