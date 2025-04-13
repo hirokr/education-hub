@@ -26,7 +26,7 @@ export default function DiscussionList({ data }: DiscussionListProps) {
       <h2 className="text-2xl font-bold">Discussions</h2>
       {data.map((d) => (
         <Link href= {`/community/discussion/${d.id}`} key={d.id}>
-             <div key={d.id} className="p-4 border rounded-md shadow-sm bg-accent">
+             <div key={d.id} className="p-4 border rounded-md shadow-sm bg-accent mb-3">
           <h3 className="text-lg font-semibold">{d.title}</h3>
           <p className="text-gray-700 truncate">{d.content}</p>
           <p className="text-sm text-gray-500">Posted by {d.author.name}</p>
