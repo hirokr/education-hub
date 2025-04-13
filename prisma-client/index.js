@@ -237,7 +237,7 @@ const config = {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgresql://educationhub_owner:npg_yQzC5nN3VFJe@ep-orange-rain-a17nrvs2-pooler.ap-southeast-1.aws.neon.tech/eduhub?sslmode=require"
+        "value": "postgresql://postgres.csqkjjjrgxvhemkzuyqd:eduhubBuild@aws-0-ap-south-1.pooler.supabase.com:5432/postgres"
       }
     }
   },
