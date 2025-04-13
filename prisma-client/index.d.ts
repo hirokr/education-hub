@@ -6383,7 +6383,7 @@ export namespace Prisma {
     id: string
     title: string
     content: string
-    category: string
+    category: string | null
     authorId: string
     createdAt: Date
     _count: DiscussionCountAggregateOutputType | null
@@ -6472,7 +6472,7 @@ export namespace Prisma {
       id: string
       title: string
       content: string
-      category: string
+      category: string | null
       authorId: string
       createdAt: Date
     }, ExtArgs["result"]["discussion"]>
@@ -12337,7 +12337,7 @@ export namespace Prisma {
     id?: StringFilter<"Discussion"> | string
     title?: StringFilter<"Discussion"> | string
     content?: StringFilter<"Discussion"> | string
-    category?: StringFilter<"Discussion"> | string
+    category?: StringNullableFilter<"Discussion"> | string | null
     authorId?: StringFilter<"Discussion"> | string
     createdAt?: DateTimeFilter<"Discussion"> | Date | string
     author?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -12349,7 +12349,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     content?: SortOrder
-    category?: SortOrder
+    category?: SortOrderInput | SortOrder
     authorId?: SortOrder
     createdAt?: SortOrder
     author?: UserOrderByWithRelationInput
@@ -12364,7 +12364,7 @@ export namespace Prisma {
     NOT?: DiscussionWhereInput | DiscussionWhereInput[]
     title?: StringFilter<"Discussion"> | string
     content?: StringFilter<"Discussion"> | string
-    category?: StringFilter<"Discussion"> | string
+    category?: StringNullableFilter<"Discussion"> | string | null
     authorId?: StringFilter<"Discussion"> | string
     createdAt?: DateTimeFilter<"Discussion"> | Date | string
     author?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -12376,7 +12376,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     content?: SortOrder
-    category?: SortOrder
+    category?: SortOrderInput | SortOrder
     authorId?: SortOrder
     createdAt?: SortOrder
     _count?: DiscussionCountOrderByAggregateInput
@@ -12391,7 +12391,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Discussion"> | string
     title?: StringWithAggregatesFilter<"Discussion"> | string
     content?: StringWithAggregatesFilter<"Discussion"> | string
-    category?: StringWithAggregatesFilter<"Discussion"> | string
+    category?: StringNullableWithAggregatesFilter<"Discussion"> | string | null
     authorId?: StringWithAggregatesFilter<"Discussion"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Discussion"> | Date | string
   }
@@ -12928,7 +12928,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
-    category: string
+    category?: string | null
     createdAt?: Date | string
     author: UserCreateNestedOneWithoutDiscussionsInput
     replies?: ReplyCreateNestedManyWithoutDiscussionInput
@@ -12939,7 +12939,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
-    category: string
+    category?: string | null
     authorId: string
     createdAt?: Date | string
     replies?: ReplyUncheckedCreateNestedManyWithoutDiscussionInput
@@ -12950,7 +12950,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    category?: StringFieldUpdateOperationsInput | string
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: UserUpdateOneRequiredWithoutDiscussionsNestedInput
     replies?: ReplyUpdateManyWithoutDiscussionNestedInput
@@ -12961,7 +12961,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    category?: StringFieldUpdateOperationsInput | string
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     authorId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     replies?: ReplyUncheckedUpdateManyWithoutDiscussionNestedInput
@@ -12972,7 +12972,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
-    category: string
+    category?: string | null
     authorId: string
     createdAt?: Date | string
   }
@@ -12981,7 +12981,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    category?: StringFieldUpdateOperationsInput | string
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -12989,7 +12989,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    category?: StringFieldUpdateOperationsInput | string
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     authorId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14865,7 +14865,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
-    category: string
+    category?: string | null
     createdAt?: Date | string
     replies?: ReplyCreateNestedManyWithoutDiscussionInput
     bookmarks?: BookmarkCreateNestedManyWithoutDiscussionInput
@@ -14875,7 +14875,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
-    category: string
+    category?: string | null
     createdAt?: Date | string
     replies?: ReplyUncheckedCreateNestedManyWithoutDiscussionInput
     bookmarks?: BookmarkUncheckedCreateNestedManyWithoutDiscussionInput
@@ -15074,7 +15074,7 @@ export namespace Prisma {
     id?: StringFilter<"Discussion"> | string
     title?: StringFilter<"Discussion"> | string
     content?: StringFilter<"Discussion"> | string
-    category?: StringFilter<"Discussion"> | string
+    category?: StringNullableFilter<"Discussion"> | string | null
     authorId?: StringFilter<"Discussion"> | string
     createdAt?: DateTimeFilter<"Discussion"> | Date | string
   }
@@ -15383,7 +15383,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
-    category: string
+    category?: string | null
     createdAt?: Date | string
     author: UserCreateNestedOneWithoutDiscussionsInput
     bookmarks?: BookmarkCreateNestedManyWithoutDiscussionInput
@@ -15393,7 +15393,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
-    category: string
+    category?: string | null
     authorId: string
     createdAt?: Date | string
     bookmarks?: BookmarkUncheckedCreateNestedManyWithoutDiscussionInput
@@ -15539,7 +15539,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    category?: StringFieldUpdateOperationsInput | string
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: UserUpdateOneRequiredWithoutDiscussionsNestedInput
     bookmarks?: BookmarkUpdateManyWithoutDiscussionNestedInput
@@ -15549,7 +15549,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    category?: StringFieldUpdateOperationsInput | string
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     authorId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     bookmarks?: BookmarkUncheckedUpdateManyWithoutDiscussionNestedInput
@@ -15953,7 +15953,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
-    category: string
+    category?: string | null
     createdAt?: Date | string
     author: UserCreateNestedOneWithoutDiscussionsInput
     replies?: ReplyCreateNestedManyWithoutDiscussionInput
@@ -15963,7 +15963,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
-    category: string
+    category?: string | null
     authorId: string
     createdAt?: Date | string
     replies?: ReplyUncheckedCreateNestedManyWithoutDiscussionInput
@@ -16030,7 +16030,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    category?: StringFieldUpdateOperationsInput | string
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: UserUpdateOneRequiredWithoutDiscussionsNestedInput
     replies?: ReplyUpdateManyWithoutDiscussionNestedInput
@@ -16040,7 +16040,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    category?: StringFieldUpdateOperationsInput | string
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     authorId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     replies?: ReplyUncheckedUpdateManyWithoutDiscussionNestedInput
@@ -16070,7 +16070,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
-    category: string
+    category?: string | null
     createdAt?: Date | string
   }
 
@@ -16165,7 +16165,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    category?: StringFieldUpdateOperationsInput | string
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     replies?: ReplyUpdateManyWithoutDiscussionNestedInput
     bookmarks?: BookmarkUpdateManyWithoutDiscussionNestedInput
@@ -16175,7 +16175,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    category?: StringFieldUpdateOperationsInput | string
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     replies?: ReplyUncheckedUpdateManyWithoutDiscussionNestedInput
     bookmarks?: BookmarkUncheckedUpdateManyWithoutDiscussionNestedInput
@@ -16185,7 +16185,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    category?: StringFieldUpdateOperationsInput | string
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

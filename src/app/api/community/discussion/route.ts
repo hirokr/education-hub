@@ -1,20 +1,19 @@
 // File: pages/api/discussions/index.ts
 import { NextRequest, NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient()
+import { PrismaClient } from "../../../../../prisma-client";
+const prisma = new PrismaClient();
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const { title, content, category, authorId } = body;
 
-    const discussion = await prisma.discussion.create({
+    const discussions = await prisma.discussion.create({
       data: { title, content, category, authorId },
     });
-    console.log(discussion);
-    return NextResponse.json(discussion, { status: 201 });
+    console.log(discussions);
+    return NextResponse.json(discussions, { status: 201 });
   } catch (error) {
-
     return NextResponse.json(
       {
         error:
