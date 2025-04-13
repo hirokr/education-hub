@@ -50,7 +50,7 @@ CREATE TABLE "Discussion" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "content" TEXT NOT NULL,
-    "category" TEXT NOT NULL,
+    "category" TEXT,
     "authorId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 

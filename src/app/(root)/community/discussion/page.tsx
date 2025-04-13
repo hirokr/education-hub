@@ -10,7 +10,7 @@ export default function DiscussionPage() {
   const { data: session } = useSession();
   const [data, setData] = React.useState([]);
   const userId = session?.user?.id;
- 
+
   
   const postDiscussion = async (title: string, content: string, category: string) => {
     const response = await fetch("/api/community/discussion", {
@@ -18,7 +18,7 @@ export default function DiscussionPage() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ title, content, category,authorId: userId }),
+      body: JSON.stringify({ title, content, category, authorId: userId }),
     });
     if (!response.ok) {
       throw new Error("Failed to post discussion");

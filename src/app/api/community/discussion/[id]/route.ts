@@ -1,15 +1,26 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma"; // adjust path to your Prisma instance
+import { PrismaClient } from "../../../../../../prisma-client"; // adjust path to your Prisma instance
+const prisma = new PrismaClient();
 
 export async function GET(
   req: NextRequest,
-   params : Promise<{ params: { id: string } }>
+   context :{params:Promise<{ id: string }>} 
 ) {
-  const data = await params;
-  const id = data.params.id; 
+  const {id} =  await context.params; 
+  console.log(id);
+  
+ 
+  
   try {
     const discussion = await prisma.discussion.findUnique({
-      where: { id }
+      where: { id },
+      include: {
+        author:{
+          select: {
+            name: true,
+          },
+        }
+      }
     });
     if (!discussion) {
       return NextResponse.json({ message: "Not found" }, { status: 404 });
@@ -25,10 +36,9 @@ export async function GET(
 
 export async function PUT(
   req: NextRequest,
-  params: Promise<{ params: { id: string } }>
+  context: { params: Promise<{ id: string }> }
 ) {
-  const data = await params;
-  const id = data.params.id;
+  const { id } = await context.params;
   const { title, content } = await req.json();
 
   try {
@@ -47,10 +57,9 @@ export async function PUT(
 
 export async function DELETE(
   req: NextRequest,
-  params: Promise<{ params: { id: string } }>
+  context: { params: Promise<{ id: string }> }
 ) {
-  const data = await params;
-  const id = data.params.id;
+  const { id } = await context.params;
   try {
     const deleted = await prisma.discussion.delete({
       where: { id },
@@ -68,10 +77,9 @@ export async function DELETE(
 // but if you want to allow replies or nested comments, you could implement it here.
 export async function POST(
   req: NextRequest,
-  params: Promise<{ params: { id: string } }>
+  context: { params: Promise<{ id: string }> }
 ) {
-  const data = await params;
-  const id = data.params.id;
+  const { id } = await context.params;
   const { content, authorId } = await req.json();
 
   // Example: Add a comment to a discussion
