@@ -7,8 +7,7 @@ export default function RootLayout({
 }) {
   return (
     <div
-      className="mt-20
-  "
+      className="mt-20"
     >
       {children}
     </div>
