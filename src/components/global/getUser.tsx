@@ -20,7 +20,7 @@ const GetUser: React.FC<{ setIsMobileMenuOpen: (value: boolean) => void }> = ({ 
           w-56 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-lg rounded-md border border-gray-200 dark:border-gray-700 *:cursor-pointer">
           <DropdownMenuLabel>{session?.user?.name}</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <Link href='/dashboard'>
+          <Link href={`/dashboard/${session?.user?.id}`}>
             <DropdownMenuItem>Profile</DropdownMenuItem>
           </Link>
           <Link href='/resume-analyze'>
