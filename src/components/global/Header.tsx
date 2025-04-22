@@ -36,7 +36,7 @@ export function Header() {
     },
     {
       name: "Scholarship",
-      link: "/Scholarship",
+      link: "/scholarships",
     },
   ];
 
