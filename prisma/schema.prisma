@@ -3,7 +3,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  output = "../prisma-client"
 }
 
 datasource db {
@@ -39,19 +38,21 @@ model Session {
 }
 
 model User {
-  id            String       @id @default(cuid())
-  name          String?
-  email         String?      @unique
-  emailVerified DateTime?
-  password      String?
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
-  discussions   Discussion[]
-  replies       Reply[]
-  reviews       Review[]
-  votes         Vote[]
-  bookmarks     Bookmark[]
+  id                    String       @id @default(cuid())
+  name                  String?
+  email                 String?      @unique
+  emailVerified         DateTime?
+  password              String?
+  image                 String?
+  accounts              Account[]
+  sessions              Session[]
+  discussions           Discussion[]
+  replies               Reply[]
+  reviews               Review[]
+  votes                 Vote[]
+  bookmarks             Bookmark[]
+  scholarshipApplications ScholarshipApplication[]
+  jobApplications       JobApplication[]
 }
 
 model VerificationToken {
@@ -118,4 +119,71 @@ model Bookmark {
 
   user       User        @relation(fields: [userId], references: [id])
   discussion Discussion? @relation(fields: [discussionId], references: [id])
+}
+
+model Scholarship {
+  id            String   @id @default(cuid())
+  scholarship_id String  @unique
+  title         String
+  sponsor       String
+  description   String   @db.Text
+  deadline      DateTime
+  amount        String
+  eligibility   String
+  location      String
+  tags          String[]
+  posted_on     DateTime
+  applications  ScholarshipApplication[]
+}
+
+model Job {
+  id            String   @id @default(cuid())
+  job_id        String   @unique
+  job_title     String
+  company_name  String
+  company_logo  String
+  date          DateTime
+  location      String
+  position      String
+  salary_range  Json     // Will store min and max as a JSON object
+  job_tags      String[]
+  job_description String @db.Text
+  posted_on     DateTime
+  deadline      DateTime
+  applications  JobApplication[]
+}
+
+model ScholarshipApplication {
+  id            String   @id @default(cuid())
+  userId        String
+  scholarshipId String
+  fullName      String
+  email         String
+  phone         String
+  academicInfo  String   @db.Text
+  coverLetter   String   @db.Text
+  documents     String?  // Store the file path
+  status        String   @default("pending") // pending, accepted, rejected
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  user        User        @relation(fields: [userId], references: [id])
+  scholarship Scholarship @relation(fields: [scholarshipId], references: [id])
+}
+
+model JobApplication {
+  id            String   @id @default(cuid())
+  userId        String
+  jobId         String
+  fullName      String
+  email         String
+  phone         String
+  coverLetter   String   @db.Text
+  resume        String?  // Store the file path
+  status        String   @default("pending") // pending, accepted, rejected
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+  job  Job  @relation(fields: [jobId], references: [id])
 }

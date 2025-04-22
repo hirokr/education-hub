@@ -1,0 +1,422 @@
+[
+  {
+    "job_id": "JOB001",
+    "job_title": "Frontend Developer",
+    "company_name": "TechNova",
+    "company_logo": "https://robohash.org/TechNova",
+    "date": "2025-04-01",
+    "location": "New York, NY",
+    "position": "Full-time",
+    "salary_range": {
+      "min": 80000,
+      "max": 120000
+    },
+    "job_tags": [
+      "HTML",
+      "CSS",
+      "React"
+    ],
+    "posted_on": "2025-04-01",
+    "job_description": "Join TechNova as a Frontend Developer where you'll design and implement cutting-edge web solutions using React, HTML5, and CSS3. You'll work closely with cross-functional teams to deliver high-quality, responsive interfaces in a fast-paced environment. Strong knowledge of JavaScript frameworks and experience with RESTful APIs is essential. Our ideal candidate demonstrates creativity in problem-solving and maintains awareness of emerging frontend technologies and trends.",
+    "deadline": "2025-05-01"
+  },
+  {
+    "job_id": "JOB002",
+    "job_title": "Backend Engineer",
+    "company_name": "CodeForge",
+    "company_logo": "https://robohash.org/CodeForge",
+    "date": "2025-04-02",
+    "location": "San Francisco, CA",
+    "position": "Full-time",
+    "salary_range": {
+      "min": 90000,
+      "max": 140000
+    },
+    "job_tags": [
+      "Node.js",
+      "Express",
+      "MongoDB"
+    ],
+    "posted_on": "2025-04-02",
+    "job_description": "CodeForge is hiring a Backend Engineer to drive product development with Node.js, Express, and MongoDB. You'll design and implement scalable APIs, optimize database performance, and ensure system security. Responsibilities include collaborating with stakeholders, writing clean, maintainable code, and ensuring quality through comprehensive testing and code reviews. Experience with microservices architecture and containerization technologies is highly valued for this position.",
+    "deadline": "2025-05-02"
+  },
+  {
+    "job_id": "JOB003",
+    "job_title": "UI/UX Designer",
+    "company_name": "DesignHive",
+    "company_logo": "https://robohash.org/DesignHive",
+    "date": "2025-04-03",
+    "location": "Austin, TX",
+    "position": "Contract",
+    "salary_range": {
+      "min": 70000,
+      "max": 100000
+    },
+    "job_tags": [
+      "Figma",
+      "Sketch",
+      "Adobe XD"
+    ],
+    "posted_on": "2025-04-03",
+    "job_description": "As a UI/UX Designer at DesignHive, you'll create intuitive user experiences and visually appealing designs using Figma, Sketch, and Adobe XD. You'll conduct user research, develop wireframes and prototypes, and collaborate with developers to implement your designs. This role requires a strong portfolio demonstrating user-centered design principles, excellent communication skills, and the ability to translate business requirements into delightful user experiences.",
+    "deadline": "2025-05-03"
+  },
+  {
+    "job_id": "JOB004",
+    "job_title": "Data Analyst",
+    "company_name": "DataNest",
+    "company_logo": "https://robohash.org/DataNest",
+    "date": "2025-04-04",
+    "location": "Chicago, IL",
+    "position": "Part-time",
+    "salary_range": {
+      "min": 60000,
+      "max": 90000
+    },
+    "job_tags": [
+      "Python",
+      "SQL",
+      "Tableau"
+    ],
+    "posted_on": "2025-04-04",
+    "job_description": "Be part of DataNest's analytics team as a Data Analyst where you'll transform raw data into actionable insights using Python, SQL, and Tableau. You'll design and maintain dashboards, perform statistical analyses, and identify trends to support business decisions. This role requires strong analytical thinking, attention to detail, and the ability to communicate complex findings clearly to non-technical stakeholders. Experience with data cleaning, visualization best practices, and business intelligence tools is essential.",
+    "deadline": "2025-05-04"
+  },
+  {
+    "job_id": "JOB005",
+    "job_title": "DevOps Engineer",
+    "company_name": "CloudBridge",
+    "company_logo": "https://robohash.org/CloudBridge",
+    "date": "2025-04-05",
+    "location": "Seattle, WA",
+    "position": "Full-time",
+    "salary_range": {
+      "min": 100000,
+      "max": 150000
+    },
+    "job_tags": [
+      "AWS",
+      "Docker",
+      "CI/CD"
+    ],
+    "posted_on": "2025-04-05",
+    "job_description": "CloudBridge seeks a talented DevOps Engineer to optimize our infrastructure and deployment processes using AWS, Docker, and CI/CD pipelines. You'll implement cloud-based solutions, automate workflows, and ensure high availability of our services. Responsibilities include infrastructure management, performance monitoring, security implementation, and disaster recovery planning. The ideal candidate has experience with Infrastructure as Code tools, containerization, and a passion for automation and optimization.",
+    "deadline": "2025-05-05"
+  },
+  {
+    "job_id": "JOB006",
+    "job_title": "Mobile Developer",
+    "company_name": "AppRocket",
+    "company_logo": "https://robohash.org/AppRocket12",
+    "date": "2025-04-06",
+    "location": "Los Angeles, CA",
+    "position": "Remote",
+    "salary_range": {
+      "min": 85000,
+      "max": 130000
+    },
+    "job_tags": [
+      "Flutter",
+      "React Native",
+      "iOS"
+    ],
+    "posted_on": "2025-04-06",
+    "job_description": "Join AppRocket as a Mobile Developer where you'll design and implement feature-rich applications using Flutter and React Native. You'll create seamless user experiences across iOS and Android platforms, integrate with backend services, and optimize app performance. This role requires proficiency in cross-platform development frameworks, understanding of mobile design patterns, and experience with native module integration. Strong problem-solving skills and attention to UI/UX details are essential.",
+    "deadline": "2025-05-06"
+  },
+  {
+    "job_id": "JOB007",
+    "job_title": "Product Manager",
+    "company_name": "VisionFlow",
+    "company_logo": "https://robohash.org/VisionFlow",
+    "date": "2025-04-07",
+    "location": "Boston, MA",
+    "position": "Full-time",
+    "salary_range": {
+      "min": 95000,
+      "max": 135000
+    },
+    "job_tags": [
+      "Agile",
+      "Scrum",
+      "Jira"
+    ],
+    "posted_on": "2025-04-07",
+    "job_description": "VisionFlow is hiring a Product Manager to drive development from concept to launch using Agile and Scrum methodologies. You'll gather requirements, create roadmaps, and prioritize features while working closely with stakeholders and development teams. This role demands excellent communication skills, analytical thinking, and the ability to translate business goals into product features. Experience with Jira, market analysis, and a track record of successful product launches are highly desirable.",
+    "deadline": "2025-05-07"
+  },
+  {
+    "job_id": "JOB008",
+    "job_title": "Cybersecurity Analyst",
+    "company_name": "SecureNet",
+    "company_logo": "https://robohash.org/secureInternet",
+    "date": "2025-04-08",
+    "location": "Washington, D.C.",
+    "position": "Full-time",
+    "salary_range": {
+      "min": 90000,
+      "max": 125000
+    },
+    "job_tags": [
+      "Firewalls",
+      "Penetration Testing",
+      "SIEM"
+    ],
+    "posted_on": "2025-04-08",
+    "job_description": "As a Cybersecurity Analyst at SecureNet, you'll protect our infrastructure from threats using cutting-edge security tools. You'll conduct penetration testing, manage firewall configurations, and monitor SIEM systems for suspicious activities. Responsibilities include vulnerability assessments, incident response, security policy development, and compliance monitoring. The ideal candidate possesses strong analytical skills, current security certifications, and experience with threat intelligence platforms and network security protocols.",
+    "deadline": "2025-05-08"
+  },
+  {
+    "job_id": "JOB009",
+    "job_title": "Machine Learning Engineer",
+    "company_name": "BrainWaveAI",
+    "company_logo": "https://robohash.org/BrainWaveAI",
+    "date": "2025-04-09",
+    "location": "Palo Alto, CA",
+    "position": "Internship",
+    "salary_range": {
+      "min": 75000,
+      "max": 105000
+    },
+    "job_tags": [
+      "Python",
+      "TensorFlow",
+      "Scikit-learn"
+    ],
+    "posted_on": "2025-04-09",
+    "job_description": "Be part of BrainWaveAI's innovative team as a Machine Learning Engineer intern. You'll design and develop ML models using Python, TensorFlow, and Scikit-learn while analyzing large datasets and implementing algorithms. This internship involves collaborating with data scientists, participating in the full ML pipeline from data preparation to model deployment, and staying current with AI research. Strong programming skills, statistical knowledge, and a passion for artificial intelligence are required.",
+    "deadline": "2025-05-09"
+  },
+  {
+    "job_id": "JOB010",
+    "job_title": "Technical Writer",
+    "company_name": "DocuGen",
+    "company_logo": "https://robohash.org/DocuGen",
+    "date": "2025-04-10",
+    "location": "Denver, CO",
+    "position": "Contract",
+    "salary_range": {
+      "min": 65000,
+      "max": 85000
+    },
+    "job_tags": [
+      "Documentation",
+      "Markdown",
+      "API"
+    ],
+    "posted_on": "2025-04-10",
+    "job_description": "DocuGen seeks a skilled Technical Writer to create clear, concise documentation for our products and APIs using Markdown and other authoring tools. You'll work with technical teams to translate complex concepts into user-friendly guides, tutorials, and reference materials. This role requires excellent writing skills, attention to detail, and the ability to understand technical concepts quickly. Experience with API documentation, knowledge base management, and documentation workflows is highly valued.",
+    "deadline": "2025-05-10"
+  },
+  {
+    "job_id": "JOB011",
+    "job_title": "Cloud Architect",
+    "company_name": "SkyTech",
+    "company_logo": "https://robohash.org/SkyTech",
+    "date": "2025-04-11",
+    "location": "Phoenix, AZ",
+    "position": "Full-time",
+    "salary_range": {
+      "min": 105000,
+      "max": 155000
+    },
+    "job_tags": [
+      "Azure",
+      "Kubernetes",
+      "Terraform"
+    ],
+    "posted_on": "2025-04-11",
+    "job_description": "Join SkyTech as a Cloud Architect where you'll design and implement scalable solutions using Azure, Kubernetes, and Terraform. You'll lead migration efforts, optimize resource utilization, and establish cloud governance policies. This role involves architectural planning, cost optimization, performance monitoring, and mentoring junior engineers. The ideal candidate has extensive experience with cloud services, containerization technologies, and infrastructure automation tools.",
+    "deadline": "2025-05-11"
+  },
+  {
+    "job_id": "JOB012",
+    "job_title": "Full Stack Developer",
+    "company_name": "CodeCrate",
+    "company_logo": "https://robohash.org/CodeCrate",
+    "date": "2025-04-12",
+    "location": "Atlanta, GA",
+    "position": "Full-time",
+    "salary_range": {
+      "min": 95000,
+      "max": 140000
+    },
+    "job_tags": [
+      "Vue.js",
+      "Node.js",
+      "MySQL"
+    ],
+    "posted_on": "2025-04-12",
+    "job_description": "CodeCrate is hiring a Full Stack Developer to build web applications from front to back using Vue.js, Node.js, and MySQL. You'll architect solutions, implement RESTful APIs, optimize database queries, and ensure application security. This position requires expertise in both frontend and backend technologies, experience with version control systems, and the ability to work in an agile environment. Strong problem-solving skills and knowledge of software development best practices are essential.",
+    "deadline": "2025-05-12"
+  },
+  {
+    "job_id": "JOB013",
+    "job_title": "QA Tester",
+    "company_name": "BugCatcher",
+    "company_logo": "https://robohash.org/BugCatcher",
+    "date": "2025-04-13",
+    "location": "Orlando, FL",
+    "position": "Part-time",
+    "salary_range": {
+      "min": 55000,
+      "max": 80000
+    },
+    "job_tags": [
+      "Selenium",
+      "Postman",
+      "Jest"
+    ],
+    "posted_on": "2025-04-13",
+    "job_description": "As a QA Tester at BugCatcher, you'll ensure software quality by designing and executing test cases using Selenium, Postman, and Jest. You'll identify defects, validate fixes, and create detailed test reports. This role involves both manual and automated testing, regression testing, and participation in agile ceremonies. The ideal candidate has a keen eye for detail, strong analytical skills, and experience with testing methodologies and CI/CD pipelines.",
+    "deadline": "2025-05-13"
+  },
+  {
+    "job_id": "JOB014",
+    "job_title": "AI Researcher",
+    "company_name": "ThinkDeep",
+    "company_logo": "https://robohash.org/ThinkDeep",
+    "date": "2025-04-14",
+    "location": "Cambridge, MA",
+    "position": "Full-time",
+    "salary_range": {
+      "min": 110000,
+      "max": 160000
+    },
+    "job_tags": [
+      "NLP",
+      "Deep Learning",
+      "Research"
+    ],
+    "posted_on": "2025-04-14",
+    "job_description": "ThinkDeep seeks an AI Researcher to advance the state of the art in NLP and Deep Learning. You'll conduct original research, design experiments, analyze results, and publish papers in top-tier conferences. This position involves developing novel algorithms, collaborating with engineering teams to implement research findings, and staying current with academic literature. A PhD in a relevant field, publication record, and strong programming skills are required for this cutting-edge role.",
+    "deadline": "2025-05-14"
+  },
+  {
+    "job_id": "JOB015",
+    "job_title": "IT Support Specialist",
+    "company_name": "QuickFixIT",
+    "company_logo": "https://robohash.org/QuickFixIT",
+    "date": "2025-04-15",
+    "location": "Dallas, TX",
+    "position": "Full-time",
+    "salary_range": {
+      "min": 60000,
+      "max": 85000
+    },
+    "job_tags": [
+      "Tech Support",
+      "Windows",
+      "Networking"
+    ],
+    "posted_on": "2025-04-15",
+    "job_description": "QuickFixIT is looking for an IT Support Specialist to provide technical assistance to our team and clients. You'll troubleshoot hardware and software issues, configure workstations and network devices, and maintain IT documentation. This role involves managing user accounts, implementing security measures, and providing training on technology tools. Strong communication skills, experience with Windows environments, and knowledge of networking principles are essential for this position.",
+    "deadline": "2025-05-15"
+  },
+  {
+    "job_id": "JOB016",
+    "job_title": "Business Analyst",
+    "company_name": "InsightCorp",
+    "company_logo": "https://robohash.org/InsightCorp",
+    "date": "2025-04-16",
+    "location": "San Diego, CA",
+    "position": "Full-time",
+    "salary_range": {
+      "min": 70000,
+      "max": 95000
+    },
+    "job_tags": [
+      "Excel",
+      "SQL",
+      "Stakeholder Management"
+    ],
+    "posted_on": "2025-04-16",
+    "job_description": "Join InsightCorp as a Business Analyst where you'll bridge business needs and technical solutions using Excel and SQL. You'll gather requirements, map processes, analyze data, and create detailed documentation to guide development efforts. This role requires excellent stakeholder management, strong communication skills, and the ability to translate complex business problems into clear requirements. Experience with data visualization tools and business process modeling is highly beneficial.",
+    "deadline": "2025-05-16"
+  },
+  {
+    "job_id": "JOB017",
+    "job_title": "Graphic Designer",
+    "company_name": "PixelPulse",
+    "company_logo": "https://robohash.org/PixelPulse",
+    "date": "2025-04-17",
+    "location": "Portland, OR",
+    "position": "Remote",
+    "salary_range": {
+      "min": 65000,
+      "max": 95000
+    },
+    "job_tags": [
+      "Illustrator",
+      "Photoshop",
+      "InDesign"
+    ],
+    "posted_on": "2025-04-17",
+    "job_description": "PixelPulse is hiring a creative Graphic Designer to develop visual concepts using Illustrator, Photoshop, and InDesign. You'll create brand assets, marketing materials, and user interface elements while maintaining consistent design language. This remote position requires a strong portfolio showcasing versatility, excellent typography skills, and the ability to work independently. Experience with motion graphics, digital advertising, and responsive design principles is a plus.",
+    "deadline": "2025-05-17"
+  },
+  {
+    "job_id": "JOB018",
+    "job_title": "Marketing Specialist",
+    "company_name": "BrandBuzz",
+    "company_logo": "https://robohash.org/BrandBuzz",
+    "date": "2025-04-18",
+    "location": "Miami, FL",
+    "position": "Contract",
+    "salary_range": {
+      "min": 60000,
+      "max": 88000
+    },
+    "job_tags": [
+      "SEO",
+      "Content Marketing",
+      "Analytics"
+    ],
+    "posted_on": "2025-04-18",
+    "job_description": "BrandBuzz seeks a Marketing Specialist to develop and implement digital strategies focused on SEO and content marketing. You'll optimize website content, manage social media campaigns, analyze performance metrics, and create engaging marketing materials. This contract role requires knowledge of SEO best practices, experience with analytics tools, and excellent writing skills. The ideal candidate understands consumer behavior and can translate data insights into effective marketing initiatives.",
+    "deadline": "2025-05-18"
+  },
+  {
+    "job_id": "JOB019",
+    "job_title": "Database Administrator",
+    "company_name": "DataSafe",
+    "company_logo": "https://robohash.org/DataSafe",
+    "date": "2025-04-19",
+    "location": "Houston, TX",
+    "position": "Full-time",
+    "salary_range": {
+      "min": 90000,
+      "max": 130000
+    },
+    "job_tags": [
+      "Oracle",
+      "PostgreSQL",
+      "Backup"
+    ],
+    "posted_on": "2025-04-19",
+    "job_description": "As a Database Administrator at DataSafe, you'll manage, optimize, and secure Oracle and PostgreSQL database systems. Your responsibilities will include performance tuning, query optimization, backup and recovery planning, and ensuring high availability. This role involves implementing security measures, monitoring database health, troubleshooting issues, and capacity planning. Strong SQL skills, experience with database administration tools, and knowledge of data modeling concepts are required.",
+    "deadline": "2025-05-19"
+  },
+  {
+    "job_id": "JOB020",
+    "job_title": "Network Engineer",
+    "company_name": "NetSecure",
+    "company_logo": "https://robohash.org/NetSecure",
+    "date": "2025-04-20",
+    "location": "Philadelphia, PA",
+    "position": "Full-time",
+    "salary_range": {
+      "min": 85000,
+      "max": 125000
+    },
+    "job_tags": [
+      "Cisco",
+      "Firewall",
+      "LAN/WAN"
+    ],
+    "posted_on": "2025-04-20",
+    "job_description": "NetSecure is looking for a Network Engineer to design and implement infrastructure solutions using Cisco technologies and firewall systems. You'll configure network devices, optimize LAN/WAN performance, troubleshoot connectivity issues, and document network architecture. This position requires expertise in routing protocols, security best practices, and network monitoring tools. Experience with VPNs, SDN technologies, and network virtualization will be highly valuable for this role.",
+    "deadline": "2025-05-20"
+  }
+]
