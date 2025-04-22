@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
+    <html lang='en' suppressHydrationWarning>
       <body className={`${openSans.className} antialiased`}>
         <ThemeProvider
           attribute='class'
@@ -34,7 +34,7 @@ export default function RootLayout({
           <SessionProvider>
             <Header />
             {children}
-            <Toaster />
+            <Toaster position="top-center" richColors closeButton />
           </SessionProvider>
         </ThemeProvider>
       </body>
