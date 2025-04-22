@@ -28,6 +28,15 @@ export async function POST(req: Request) {
   return NextResponse.json(reply);
 }
 
+interface AUTHOR {
+  id: string;
+  name: string;
+  email: string;
+  emailVerified: Date;
+  password: string;
+  image: string;
+}
+
 // ⬇️ Recursive fetch function
 interface ReplyWithChildren {
   id: string;
