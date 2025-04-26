@@ -49,7 +49,7 @@ export default function JobDetailsPage() {
   const [isApplicationModalOpen, setIsApplicationModalOpen] = useState(false);
   const [applicationForm, setApplicationForm] = useState({
     fullName: '',
-    email: '',
+    email: session?.user?.email || '',
     phone: '',
     coverLetter: '',
     resume: null as File | null,
@@ -105,13 +105,13 @@ export default function JobDetailsPage() {
         throw new Error('Failed to submit application');
       }
 
-      toast.success('Application submitted successfully!');
+      toast.success('Application submitted successfully! A confirmation email has been sent to your email address.');
       setIsApplicationModalOpen(false);
       
       // Reset form after successful submission
       setApplicationForm({
         fullName: '',
-        email: '',
+        email: session?.user?.email || '',
         phone: '',
         coverLetter: '',
         resume: null,
@@ -336,6 +336,7 @@ export default function JobDetailsPage() {
                         value={applicationForm.email}
                         onChange={(e) => setApplicationForm(prev => ({ ...prev, email: e.target.value }))}
                         required
+                        placeholder="Your email will be pre-filled from your account"
                       />
                     </div>
                     <div className="space-y-2">

@@ -8,9 +8,11 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
+    const { id } = await params;
+    
     const job = await prisma.job.findUnique({
       where: {
-        job_id: params.id
+        job_id: id
       }
     });
 

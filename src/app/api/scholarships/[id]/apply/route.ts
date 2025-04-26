@@ -3,12 +3,16 @@ import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { writeFile } from 'fs/promises';
 import { join } from 'path';
+import { sendApplicationConfirmationEmail } from '@/lib/email';
 
 export async function POST(
   request: Request,
   { params }: { params: { id: string } }
 ) {
   try {
+    // Await the params
+    const { id } = await params;
+    
     const session = await auth();
     if (!session?.user) {
       return new NextResponse('Unauthorized', { status: 401 });
@@ -37,14 +41,14 @@ export async function POST(
     const scholarship = await prisma.scholarship.findFirst({
       where: {
         OR: [
-          { id: params.id },
-          { scholarship_id: params.id }
+          { id: id },
+          { scholarship_id: id }
         ]
       }
     });
 
     if (!scholarship) {
-      console.error('Scholarship not found with ID:', params.id);
+      console.error('Scholarship not found with ID:', id);
       return new NextResponse('Scholarship not found', { status: 404 });
     }
 
@@ -61,6 +65,14 @@ export async function POST(
         documents: `/uploads/${fileName}`,
       },
     });
+
+    // Send confirmation email
+    await sendApplicationConfirmationEmail(
+      email,
+      'scholarship',
+      scholarship.title,
+      fullName
+    );
 
     return NextResponse.json(application);
   } catch (error) {

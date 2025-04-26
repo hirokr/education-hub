@@ -110,7 +110,6 @@ export default function ScholarshipDetailsPage() {
         return;
       }
 
-      console.log('Submitting application for scholarship ID:', id);
       const formData = new FormData();
       formData.append('fullName', applicationForm.fullName);
       formData.append('email', applicationForm.email);
@@ -124,20 +123,17 @@ export default function ScholarshipDetailsPage() {
         body: formData,
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
-        console.error('Server error:', data);
-        throw new Error(data.error || 'Failed to submit application');
+        throw new Error('Failed to submit application');
       }
 
-      toast.success('Application submitted successfully!');
+      toast.success('Application submitted successfully! A confirmation email has been sent to your email address.');
       setIsApplicationModalOpen(false);
       
       // Reset form after successful submission
       setApplicationForm({
         fullName: '',
-        email: '',
+        email: session?.user?.email || '',
         phone: '',
         academicInfo: '',
         coverLetter: '',
@@ -145,7 +141,7 @@ export default function ScholarshipDetailsPage() {
       });
     } catch (error) {
       console.error('Error submitting application:', error);
-      toast.error(error instanceof Error ? error.message : 'Failed to submit application. Please try again.');
+      toast.error('Failed to submit application. Please try again.');
     }
   };
 
