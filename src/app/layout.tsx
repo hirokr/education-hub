@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' suppressHydrationWarning>
-      <body className={`${openSans.className} antialiased`}>
+      <body className={`${openSans.className} antialiased`} suppressHydrationWarning>
         <ThemeProvider
           attribute='class'
           defaultTheme='dark'

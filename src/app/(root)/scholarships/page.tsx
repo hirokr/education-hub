@@ -4,6 +4,9 @@ import { getScholarships } from '@/lib/scholarships';
 import { useState, useEffect } from 'react';
 import { Scholarship } from '@/types/scholarship';
 import Link from 'next/link';
+import { BookmarkPlus } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
 export default function ScholarshipsPage() {
   const [scholarships, setScholarships] = useState<Scholarship[]>([]);
@@ -215,11 +218,25 @@ export default function ScholarshipsPage() {
           <h1 className="text-3xl font-bold mb-8">Available Scholarships</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredScholarships.map((scholarship) => (
-              <Link 
-                key={scholarship.scholarship_id} 
-                href={`/scholarships/${scholarship.scholarship_id}`}
-                className="block border rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow bg-white dark:bg-[#0A0A0A]"
-              >
+              <div key={scholarship.scholarship_id} className="relative border rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow bg-white dark:bg-[#0A0A0A]">
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="absolute top-2 right-2 text-black hover:text-black/80 dark:text-[#d1e6ff] dark:hover:text-[#d1e6ff]/80"
+                    >
+                      <BookmarkPlus className="h-8 w-8" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Click to save to dashboard</p>
+                  </TooltipContent>
+                </Tooltip>
+                <Link 
+                  href={`/scholarships/${scholarship.scholarship_id}`}
+                  className="block">
+
                 <div className="mb-4">
                   <h2 className="text-2xl font-bold text-black dark:text-white mb-2">{scholarship.title}</h2>
                   <div className="flex items-center gap-2">
@@ -283,7 +300,8 @@ export default function ScholarshipsPage() {
                     </span>
                   ))}
                 </div>
-              </Link>
+                </Link>
+              </div>
             ))}
           </div>
         </div>

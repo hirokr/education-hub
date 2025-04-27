@@ -4,6 +4,9 @@ import { getJobs } from '@/lib/jobs';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { BookmarkPlus } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
 interface Job {
   job_id: string;
@@ -333,11 +336,25 @@ export default function JobsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredJobs.map((job) => (
               <Link 
-                key={job.job_id} 
+                key={job.job_id}
                 href={`/jobs/${job.job_id}`}
-                className="block border rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow bg-white dark:bg-[#0A0A0A]"
+                className="relative block border rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow bg-white dark:bg-[#0A0A0A]"
               >
-                <div className="flex items-start mb-6 ">
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="absolute top-2 right-2 text-black hover:text-black/80 dark:text-[#d1e6ff] dark:hover:text-[#d1e6ff]/80"
+                    >
+                      <BookmarkPlus className="h-8 w-8" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Click to save to dashboard</p>
+                  </TooltipContent>
+                </Tooltip>
+                <div className="flex items-start mb-6 pr-12">
                   <Image 
                     src={job.company_logo} 
                     alt={`${job.company_name} logo`} 
@@ -345,7 +362,7 @@ export default function JobsPage() {
                     height={56}
                     className="rounded-full mr-4"
                   />
-                  <div>
+                  <div className="flex-1">
                     <h2 className="text-2xl font-bold text-black dark:text-white mb-1">{job.job_title}</h2>
                     <p className="text-lg font-semibold text-black dark:text-[#D1E6FF]">{job.company_name}</p>
                   </div>
