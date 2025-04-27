@@ -7,7 +7,8 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const { title, content, category, authorId } = body;
-
+    console.log(title, content, category, authorId);
+    
     const discussions = await prisma.discussion.create({
       data: { title, content, category, authorId },
     });

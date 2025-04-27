@@ -95,6 +95,7 @@ model Review {
   content   String
   rating    Int
   authorId  String
+  category  String
   user      User     @relation(fields: [authorId], references: [id])
   votes     Vote[]
   createdAt DateTime @default(now())
