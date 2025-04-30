@@ -15,6 +15,7 @@ import { toast } from "sonner";
 import { CalendarIcon, MapPinIcon, BanknotesIcon, ClockIcon, AcademicCapIcon } from "@heroicons/react/24/outline";
 import { Upload, BookmarkPlus, BookmarkCheck } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { useApplicationStatus } from '@/hooks/useApplicationStatus';
 
 interface Scholarship {
   scholarship_id: string;
@@ -37,6 +38,7 @@ export default function ScholarshipDetailsPage() {
   const [scholarship, setScholarship] = useState<Scholarship | null>(null);
   const [loading, setLoading] = useState(true);
   const [isApplicationModalOpen, setIsApplicationModalOpen] = useState(false);
+  const { hasApplied, isLoading: isApplicationStatusLoading, error } = useApplicationStatus('scholarship', id as string);
   const [applicationForm, setApplicationForm] = useState({
     fullName: '',
     email: '',
@@ -116,6 +118,16 @@ export default function ScholarshipDetailsPage() {
     if (!session) {
       toast.error("Please log in first to apply");
       router.push('/sign-in');
+      return;
+    }
+    
+    if (error) {
+      toast.error("Unable to check application status. Please try again later.");
+      return;
+    }
+    
+    if (hasApplied) {
+      toast.info("You have already applied for this scholarship");
       return;
     }
     
@@ -266,9 +278,12 @@ export default function ScholarshipDetailsPage() {
                 <Button 
                   size="lg" 
                   onClick={handleApplyClick}
-                  className="bg-black hover:bg-black/80 text-white dark:bg-[#FFFFFF] dark:hover:bg-[#d1e6ff]/80 dark:text-black"
+                  disabled={hasApplied || isApplicationStatusLoading || !!error}
+                  className={`bg-black hover:bg-black/80 text-white dark:bg-[#FFFFFF] dark:hover:bg-[#d1e6ff]/80 dark:text-black ${
+                    hasApplied || isApplicationStatusLoading || error ? 'opacity-50 cursor-not-allowed' : ''
+                  }`}
                 >
-                  Apply Now
+                  {isApplicationStatusLoading ? 'Checking...' : hasApplied ? 'Already Applied' : 'Apply Now'}
                 </Button>
               </div>
             </div>

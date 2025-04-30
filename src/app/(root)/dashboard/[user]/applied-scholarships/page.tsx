@@ -1,9 +1,7 @@
-'use client';
+"use client";
 
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
-import Link from 'next/link';
-import { toast } from 'sonner';
 
 interface ScholarshipApplication {
   id: string;
@@ -16,6 +14,10 @@ interface ScholarshipApplication {
     amount: string;
     deadline: string;
     location: string;
+    eligibility?: string;
+    tags?: string[];
+    posted_on?: string;
+    description?: string;
   };
 }
 
@@ -48,50 +50,62 @@ export default function AppliedScholarshipsPage() {
                   {application.status.charAt(0).toUpperCase() + application.status.slice(1)}
                 </span>
               </div>
-              
-              <Link href={`/scholarships/${application.scholarship.scholarship_id}`} className="block">
-                <div className="mb-4">
-                  <h2 className="text-2xl font-bold text-black dark:text-white mb-2">
-                    {application.scholarship.title}
-                  </h2>
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-medium text-gray-600 dark:text-gray-300">Sponsored by</span>
-                    <p className="text-lg font-semibold text-black dark:text-[#D1E6FF]">
-                      {application.scholarship.sponsor}
-                    </p>
-                  </div>
+              <div className="mb-4">
+                <h2 className="text-2xl font-bold text-black dark:text-white mb-2">{application.scholarship.title}</h2>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-medium text-gray-600 dark:text-gray-300">Sponsored by</span>
+                  <p className="text-lg font-semibold text-black dark:text-[#D1E6FF]">{application.scholarship.sponsor}</p>
                 </div>
-
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-base font-medium text-gray-600 dark:text-gray-300">Amount</span>
-                    <p className="text-xl font-bold text-black dark:text-[#D1E6FF]">
-                      {application.scholarship.amount}
-                    </p>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <span className="text-base font-medium text-gray-600 dark:text-gray-300">Location</span>
-                    <p className="text-base font-semibold text-black dark:text-white">
-                      {application.scholarship.location}
-                    </p>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <span className="text-base font-medium text-gray-600 dark:text-gray-300">Applied On</span>
-                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                      {new Date(application.createdAt).toLocaleDateString()}
-                    </p>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <span className="text-base font-medium text-gray-600 dark:text-gray-300">Deadline</span>
-                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                      {new Date(application.scholarship.deadline).toLocaleDateString()}
-                    </p>
-                  </div>
+              </div>
+              {application.scholarship.description && (
+                <p className="text-base text-gray-700 dark:text-gray-200 leading-relaxed mb-6">
+                  {application.scholarship.description.length > 150
+                    ? `${application.scholarship.description.substring(0, 150)}...`
+                    : application.scholarship.description}
+                </p>
+              )}
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-base font-medium text-gray-600 dark:text-gray-300">Amount</span>
+                  <p className="text-xl font-bold text-black dark:text-[#D1E6FF]">{application.scholarship.amount}</p>
                 </div>
-              </Link>
+                <div className="flex items-center justify-between">
+                  <span className="text-base font-medium text-gray-600 dark:text-gray-300">Application Deadline</span>
+                  <p className="text-lg font-semibold text-black dark:text-[#D1E6FF]">
+                    {new Date(application.scholarship.deadline).toLocaleDateString()}
+                  </p>
+                </div>
+                {application.scholarship.posted_on && (
+                  <div className="flex items-center justify-between">
+                    <span className="text-base font-medium text-gray-600 dark:text-gray-300">Posted</span>
+                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                      {new Date(application.scholarship.posted_on).toLocaleDateString()}
+                    </p>
+                  </div>
+                )}
+                <div className="flex items-center justify-between">
+                  <span className="text-base font-medium text-gray-600 dark:text-gray-300">Location</span>
+                  <p className="text-base font-semibold text-black dark:text-white">{application.scholarship.location}</p>
+                </div>
+                {application.scholarship.eligibility && (
+                  <div className="flex items-center justify-between">
+                    <span className="text-base font-medium text-gray-600 dark:text-gray-300">Eligibility</span>
+                    <p className="text-base font-semibold text-black dark:text-[#D1E6FF]">{application.scholarship.eligibility}</p>
+                  </div>
+                )}
+              </div>
+              {application.scholarship.tags && application.scholarship.tags.length > 0 && (
+                <div className="flex flex-wrap gap-2 mt-6">
+                  {application.scholarship.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-3 py-1 text-sm font-medium bg-black/5 dark:bg-[#D1E6FF]/10 text-black dark:text-[#D1E6FF] rounded-full"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>

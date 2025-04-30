@@ -3,8 +3,6 @@
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
-import Link from 'next/link';
-import { toast } from 'sonner';
 
 interface JobApplication {
   id: string;
@@ -21,6 +19,10 @@ interface JobApplication {
       min: number;
       max: number;
     };
+    job_tags?: string[];
+    job_description?: string;
+    posted_on?: string;
+    deadline: string;
   };
 }
 
@@ -61,56 +63,68 @@ export default function AppliedJobsPage() {
                   {application.status.charAt(0).toUpperCase() + application.status.slice(1)}
                 </span>
               </div>
-              
-              <Link href={`/jobs/${application.job.job_id}`} className="block">
-                <div className="flex items-start mb-6 pr-12">
-                  <Image 
-                    src={application.job.company_logo} 
-                    alt={`${application.job.company_name} logo`} 
-                    width={56}
-                    height={56}
-                    className="rounded-full mr-4"
-                  />
-                  <div className="flex-1">
-                    <h2 className="text-2xl font-bold text-black dark:text-white mb-1">
-                      {application.job.job_title}
-                    </h2>
-                    <p className="text-lg font-semibold text-black dark:text-[#D1E6FF]">
-                      {application.job.company_name}
-                    </p>
-                  </div>
+              <div className="flex items-start mb-6 pr-12">
+                <Image
+                  src={application.job.company_logo}
+                  alt={`${application.job.company_name} logo`}
+                  width={56}
+                  height={56}
+                  className="rounded-full mr-4"
+                />
+                <div className="flex-1">
+                  <h2 className="text-2xl font-bold text-black dark:text-white mb-1">{application.job.job_title}</h2>
+                  <p className="text-lg font-semibold text-black dark:text-[#D1E6FF]">{application.job.company_name}</p>
                 </div>
-
-                <div className="space-y-4">
+              </div>
+              {application.job.job_description && (
+                <p className="text-base text-gray-700 dark:text-gray-200 leading-relaxed mb-6">
+                  {application.job.job_description.length > 150
+                    ? `${application.job.job_description.substring(0, 150)}...`
+                    : application.job.job_description}
+                </p>
+              )}
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-base font-medium text-gray-600 dark:text-gray-300">Location</span>
+                  <p className="text-base font-semibold text-black dark:text-white">{application.job.location}</p>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-base font-medium text-gray-600 dark:text-gray-300">Position</span>
+                  <p className="text-base font-semibold text-black dark:text-white">{application.job.position}</p>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-base font-medium text-gray-600 dark:text-gray-300">Application Deadline</span>
+                  <p className="text-lg font-semibold text-black dark:text-[#D1E6FF]">
+                    {new Date(application.job.deadline).toLocaleDateString()}
+                  </p>
+                </div>
+                {application.job.posted_on && (
                   <div className="flex items-center justify-between">
-                    <span className="text-base font-medium text-gray-600 dark:text-gray-300">Location</span>
-                    <p className="text-base font-semibold text-black dark:text-white">
-                      {application.job.location}
-                    </p>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <span className="text-base font-medium text-gray-600 dark:text-gray-300">Position</span>
-                    <p className="text-base font-semibold text-black dark:text-white">
-                      {application.job.position}
-                    </p>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <span className="text-base font-medium text-gray-600 dark:text-gray-300">Applied On</span>
+                    <span className="text-base font-medium text-gray-600 dark:text-gray-300">Posted</span>
                     <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                      {new Date(application.createdAt).toLocaleDateString()}
+                      {new Date(application.job.posted_on).toLocaleDateString()}
                     </p>
                   </div>
-
-                  <div className="flex items-center justify-between">
-                    <span className="text-base font-medium text-gray-600 dark:text-gray-300">Salary Range</span>
-                    <p className="text-base font-semibold text-black dark:text-white">
-                      {formatSalary(application.job.salary_range.min)} - {formatSalary(application.job.salary_range.max)}
-                    </p>
-                  </div>
+                )}
+                <div className="flex items-center justify-between">
+                  <span className="text-base font-medium text-gray-600 dark:text-gray-300">Salary Range</span>
+                  <p className="text-base font-semibold text-black dark:text-white">
+                    {formatSalary(application.job.salary_range.min)} - {formatSalary(application.job.salary_range.max)}
+                  </p>
                 </div>
-              </Link>
+              </div>
+              {application.job.job_tags && application.job.job_tags.length > 0 && (
+                <div className="flex flex-wrap gap-2 mt-6">
+                  {application.job.job_tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-3 py-1 text-sm font-medium bg-black/5 dark:bg-[#D1E6FF]/10 text-black dark:text-[#D1E6FF] rounded-full"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>
