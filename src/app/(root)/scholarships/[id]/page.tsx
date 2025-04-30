@@ -13,7 +13,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { CalendarIcon, MapPinIcon, BanknotesIcon, ClockIcon, AcademicCapIcon } from "@heroicons/react/24/outline";
-import { Upload } from "lucide-react";
+import { Upload, BookmarkPlus, BookmarkCheck } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface Scholarship {
   scholarship_id: string;
@@ -44,6 +45,7 @@ export default function ScholarshipDetailsPage() {
     coverLetter: '',
     documents: null as File | null,
   });
+  const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
     const fetchScholarship = async () => {
@@ -61,6 +63,23 @@ export default function ScholarshipDetailsPage() {
 
     fetchScholarship();
   }, [id]);
+
+  useEffect(() => {
+    const checkIfSaved = async () => {
+      if (session?.user) {
+        try {
+          const res = await fetch('/api/saved-scholarships');
+          if (res.ok) {
+            const data = await res.json();
+            setIsSaved(data.scholarships.some((s: Scholarship) => s.scholarship_id === id));
+          }
+        } catch (error) {
+          console.error('Error checking saved status:', error);
+        }
+      }
+    };
+    checkIfSaved();
+  }, [session, id]);
 
   if (loading) {
     return (
@@ -95,10 +114,11 @@ export default function ScholarshipDetailsPage() {
 
   const handleApplyClick = () => {
     if (!session) {
-      toast.error("Please log in first to apply for this scholarship");
+      toast.error("Please log in first to apply");
       router.push('/sign-in');
       return;
     }
+    
     setIsApplicationModalOpen(true);
   };
 
@@ -145,6 +165,55 @@ export default function ScholarshipDetailsPage() {
     }
   };
 
+  const handleSaveScholarship = async () => {
+    if (!session?.user) {
+      toast.error('You must be logged in to save scholarships.');
+      return;
+    }
+    try {
+      const res = await fetch('/api/saved-scholarships', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ scholarshipId: id }),
+      });
+      
+      if (!res.ok) {
+        const error = await res.json();
+        toast.error(error.error || 'Failed to save scholarship.');
+        return;
+      }
+      
+      setIsSaved(true);
+      toast.success('Scholarship saved successfully!');
+    } catch (error) {
+      console.error('Error saving scholarship:', error);
+      toast.error('An error occurred while saving the scholarship.');
+    }
+  };
+
+  const handleUnsaveScholarship = async () => {
+    if (!session?.user) return;
+    try {
+      const res = await fetch('/api/saved-scholarships', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ scholarshipId: id }),
+      });
+      
+      if (!res.ok) {
+        const error = await res.json();
+        toast.error(error.error || 'Failed to unsave scholarship.');
+        return;
+      }
+      
+      setIsSaved(false);
+      toast.success('Scholarship removed from saved items.');
+    } catch (error) {
+      console.error('Error removing saved scholarship:', error);
+      toast.error('An error occurred while removing the scholarship.');
+    }
+  };
+
   return (
     <div className="container mx-auto px-4 pt-24 pb-8">
       <div className="max-w-4xl mx-auto">
@@ -174,9 +243,34 @@ export default function ScholarshipDetailsPage() {
                   ))}
                 </div>
               </div>
-              <Button size="lg" className="mt-2" onClick={handleApplyClick}>
-                Apply Now
-              </Button>
+              <div className="flex gap-2">
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="text-black hover:text-black/80 dark:text-[#d1e6ff] dark:hover:text-[#d1e6ff]/80"
+                      onClick={isSaved ? handleUnsaveScholarship : handleSaveScholarship}
+                    >
+                      {isSaved ? (
+                        <BookmarkCheck className="h-8 w-8 text-blue-500" />
+                      ) : (
+                        <BookmarkPlus className="h-8 w-8 text-black dark:text-[#d1e6ff]" />
+                      )}
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{isSaved ? 'Click to remove from saved' : 'Click to save'}</p>
+                  </TooltipContent>
+                </Tooltip>
+                <Button 
+                  size="lg" 
+                  onClick={handleApplyClick}
+                  className="bg-black hover:bg-black/80 text-white dark:bg-[#FFFFFF] dark:hover:bg-[#d1e6ff]/80 dark:text-black"
+                >
+                  Apply Now
+                </Button>
+              </div>
             </div>
           </CardHeader>
         </Card>

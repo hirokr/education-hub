@@ -4,9 +4,11 @@ import { getJobs } from '@/lib/jobs';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { BookmarkPlus } from 'lucide-react';
+import { BookmarkPlus, BookmarkCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { useSession } from 'next-auth/react';
+import { toast } from 'sonner';
 
 interface Job {
   job_id: string;
@@ -29,6 +31,7 @@ interface Job {
 export default function JobsPage() {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [filteredJobs, setFilteredJobs] = useState<Job[]>([]);
+  const [savedJobIds, setSavedJobIds] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [filters, setFilters] = useState({
     locations: [] as string[],
@@ -42,6 +45,7 @@ export default function JobsPage() {
   });
   const [isLocationOpen, setIsLocationOpen] = useState(false);
   const [isPositionOpen, setIsPositionOpen] = useState(false);
+  const { data: session } = useSession();
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -51,6 +55,23 @@ export default function JobsPage() {
     };
     fetchJobs();
   }, []);
+
+  useEffect(() => {
+    const fetchSavedJobs = async () => {
+      if (session?.user) {
+        try {
+          const res = await fetch('/api/saved-jobs');
+          if (res.ok) {
+            const data = await res.json();
+            setSavedJobIds(data.jobs.map((job: Job) => job.job_id));
+          }
+        } catch (error) {
+          console.error('Error fetching saved jobs:', error);
+        }
+      }
+    };
+    fetchSavedJobs();
+  }, [session]);
 
   useEffect(() => {
     let result = jobs;
@@ -123,6 +144,59 @@ export default function JobsPage() {
       currency: 'USD',
       maximumFractionDigits: 0
     }).format(amount);
+  };
+
+  const handleSaveJob = async (e: React.MouseEvent, jobId: string) => {
+    e.preventDefault();
+    if (!session?.user) {
+      toast.error('You must be logged in to save jobs.');
+      return;
+    }
+    try {
+      const res = await fetch('/api/saved-jobs', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ jobId }),
+      });
+      
+      if (!res.ok) {
+        const error = await res.json();
+        toast.error(error.error || 'Failed to save job.');
+        return;
+      }
+      
+      setSavedJobIds(prev => [...prev, jobId]);
+      toast.success('Job saved successfully!');
+    } catch (error) {
+      console.error('Error saving job:', error);
+      toast.error('An error occurred while saving the job.');
+    }
+  };
+
+  const handleUnsaveJob = async (e: React.MouseEvent, jobId: string) => {
+    e.preventDefault();
+    if (!session?.user) {
+      return;
+    }
+    try {
+      const res = await fetch('/api/saved-jobs', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ jobId }),
+      });
+      
+      if (!res.ok) {
+        const error = await res.json();
+        toast.error(error.error || 'Failed to unsave job.');
+        return;
+      }
+      
+      setSavedJobIds(prev => prev.filter(id => id !== jobId));
+      toast.success('Job removed from saved items.');
+    } catch (error) {
+      console.error('Error removing saved job:', error);
+      toast.error('An error occurred while removing the job.');
+    }
   };
 
   return (
@@ -335,99 +409,108 @@ export default function JobsPage() {
           <h1 className="text-3xl font-bold mb-8">Available Jobs</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredJobs.map((job) => (
-              <Link 
-                key={job.job_id}
-                href={`/jobs/${job.job_id}`}
-                className="relative block border rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow bg-white dark:bg-[#0A0A0A]"
-              >
+              <div key={job.job_id} className="relative border rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow bg-white dark:bg-[#0A0A0A]">
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="absolute top-2 right-2 text-black hover:text-black/80 dark:text-[#d1e6ff] dark:hover:text-[#d1e6ff]/80"
+                      className="absolute top-4 right-4"
+                      onClick={(e) => 
+                        savedJobIds.includes(job.job_id)
+                          ? handleUnsaveJob(e, job.job_id)
+                          : handleSaveJob(e, job.job_id)
+                      }
                     >
-                      <BookmarkPlus className="h-8 w-8" />
+                      {savedJobIds.includes(job.job_id) ? (
+                        <BookmarkCheck className="h-8 w-8 text-blue-500" />
+                      ) : (
+                        <BookmarkPlus className="h-8 w-8 text-black dark:text-[#d1e6ff]" />
+                      )}
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>Click to save to dashboard</p>
+                    <p>{savedJobIds.includes(job.job_id) ? 'Click to Remove from saved' : 'Click to Save job'}</p>
                   </TooltipContent>
                 </Tooltip>
-                <div className="flex items-start mb-6 pr-12">
-                  <Image 
-                    src={job.company_logo} 
-                    alt={`${job.company_name} logo`} 
-                    width={56}
-                    height={56}
-                    className="rounded-full mr-4"
-                  />
-                  <div className="flex-1">
-                    <h2 className="text-2xl font-bold text-black dark:text-white mb-1">{job.job_title}</h2>
-                    <p className="text-lg font-semibold text-black dark:text-[#D1E6FF]">{job.company_name}</p>
-                  </div>
-                </div>
-
-                <p className="text-base text-gray-700 dark:text-gray-200 leading-relaxed mb-6">
-                  {job.job_description.length > 150 
-                    ? `${job.job_description.substring(0, 150)}...` 
-                    : job.job_description}
-                </p>
-                
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-base font-medium text-gray-600 dark:text-gray-300">Location</span>
-                    <p className="text-base font-semibold text-black dark:text-white">{job.location}</p>
+                <Link href={`/jobs/${job.job_id}`} className="block">
+                  <div className="flex items-start mb-6 pr-12">
+                    <Image 
+                      src={job.company_logo} 
+                      alt={`${job.company_name} logo`} 
+                      width={56}
+                      height={56}
+                      className="rounded-full mr-4"
+                    />
+                    <div className="flex-1">
+                      <h2 className="text-2xl font-bold text-black dark:text-white mb-1">{job.job_title}</h2>
+                      <p className="text-lg font-semibold text-black dark:text-[#D1E6FF]">{job.company_name}</p>
+                    </div>
                   </div>
 
-                  <div className="flex items-center justify-between">
-                    <span className="text-base font-medium text-gray-600 dark:text-gray-300">Position</span>
-                    <p className="text-base font-semibold text-black dark:text-white">{job.position}</p>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <span className="text-base font-semibold text-white-700 dark:text-gray-300">Application Deadline</span>
-                    <p className="text-lg font-semibold text-black dark:text-[#D1E6FF]">
-                      {new Date(job.deadline).toLocaleDateString('en-US', {
-                        month: 'short',
-                        day: 'numeric',
-                        year: 'numeric'
-                      })}
-                    </p>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <span className="text-base font-medium text-gray-600 dark:text-gray-300">Posted</span>
-                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                      {new Date(job.posted_on).toLocaleDateString('en-US', {
-                        month: 'short',
-                        day: 'numeric',
-                        year: 'numeric'
-                      })}
-                    </p>
-                  </div>
-
-                  {job.salary_range && (
+                  <p className="text-base text-gray-700 dark:text-gray-200 leading-relaxed mb-6">
+                    {job.job_description.length > 150 
+                      ? `${job.job_description.substring(0, 150)}...` 
+                      : job.job_description}
+                  </p>
+                  
+                  <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <span className="text-base font-semibold text-white-700 dark:text-gray-300">Salary Range</span>
-                      <p className="text-xl font-bold text-black dark:text-[#D1E6FF]">
-                        {formatSalary(job.salary_range.min)} - {formatSalary(job.salary_range.max)}
+                      <span className="text-base font-medium text-gray-600 dark:text-gray-300">Location</span>
+                      <p className="text-base font-semibold text-black dark:text-white">{job.location}</p>
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                      <span className="text-base font-medium text-gray-600 dark:text-gray-300">Position</span>
+                      <p className="text-base font-semibold text-black dark:text-white">{job.position}</p>
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                      <span className="text-base font-semibold text-white-700 dark:text-gray-300">Application Deadline</span>
+                      <p className="text-lg font-semibold text-black dark:text-[#D1E6FF]">
+                        {new Date(job.deadline).toLocaleDateString('en-US', {
+                          month: 'short',
+                          day: 'numeric',
+                          year: 'numeric'
+                        })}
                       </p>
                     </div>
-                  )}
-                </div>
 
-                <div className="flex flex-wrap gap-2 mt-6">
-                  {job.job_tags.map((tag) => (
-                    <span 
-                      key={tag}
-                      className="px-3 py-1 text-sm font-medium bg-black/5 dark:bg-[#D1E6FF]/10 text-black dark:text-[#D1E6FF] rounded-full"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </Link>
+                    <div className="flex items-center justify-between">
+                      <span className="text-base font-medium text-gray-600 dark:text-gray-300">Posted</span>
+                      <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                        {new Date(job.posted_on).toLocaleDateString('en-US', {
+                          month: 'short',
+                          day: 'numeric',
+                          year: 'numeric'
+                        })}
+                      </p>
+                    </div>
+
+                    {job.salary_range && (
+                      <div className="flex items-center justify-between">
+                        <span className="text-base font-semibold text-white-700 dark:text-gray-300">Salary Range</span>
+                        <p className="text-xl font-bold text-black dark:text-[#D1E6FF]">
+                          {formatSalary(job.salary_range.min)} - {formatSalary(job.salary_range.max)}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="flex flex-wrap gap-2 mt-6">
+                    {job.job_tags.map((tag) => (
+                      <span 
+                        key={tag}
+                        className="px-3 py-1 text-sm font-medium bg-black/5 dark:bg-[#D1E6FF]/10 text-black dark:text-[#D1E6FF] rounded-full"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  
+                </Link>
+              </div>
             ))}
           </div>
         </div>
