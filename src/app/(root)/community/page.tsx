@@ -44,7 +44,7 @@ const Page = () => {
           className={`px-4 py-2 border rounded ${
             activeTab === "discussion"
               ? "bg-blue-500 text-white"
-              : "bg-gray-200"
+              : "bg-black"
           }`}
         >
           Discussion
@@ -52,7 +52,7 @@ const Page = () => {
         <button
           onClick={() => setActiveTab("review")}
           className={`px-4 py-2 border rounded ${
-            activeTab === "review" ? "bg-blue-500 text-white" : "bg-gray-200"
+            activeTab === "review" ? "bg-blue-500 text-white" : "bg-black"
           }`}
         >
           Review
