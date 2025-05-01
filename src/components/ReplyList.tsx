@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Textarea } from "./ui/textarea";
 import { useSession } from "next-auth/react";
+import VoteButton from "./VoteButton";
 
 export default function ReplyList({ discussionId }: { discussionId: string }) {
   const [content, setContent] = useState("");
@@ -101,13 +102,21 @@ function ReplyItem({
     <div className={`ml-${Math.min(depth * 4, 32)} mb-4 border-l-2 pl-4`}>
       <p className="font-medium">{reply.author.name}</p>
       <p>{reply.content}</p>
+      <div className="flex items-center space-x-2 mt-2">
+      <VoteButton
+        itemId={reply.id}
+        type="reply"
+        initialValue={reply.score}
+        initialUserVote={reply.userVote ?? 0}
+      />
 
       <button
         onClick={() => setShowReply((prev) => !prev)}
-        className="text-sm text-blue-500 mt-1 hover:underline"
-      >
+        className="text-sm text-blue-500  hover:underline"
+        >
         {showReply ? "Cancel" : "Reply"}
       </button>
+        </div>
 
       {showReply && (
         <div className="mt-2">
