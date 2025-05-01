@@ -35,9 +35,9 @@ export default function ReplyList({ discussionId }: { discussionId: string }) {
 
   return (
     <div className="p-6 border-t">
-      <h2 className="text-xl font-semibold mb-4">Comments</h2>
+      <h2 className="text-xl font-semibold mb-4">Answers</h2>
       <Textarea
-        placeholder="Write your comment here..."
+        placeholder="Write your thoughts here..."
         className="w-full mb-4"
         value={content}
         onChange={(e) => setContent(e.target.value)}
@@ -46,7 +46,7 @@ export default function ReplyList({ discussionId }: { discussionId: string }) {
         onClick={handleSubmit}
         className="px-4 py-2 bg-blue-500 text-white rounded"
       >
-        Post Comment
+        Post Answer
       </button>
 
       <div className="mt-8">
