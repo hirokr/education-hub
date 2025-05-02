@@ -13,7 +13,9 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { CalendarIcon, MapPinIcon, BanknotesIcon, ClockIcon, AcademicCapIcon } from "@heroicons/react/24/outline";
-import { Upload } from "lucide-react";
+import { Upload, BookmarkPlus, BookmarkCheck } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { useApplicationStatus } from '@/hooks/useApplicationStatus';
 
 interface Scholarship {
   scholarship_id: string;
@@ -36,6 +38,7 @@ export default function ScholarshipDetailsPage() {
   const [scholarship, setScholarship] = useState<Scholarship | null>(null);
   const [loading, setLoading] = useState(true);
   const [isApplicationModalOpen, setIsApplicationModalOpen] = useState(false);
+  const { hasApplied, isLoading: isApplicationStatusLoading, error } = useApplicationStatus('scholarship', id as string);
   const [applicationForm, setApplicationForm] = useState({
     fullName: '',
     email: '',
@@ -44,6 +47,7 @@ export default function ScholarshipDetailsPage() {
     coverLetter: '',
     documents: null as File | null,
   });
+  const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
     const fetchScholarship = async () => {
@@ -61,6 +65,23 @@ export default function ScholarshipDetailsPage() {
 
     fetchScholarship();
   }, [id]);
+
+  useEffect(() => {
+    const checkIfSaved = async () => {
+      if (session?.user) {
+        try {
+          const res = await fetch('/api/saved-scholarships');
+          if (res.ok) {
+            const data = await res.json();
+            setIsSaved(data.scholarships.some((s: Scholarship) => s.scholarship_id === id));
+          }
+        } catch (error) {
+          console.error('Error checking saved status:', error);
+        }
+      }
+    };
+    checkIfSaved();
+  }, [session, id]);
 
   if (loading) {
     return (
@@ -95,10 +116,21 @@ export default function ScholarshipDetailsPage() {
 
   const handleApplyClick = () => {
     if (!session) {
-      toast.error("Please log in first to apply for this scholarship");
+      toast.error("Please log in first to apply");
       router.push('/sign-in');
       return;
     }
+    
+    if (error) {
+      toast.error("Unable to check application status. Please try again later.");
+      return;
+    }
+    
+    if (hasApplied) {
+      toast.info("You have already applied for this scholarship");
+      return;
+    }
+    
     setIsApplicationModalOpen(true);
   };
 
@@ -110,7 +142,6 @@ export default function ScholarshipDetailsPage() {
         return;
       }
 
-      console.log('Submitting application for scholarship ID:', id);
       const formData = new FormData();
       formData.append('fullName', applicationForm.fullName);
       formData.append('email', applicationForm.email);
@@ -124,20 +155,17 @@ export default function ScholarshipDetailsPage() {
         body: formData,
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
-        console.error('Server error:', data);
-        throw new Error(data.error || 'Failed to submit application');
+        throw new Error('Failed to submit application');
       }
 
-      toast.success('Application submitted successfully!');
+      toast.success('Application submitted successfully! A confirmation email has been sent to your email address.');
       setIsApplicationModalOpen(false);
       
       // Reset form after successful submission
       setApplicationForm({
         fullName: '',
-        email: '',
+        email: session?.user?.email || '',
         phone: '',
         academicInfo: '',
         coverLetter: '',
@@ -145,7 +173,56 @@ export default function ScholarshipDetailsPage() {
       });
     } catch (error) {
       console.error('Error submitting application:', error);
-      toast.error(error instanceof Error ? error.message : 'Failed to submit application. Please try again.');
+      toast.error('Failed to submit application. Please try again.');
+    }
+  };
+
+  const handleSaveScholarship = async () => {
+    if (!session?.user) {
+      toast.error('You must be logged in to save scholarships.');
+      return;
+    }
+    try {
+      const res = await fetch('/api/saved-scholarships', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ scholarshipId: id }),
+      });
+      
+      if (!res.ok) {
+        const error = await res.json();
+        toast.error(error.error || 'Failed to save scholarship.');
+        return;
+      }
+      
+      setIsSaved(true);
+      toast.success('Scholarship saved successfully!');
+    } catch (error) {
+      console.error('Error saving scholarship:', error);
+      toast.error('An error occurred while saving the scholarship.');
+    }
+  };
+
+  const handleUnsaveScholarship = async () => {
+    if (!session?.user) return;
+    try {
+      const res = await fetch('/api/saved-scholarships', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ scholarshipId: id }),
+      });
+      
+      if (!res.ok) {
+        const error = await res.json();
+        toast.error(error.error || 'Failed to unsave scholarship.');
+        return;
+      }
+      
+      setIsSaved(false);
+      toast.success('Scholarship removed from saved items.');
+    } catch (error) {
+      console.error('Error removing saved scholarship:', error);
+      toast.error('An error occurred while removing the scholarship.');
     }
   };
 
@@ -178,9 +255,37 @@ export default function ScholarshipDetailsPage() {
                   ))}
                 </div>
               </div>
-              <Button size="lg" className="mt-2" onClick={handleApplyClick}>
-                Apply Now
-              </Button>
+              <div className="flex gap-2">
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="text-black hover:text-black/80 dark:text-[#d1e6ff] dark:hover:text-[#d1e6ff]/80"
+                      onClick={isSaved ? handleUnsaveScholarship : handleSaveScholarship}
+                    >
+                      {isSaved ? (
+                        <BookmarkCheck className="h-8 w-8 text-blue-500" />
+                      ) : (
+                        <BookmarkPlus className="h-8 w-8 text-black dark:text-[#d1e6ff]" />
+                      )}
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{isSaved ? 'Click to remove from saved' : 'Click to save'}</p>
+                  </TooltipContent>
+                </Tooltip>
+                <Button 
+                  size="lg" 
+                  onClick={handleApplyClick}
+                  disabled={hasApplied || isApplicationStatusLoading || !!error}
+                  className={`bg-black hover:bg-black/80 text-white dark:bg-[#FFFFFF] dark:hover:bg-[#d1e6ff]/80 dark:text-black ${
+                    hasApplied || isApplicationStatusLoading || error ? 'opacity-50 cursor-not-allowed' : ''
+                  }`}
+                >
+                  {isApplicationStatusLoading ? 'Checking...' : hasApplied ? 'Already Applied' : 'Apply Now'}
+                </Button>
+              </div>
             </div>
           </CardHeader>
         </Card>

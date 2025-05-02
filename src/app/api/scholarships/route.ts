@@ -10,12 +10,13 @@ export async function GET() {
         posted_on: 'desc'
       }
     });
+
     return NextResponse.json(scholarships);
   } catch (error) {
+    console.error('Error fetching scholarships:', error);
     return NextResponse.json(
-      { error: `Failed to fetch scholarships: ${error instanceof Error ? error.message : 'Unknown error'}` },
+      { error: 'Failed to fetch scholarships' },
       { status: 500 }
     );
   }
-}
-
+} 

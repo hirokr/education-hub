@@ -21,7 +21,9 @@ import {
   ClockIcon,
   BuildingOfficeIcon 
 } from "@heroicons/react/24/outline";
-import { Upload } from "lucide-react";
+import { Upload, BookmarkPlus, BookmarkCheck } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { useApplicationStatus } from '@/hooks/useApplicationStatus';
 
 interface Job {
   job_id: string;
@@ -40,6 +42,11 @@ interface Job {
   deadline: string;
 }
 
+interface SavedJob {
+  id: string;
+  job_id: string;
+}
+
 export default function JobDetailsPage() {
   const { id } = useParams();
   const { data: session } = useSession();
@@ -47,13 +54,15 @@ export default function JobDetailsPage() {
   const [job, setJob] = useState<Job | null>(null);
   const [loading, setLoading] = useState(true);
   const [isApplicationModalOpen, setIsApplicationModalOpen] = useState(false);
+  const { hasApplied, isLoading: isApplicationStatusLoading, error } = useApplicationStatus('job', id as string);
   const [applicationForm, setApplicationForm] = useState({
     fullName: '',
-    email: '',
+    email: session?.user?.email || '',
     phone: '',
     coverLetter: '',
     resume: null as File | null,
   });
+  const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
     const fetchJob = async () => {
@@ -72,12 +81,44 @@ export default function JobDetailsPage() {
     fetchJob();
   }, [id]);
 
+  useEffect(() => {
+    const checkIfSaved = async () => {
+      if (session?.user) {
+        try {
+          const res = await fetch('/api/saved-jobs');
+          if (res.ok) {
+            const data = await res.json();
+            if (data && data.jobs && Array.isArray(data.jobs)) {
+              setIsSaved(data.jobs.some((job: SavedJob) => 
+                job.id === id || job.job_id === id
+              ));
+            }
+          }
+        } catch (error) {
+          console.error('Error checking saved status:', error);
+        }
+      }
+    };
+    checkIfSaved();
+  }, [session, id]);
+
   const handleApplyClick = () => {
     if (!session) {
-      toast.error("Please log in first to apply for this job");
+      toast.error("Please log in first to apply");
       router.push('/sign-in');
       return;
     }
+    
+    if (error) {
+      toast.error("Unable to check application status. Please try again later.");
+      return;
+    }
+    
+    if (hasApplied) {
+      toast.info("You have already applied for this job");
+      return;
+    }
+    
     setIsApplicationModalOpen(true);
   };
 
@@ -105,13 +146,13 @@ export default function JobDetailsPage() {
         throw new Error('Failed to submit application');
       }
 
-      toast.success('Application submitted successfully!');
+      toast.success('Application submitted successfully! A confirmation email has been sent to your email address.');
       setIsApplicationModalOpen(false);
       
       // Reset form after successful submission
       setApplicationForm({
         fullName: '',
-        email: '',
+        email: session?.user?.email || '',
         phone: '',
         coverLetter: '',
         resume: null,
@@ -119,6 +160,55 @@ export default function JobDetailsPage() {
     } catch (error) {
       console.error('Error submitting application:', error);
       toast.error('Failed to submit application. Please try again.');
+    }
+  };
+
+  const handleSaveJob = async () => {
+    if (!session?.user) {
+      toast.error('You must be logged in to save jobs.');
+      return;
+    }
+    try {
+      const res = await fetch('/api/saved-jobs', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ jobId: id }),
+      });
+      
+      if (!res.ok) {
+        const error = await res.json();
+        toast.error(error.error || 'Failed to save job.');
+        return;
+      }
+      
+      setIsSaved(true);
+      toast.success('Job saved successfully!');
+    } catch (error) {
+      console.error('Error saving job:', error);
+      toast.error('An error occurred while saving the job.');
+    }
+  };
+
+  const handleUnsaveJob = async () => {
+    if (!session?.user) return;
+    try {
+      const res = await fetch('/api/saved-jobs', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ jobId: id }),
+      });
+      
+      if (!res.ok) {
+        const error = await res.json();
+        toast.error(error.error || 'Failed to unsave job.');
+        return;
+      }
+      
+      setIsSaved(false);
+      toast.success('Job removed from saved items.');
+    } catch (error) {
+      console.error('Error removing saved job:', error);
+      toast.error('An error occurred while removing the job.');
     }
   };
 
@@ -189,7 +279,7 @@ export default function JobDetailsPage() {
                     <span className="text-lg text-black dark:text-[#D1E6FF]">{job.company_name}</span>
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    {job.job_tags.map((tag) => (
+                    {job?.job_tags?.map((tag) => (
                       <Badge 
                         key={tag} 
                         className="px-3 py-1 text-sm font-medium bg-black/5 dark:bg-[#D1E6FF]/10 text-black dark:text-[#D1E6FF] rounded-full"
@@ -200,9 +290,37 @@ export default function JobDetailsPage() {
                   </div>
                 </div>
               </div>
-              <Button size="lg" className="mt-2" onClick={handleApplyClick}>
-                Apply Now
-              </Button>
+              <div className="flex gap-2">
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="text-black hover:text-black/80 dark:text-[#d1e6ff] dark:hover:text-[#d1e6ff]/80"
+                      onClick={isSaved ? handleUnsaveJob : handleSaveJob}
+                    >
+                      {isSaved ? (
+                        <BookmarkCheck className="h-8 w-8 text-blue-500" />
+                      ) : (
+                        <BookmarkPlus className="h-8 w-8 text-black dark:text-[#d1e6ff]" />
+                      )}
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{isSaved ? 'Click to remove from saved' : 'Click to save'}</p>
+                  </TooltipContent>
+                </Tooltip>
+                <Button 
+                  size="lg" 
+                  onClick={handleApplyClick}
+                  disabled={hasApplied || isApplicationStatusLoading || !!error}
+                  className={`bg-black hover:bg-black/80 text-white dark:bg-[#FFFFFF] dark:hover:bg-[#d1e6ff]/80 dark:text-black ${
+                    hasApplied || isApplicationStatusLoading || error ? 'opacity-50 cursor-not-allowed' : ''
+                  }`}
+                >
+                  {isApplicationStatusLoading ? 'Checking...' : hasApplied ? 'Already Applied' : 'Apply Now'}
+                </Button>
+              </div>
             </div>
           </CardHeader>
         </Card>
@@ -336,6 +454,7 @@ export default function JobDetailsPage() {
                         value={applicationForm.email}
                         onChange={(e) => setApplicationForm(prev => ({ ...prev, email: e.target.value }))}
                         required
+                        placeholder="Your email will be pre-filled from your account"
                       />
                     </div>
                     <div className="space-y-2">

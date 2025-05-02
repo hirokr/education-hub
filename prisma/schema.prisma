@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -16,15 +13,14 @@ model Account {
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
+  refresh_token     String?
+  access_token      String?
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.Text
+  id_token          String?
   session_state     String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
@@ -38,21 +34,23 @@ model Session {
 }
 
 model User {
-  id                    String       @id @default(cuid())
-  name                  String?
-  email                 String?      @unique
-  emailVerified         DateTime?
-  password              String?
-  image                 String?
-  accounts              Account[]
-  sessions              Session[]
-  discussions           Discussion[]
-  replies               Reply[]
-  reviews               Review[]
-  votes                 Vote[]
-  bookmarks             Bookmark[]
+  id                      String                   @id @default(cuid())
+  name                    String?
+  email                   String?                  @unique
+  emailVerified           DateTime?
+  password                String?
+  image                   String?
+  accounts                Account[]
+  bookmarks               Bookmark[]
+  discussions             Discussion[]
+  jobApplications         JobApplication[]
+  replies                 Reply[]
+  reviews                 Review[]
   scholarshipApplications ScholarshipApplication[]
-  jobApplications       JobApplication[]
+  sessions                Session[]
+  votes                   Vote[]
+  savedJobs               SavedJob[]    @relation("UserSavedJobs")
+  savedScholarships       SavedScholarship[] @relation("UserSavedScholarships")
 }
 
 model VerificationToken {
@@ -69,6 +67,8 @@ model Discussion {
   content   String
   category  String?
   authorId  String
+  createdAt DateTime   @default(now())
+  bookmarks Bookmark[]
   author    User       @relation(fields: [authorId], references: [id])
   replies   Reply[]
 
@@ -76,7 +76,7 @@ model Discussion {
 }
 
 model Reply {
-  id           String  @id @default(cuid())
+  id           String     @id @default(cuid())
   content      String
   authorId     String
   discussionId String
@@ -87,6 +87,12 @@ model Reply {
   parent     Reply?     @relation("ReplyToReply", fields: [parentId], references: [id])
   children   Reply[]    @relation("ReplyToReply")
   createdAt  DateTime   @default(now())
+  createdAt    DateTime   @default(now())
+  author       User       @relation(fields: [authorId], references: [id])
+  discussion   Discussion @relation(fields: [discussionId], references: [id])
+  parent       Reply?     @relation("ReplyToReply", fields: [parentId], references: [id])
+  children     Reply[]    @relation("ReplyToReply")
+  votes        Vote[]
 }
 
 model Review {
@@ -97,98 +103,114 @@ model Review {
   authorId  String
   category  String
   user      User     @relation(fields: [authorId], references: [id])
-  createdAt DateTime @default(now())
 }
 
 model Vote {
   id       String   @id @default(cuid())
   userId   String
-  itemId   String   // ID of either a reply or review
-  type     String   // 'review' or 'reply'
-  value    Int      // 1 for upvote, -1 for downvote
-
-  createdAt DateTime @default(now())
-
-  user   User   @relation(fields: [userId], references: [id])
-
-  @@unique([userId, itemId]) // prevent multiple votes by same user on same item
+  reviewId String?
+  replyId  String?
+  value    Int
+  reply    Reply?  @relation(fields: [replyId], references: [id])
+  review   Review? @relation(fields: [reviewId], references: [id])
+  user     User    @relation(fields: [userId], references: [id])
 }
 
 model Bookmark {
-  id           String   @id @default(cuid())
+  id           String  @id @default(cuid())
   userId       String
-  itemId       String? // The id can be a reviewId or a discussionId
-  type         String?   // 'review' or 'discussion'
-  createdAt    DateTime @default(now())
-  user         User     @relation(fields: [userId], references: [id])
-  
-  @@unique([userId, itemId])  // composite unique constraint (userId and itemId)
+  discussionId String?
+
+  user       User        @relation(fields: [userId], references: [id])
+  discussion Discussion? @relation(fields: [discussionId], references: [id])
 }
 
 
 model Scholarship {
-  id            String   @id @default(cuid())
-  scholarship_id String  @unique
-  title         String
-  sponsor       String
-  description   String   @db.Text
-  deadline      DateTime
-  amount        String
-  eligibility   String
-  location      String
-  tags          String[]
-  posted_on     DateTime
-  applications  ScholarshipApplication[]
+  id             String                   @id @default(cuid())
+  scholarship_id String                   @unique
+  title          String
+  sponsor        String
+  description    String
+  deadline       DateTime
+  amount         String
+  eligibility    String
+  location       String
+  tags           String[]
+  posted_on      DateTime
+  applications   ScholarshipApplication[]
+  savedByUsers   SavedScholarship[]       @relation("ScholarshipSavedByUsers")
 }
 
 model Job {
-  id            String   @id @default(cuid())
-  job_id        String   @unique
-  job_title     String
-  company_name  String
-  company_logo  String
-  date          DateTime
-  location      String
-  position      String
-  salary_range  Json     // Will store min and max as a JSON object
-  job_tags      String[]
-  job_description String @db.Text
-  posted_on     DateTime
-  deadline      DateTime
-  applications  JobApplication[]
+  id              String           @id @default(cuid())
+  job_id          String           @unique
+  job_title       String
+  company_name    String
+  company_logo    String
+  date            DateTime
+  location        String
+  position        String
+  salary_range    Json
+  job_tags        String[]
+  job_description String
+  posted_on       DateTime
+  deadline        DateTime
+  applications    JobApplication[]
+  savedByUsers    SavedJob[]       @relation("JobSavedByUsers")
 }
 
 model ScholarshipApplication {
-  id            String   @id @default(cuid())
+  id            String      @id @default(cuid())
   userId        String
   scholarshipId String
   fullName      String
   email         String
   phone         String
-  academicInfo  String   @db.Text
-  coverLetter   String   @db.Text
-  documents     String?  // Store the file path
-  status        String   @default("pending") // pending, accepted, rejected
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-
-  user        User        @relation(fields: [userId], references: [id])
-  scholarship Scholarship @relation(fields: [scholarshipId], references: [id])
+  academicInfo  String
+  coverLetter   String
+  documents     String?
+  status        String      @default("pending")
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  scholarship   Scholarship @relation(fields: [scholarshipId], references: [id])
+  user          User        @relation(fields: [userId], references: [id])
 }
 
 model JobApplication {
-  id            String   @id @default(cuid())
-  userId        String
-  jobId         String
-  fullName      String
-  email         String
-  phone         String
-  coverLetter   String   @db.Text
-  resume        String?  // Store the file path
-  status        String   @default("pending") // pending, accepted, rejected
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  id          String   @id @default(cuid())
+  userId      String
+  jobId       String
+  fullName    String
+  email       String
+  phone       String
+  coverLetter String
+  resume      String?
+  status      String   @default("pending")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  job         Job      @relation(fields: [jobId], references: [id])
+  user        User     @relation(fields: [userId], references: [id])
+}
 
-  user User @relation(fields: [userId], references: [id])
-  job  Job  @relation(fields: [jobId], references: [id])
+model SavedJob {
+  id        String   @id @default(cuid())
+  userId    String
+  jobId     String
+  job       Job      @relation("JobSavedByUsers", fields: [jobId], references: [job_id])
+  createdAt DateTime @default(now())
+  user      User     @relation("UserSavedJobs", fields: [userId], references: [id])
+
+  @@unique([userId, jobId])
+}
+
+model SavedScholarship {
+  id            String      @id @default(cuid())
+  userId        String
+  scholarshipId String
+  scholarship   Scholarship @relation("ScholarshipSavedByUsers", fields: [scholarshipId], references: [scholarship_id])
+  createdAt     DateTime    @default(now())
+  user          User        @relation("UserSavedScholarships", fields: [userId], references: [id])
+
+  @@unique([userId, scholarshipId])
 }

@@ -4,28 +4,26 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export async function GET(
-  request: Request,
+  req: Request,
   { params }: { params: { id: string } }
 ) {
   try {
-    const job = await prisma.job.findUnique({
+    const job = await prisma.job.findFirst({
       where: {
-        job_id: params.id
+        OR: [
+          { id: params.id },
+          { job_id: params.id }
+        ]
       }
     });
 
     if (!job) {
-      return NextResponse.json(
-        { error: 'Job not found' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: 'Job not found' }, { status: 404 });
     }
 
     return NextResponse.json(job);
   } catch (error) {
-    return NextResponse.json(
-      { error: `Failed to fetch job: ${error instanceof Error ? error.message : 'Unknown error'}` },
-      { status: 500 }
-    );
+    console.error('Error fetching job:', error);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 } 
