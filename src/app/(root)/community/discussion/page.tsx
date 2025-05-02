@@ -2,6 +2,7 @@
 import DiscussionForm from "@/components/DiscussionForm";
 import { useSession } from "next-auth/react";
 import React from "react";
+import { toast } from "sonner";
 
 
 export default function DiscussionPage() {
@@ -18,9 +19,12 @@ export default function DiscussionPage() {
       body: JSON.stringify({ title, content, category, authorId: userId }),
     });
     if (!response.ok) {
-      throw new Error("Failed to post discussion");
+      toast.error("Failed to post discussion. Please try again.");
+      return;
+
     }
     const newDiscussion = await response.json();  
+    toast.success("Discussion posted successfully!");
     return newDiscussion;
   }
 

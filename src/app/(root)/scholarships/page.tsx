@@ -4,6 +4,11 @@ import { getScholarships } from '@/lib/scholarships';
 import { useState, useEffect } from 'react';
 import { Scholarship } from '@/types/scholarship';
 import Link from 'next/link';
+import { BookmarkPlus, BookmarkCheck } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { useSession } from 'next-auth/react';
+import { toast } from 'sonner';
 
 export default function ScholarshipsPage() {
   const [scholarships, setScholarships] = useState<Scholarship[]>([]);
@@ -16,6 +21,8 @@ export default function ScholarshipsPage() {
   const [sortOrder, setSortOrder] = useState<'deadline-asc' | 'deadline-desc' | 'amount-asc' | 'amount-desc' | null>(null);
   const [isLocationOpen, setIsLocationOpen] = useState(false);
   const [isTagsOpen, setIsTagsOpen] = useState(false);
+  const { data: session } = useSession();
+  const [savedScholarshipIds, setSavedScholarshipIds] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchScholarships = async () => {
@@ -71,6 +78,23 @@ export default function ScholarshipsPage() {
     setFilteredScholarships(result);
   }, [searchTerm, filters, sortOrder, scholarships]);
 
+  useEffect(() => {
+    const fetchSavedScholarships = async () => {
+      if (session?.user) {
+        try {
+          const res = await fetch('/api/saved-scholarships');
+          if (res.ok) {
+            const data = await res.json();
+            setSavedScholarshipIds(data.scholarships.map((s: Scholarship) => s.scholarship_id));
+          }
+        } catch (error) {
+          console.error('Error fetching saved scholarships:', error);
+        }
+      }
+    };
+    fetchSavedScholarships();
+  }, [session]);
+
   const uniqueLocations = [...new Set(scholarships.map(s => s.location))];
   const uniqueTags = [...new Set(scholarships.flatMap(s => s.tags))];
 
@@ -81,6 +105,59 @@ export default function ScholarshipsPage() {
         ? prev[type].filter(item => item !== value)
         : [...prev[type], value]
     }));
+  };
+
+  const handleUnsaveScholarship = async (e: React.MouseEvent, scholarshipId: string) => {
+    e.preventDefault();
+    if (!session?.user) {
+      return;
+    }
+    try {
+      const res = await fetch('/api/saved-scholarships', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ scholarshipId }),
+      });
+      
+      if (!res.ok) {
+        const error = await res.json();
+        toast.error(error.error || 'Failed to unsave scholarship.');
+        return;
+      }
+      
+      setSavedScholarshipIds(prev => prev.filter(id => id !== scholarshipId));
+      toast.success('Scholarship removed from saved items.');
+    } catch (error) {
+      console.error('Error removing saved scholarship:', error);
+      toast.error('An error occurred while removing the scholarship.');
+    }
+  };
+
+  const handleSaveScholarship = async (e: React.MouseEvent, scholarshipId: string) => {
+    e.preventDefault();
+    if (!session?.user) {
+      toast.error('You must be logged in to save scholarships.');
+      return;
+    }
+    try {
+      const res = await fetch('/api/saved-scholarships', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ scholarshipId }),
+      });
+      
+      if (!res.ok) {
+        const error = await res.json();
+        toast.error(error.error || 'Failed to save scholarship.');
+        return;
+      }
+      
+      setSavedScholarshipIds(prev => [...prev, scholarshipId]);
+      toast.success('Scholarship saved successfully!');
+    } catch (error) {
+      console.error('Error saving scholarship:', error);
+      toast.error('An error occurred while saving the scholarship.');
+    }
   };
 
   return (
@@ -215,75 +292,93 @@ export default function ScholarshipsPage() {
           <h1 className="text-3xl font-bold mb-8">Available Scholarships</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredScholarships.map((scholarship) => (
-              <Link 
-                key={scholarship.scholarship_id} 
-                href={`/scholarships/${scholarship.scholarship_id}`}
-                className="block border rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow bg-white dark:bg-[#0A0A0A]"
-              >
-                <div className="mb-4">
-                  <h2 className="text-2xl font-bold text-black dark:text-white mb-2">{scholarship.title}</h2>
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-medium text-gray-600 dark:text-gray-300">Sponsored by</span>
-                    <p className="text-lg font-semibold text-black dark:text-[#D1E6FF]">{scholarship.sponsor}</p>
-                  </div>
-                </div>
-                
-                <p className="text-base text-gray-700 dark:text-gray-200 leading-relaxed mb-6">
-                  {scholarship.description.length > 150 
-                    ? `${scholarship.description.substring(0, 150)}...` 
-                    : scholarship.description}
-                </p>
-                
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-base font-medium text-white-600 dark:text-grey-300">Amount</span>
-                    <p className="text-xl font-bold text-black dark:text-[#D1E6FF]">{scholarship.amount}</p>
-                  </div>
-                  
-                  <div className="flex items-center justify-between">
-                    <span className="text-base font-medium text-white-600 dark:text-grey-300">Application Deadline</span>
-                    <p className="text-lg font-semibold text-black dark:text-[#D1E6FF]">
-                      {new Date(scholarship.deadline).toLocaleDateString('en-US', {
-                        month: 'short',
-                        day: 'numeric',
-                        year: 'numeric'
-                      })}
-                    </p>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <span className="text-base font-medium text-gray-600 dark:text-gray-300">Posted</span>
-                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                      {new Date(scholarship.posted_on).toLocaleDateString('en-US', {
-                        month: 'short',
-                        day: 'numeric',
-                        year: 'numeric'
-                      })}
-                    </p>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <span className="text-base font-medium text-gray-600 dark:text-gray-300">Location</span>
-                    <p className="text-base font-semibold text-black dark:text-white">{scholarship.location}</p>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <span className="text-base font-medium text-gray-600 dark:text-gray-300">Eligibility</span>
-                    <p className="text-base font-semibold text-black dark:text-white">{scholarship.eligibility}</p>
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap gap-2 mt-6">
-                  {scholarship.tags.map((tag) => (
-                    <span 
-                      key={tag}
-                      className="px-3 py-1 text-sm font-medium bg-black/5 dark:bg-[#D1E6FF]/10 text-black dark:text-[#D1E6FF] rounded-full"
+              <div key={scholarship.scholarship_id} className="relative border rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow bg-white dark:bg-[#0A0A0A]">
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="absolute top-4 right-4"
+                      onClick={(e) => 
+                        savedScholarshipIds.includes(scholarship.scholarship_id)
+                          ? handleUnsaveScholarship(e, scholarship.scholarship_id)
+                          : handleSaveScholarship(e, scholarship.scholarship_id)
+                      }
                     >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </Link>
+                      {savedScholarshipIds.includes(scholarship.scholarship_id) ? (
+                        <BookmarkCheck className="h-8 w-8 text-blue-500" />
+                      ) : (
+                        <BookmarkPlus className="h-8 w-8 text-black dark:text-[#d1e6ff]" />
+                      )}
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{savedScholarshipIds.includes(scholarship.scholarship_id) ? 'Click to Remove from saved' : 'Click to Save scholarship'}</p>
+                  </TooltipContent>
+                </Tooltip>
+                <Link href={`/scholarships/${scholarship.scholarship_id}`} className="block">
+                  <div className="flex flex-col space-y-4">
+                    <div className="pr-12">
+                      <h2 className="text-2xl font-bold text-black dark:text-white mb-1 break-words">{scholarship.title}</h2>
+                      <p className="text-lg font-semibold text-black dark:text-[#D1E6FF]">{scholarship.sponsor}</p>
+                    </div>
+                    <p className="text-base text-gray-700 dark:text-gray-200 leading-relaxed mb-6">
+                      {scholarship.description.length > 150 
+                        ? `${scholarship.description.substring(0, 150)}...` 
+                        : scholarship.description}
+                    </p>
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <span className="text-base font-medium text-white-600 dark:text-grey-300">Amount</span>
+                        <p className="text-xl font-bold text-black dark:text-[#D1E6FF]">{scholarship.amount}</p>
+                      </div>
+                      
+                      <div className="flex items-center justify-between">
+                        <span className="text-base font-medium text-white-600 dark:text-grey-300">Application Deadline</span>
+                        <p className="text-lg font-semibold text-black dark:text-[#D1E6FF]">
+                          {new Date(scholarship.deadline).toLocaleDateString('en-US', {
+                            month: 'short',
+                            day: 'numeric',
+                            year: 'numeric'
+                          })}
+                        </p>
+                      </div>
+
+                      <div className="flex items-center justify-between">
+                        <span className="text-base font-medium text-gray-600 dark:text-gray-300">Posted</span>
+                        <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                          {new Date(scholarship.posted_on).toLocaleDateString('en-US', {
+                            month: 'short',
+                            day: 'numeric',
+                            year: 'numeric'
+                          })}
+                        </p>
+                      </div>
+
+                      <div className="flex items-center justify-between">
+                        <span className="text-base font-medium text-gray-600 dark:text-gray-300">Location</span>
+                        <p className="text-base font-semibold text-black dark:text-white">{scholarship.location}</p>
+                      </div>
+
+                      <div className="flex items-center justify-between">
+                        <span className="text-base font-medium text-gray-600 dark:text-gray-300">Eligibility</span>
+                        <p className="text-base font-semibold text-black dark:text-[#D1E6FF]">{scholarship.eligibility}</p>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-wrap gap-2 mt-6">
+                      {scholarship.tags.map((tag) => (
+                        <span 
+                          key={tag}
+                          className="px-3 py-1 text-sm font-medium bg-black/5 dark:bg-[#D1E6FF]/10 text-black dark:text-[#D1E6FF] rounded-full"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </Link>
+              </div>
             ))}
           </div>
         </div>

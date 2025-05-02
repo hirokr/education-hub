@@ -1,4 +1,6 @@
 import React from "react";
+import { Toaster } from "sonner";
+import "sonner/dist/styles.css";
 
 export default function RootLayout({
   children,
@@ -6,9 +8,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div
-      className="mt-20"
-    >
+    <div className="mt-20">
+      <Toaster richColors position="top-right" />
       {children}
     </div>
   );

@@ -8,9 +8,11 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
+    const { id } = await params;
+    
     const scholarship = await prisma.scholarship.findUnique({
       where: {
-        scholarship_id: params.id
+        scholarship_id: id
       }
     });
 
