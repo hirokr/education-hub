@@ -97,6 +97,7 @@ model Review {
   authorId  String
   category  String
   user      User     @relation(fields: [authorId], references: [id])
+  votes     Vote[]
 }
 
 model Vote {
