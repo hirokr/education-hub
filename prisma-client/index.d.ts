@@ -68,6 +68,16 @@ export type Scholarship = $Result.DefaultSelection<Prisma.$ScholarshipPayload>
  * 
  */
 export type Job = $Result.DefaultSelection<Prisma.$JobPayload>
+/**
+ * Model ScholarshipApplication
+ * 
+ */
+export type ScholarshipApplication = $Result.DefaultSelection<Prisma.$ScholarshipApplicationPayload>
+/**
+ * Model JobApplication
+ * 
+ */
+export type JobApplication = $Result.DefaultSelection<Prisma.$JobApplicationPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -303,6 +313,26 @@ export class PrismaClient<
     * ```
     */
   get job(): Prisma.JobDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.scholarshipApplication`: Exposes CRUD operations for the **ScholarshipApplication** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ScholarshipApplications
+    * const scholarshipApplications = await prisma.scholarshipApplication.findMany()
+    * ```
+    */
+  get scholarshipApplication(): Prisma.ScholarshipApplicationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.jobApplication`: Exposes CRUD operations for the **JobApplication** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more JobApplications
+    * const jobApplications = await prisma.jobApplication.findMany()
+    * ```
+    */
+  get jobApplication(): Prisma.JobApplicationDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -361,8 +391,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.6.0
-   * Query Engine version: f676762280b54cd07c770017ed3711ddde35f37a
+   * Prisma Client JS version: 6.7.0
+   * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
    */
   export type PrismaVersion = {
     client: string
@@ -753,7 +783,9 @@ export namespace Prisma {
     Vote: 'Vote',
     Bookmark: 'Bookmark',
     Scholarship: 'Scholarship',
-    Job: 'Job'
+    Job: 'Job',
+    ScholarshipApplication: 'ScholarshipApplication',
+    JobApplication: 'JobApplication'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -772,7 +804,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "account" | "session" | "user" | "verificationToken" | "discussion" | "reply" | "review" | "vote" | "bookmark" | "scholarship" | "job"
+      modelProps: "account" | "session" | "user" | "verificationToken" | "discussion" | "reply" | "review" | "vote" | "bookmark" | "scholarship" | "job" | "scholarshipApplication" | "jobApplication"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1590,6 +1622,154 @@ export namespace Prisma {
           }
         }
       }
+      ScholarshipApplication: {
+        payload: Prisma.$ScholarshipApplicationPayload<ExtArgs>
+        fields: Prisma.ScholarshipApplicationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ScholarshipApplicationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScholarshipApplicationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ScholarshipApplicationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScholarshipApplicationPayload>
+          }
+          findFirst: {
+            args: Prisma.ScholarshipApplicationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScholarshipApplicationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ScholarshipApplicationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScholarshipApplicationPayload>
+          }
+          findMany: {
+            args: Prisma.ScholarshipApplicationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScholarshipApplicationPayload>[]
+          }
+          create: {
+            args: Prisma.ScholarshipApplicationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScholarshipApplicationPayload>
+          }
+          createMany: {
+            args: Prisma.ScholarshipApplicationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ScholarshipApplicationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScholarshipApplicationPayload>[]
+          }
+          delete: {
+            args: Prisma.ScholarshipApplicationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScholarshipApplicationPayload>
+          }
+          update: {
+            args: Prisma.ScholarshipApplicationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScholarshipApplicationPayload>
+          }
+          deleteMany: {
+            args: Prisma.ScholarshipApplicationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ScholarshipApplicationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ScholarshipApplicationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScholarshipApplicationPayload>[]
+          }
+          upsert: {
+            args: Prisma.ScholarshipApplicationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScholarshipApplicationPayload>
+          }
+          aggregate: {
+            args: Prisma.ScholarshipApplicationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateScholarshipApplication>
+          }
+          groupBy: {
+            args: Prisma.ScholarshipApplicationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ScholarshipApplicationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ScholarshipApplicationCountArgs<ExtArgs>
+            result: $Utils.Optional<ScholarshipApplicationCountAggregateOutputType> | number
+          }
+        }
+      }
+      JobApplication: {
+        payload: Prisma.$JobApplicationPayload<ExtArgs>
+        fields: Prisma.JobApplicationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.JobApplicationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobApplicationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.JobApplicationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobApplicationPayload>
+          }
+          findFirst: {
+            args: Prisma.JobApplicationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobApplicationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.JobApplicationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobApplicationPayload>
+          }
+          findMany: {
+            args: Prisma.JobApplicationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobApplicationPayload>[]
+          }
+          create: {
+            args: Prisma.JobApplicationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobApplicationPayload>
+          }
+          createMany: {
+            args: Prisma.JobApplicationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.JobApplicationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobApplicationPayload>[]
+          }
+          delete: {
+            args: Prisma.JobApplicationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobApplicationPayload>
+          }
+          update: {
+            args: Prisma.JobApplicationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobApplicationPayload>
+          }
+          deleteMany: {
+            args: Prisma.JobApplicationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.JobApplicationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.JobApplicationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobApplicationPayload>[]
+          }
+          upsert: {
+            args: Prisma.JobApplicationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobApplicationPayload>
+          }
+          aggregate: {
+            args: Prisma.JobApplicationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateJobApplication>
+          }
+          groupBy: {
+            args: Prisma.JobApplicationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<JobApplicationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.JobApplicationCountArgs<ExtArgs>
+            result: $Utils.Optional<JobApplicationCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1685,6 +1865,8 @@ export namespace Prisma {
     bookmark?: BookmarkOmit
     scholarship?: ScholarshipOmit
     job?: JobOmit
+    scholarshipApplication?: ScholarshipApplicationOmit
+    jobApplication?: JobApplicationOmit
   }
 
   /* Types for Logging */
@@ -1786,6 +1968,8 @@ export namespace Prisma {
     reviews: number
     votes: number
     bookmarks: number
+    scholarshipApplications: number
+    jobApplications: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1796,6 +1980,8 @@ export namespace Prisma {
     reviews?: boolean | UserCountOutputTypeCountReviewsArgs
     votes?: boolean | UserCountOutputTypeCountVotesArgs
     bookmarks?: boolean | UserCountOutputTypeCountBookmarksArgs
+    scholarshipApplications?: boolean | UserCountOutputTypeCountScholarshipApplicationsArgs
+    jobApplications?: boolean | UserCountOutputTypeCountJobApplicationsArgs
   }
 
   // Custom InputTypes
@@ -1858,6 +2044,20 @@ export namespace Prisma {
     where?: BookmarkWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountScholarshipApplicationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ScholarshipApplicationWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountJobApplicationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: JobApplicationWhereInput
+  }
+
 
   /**
    * Count Type DiscussionCountOutputType
@@ -1865,12 +2065,10 @@ export namespace Prisma {
 
   export type DiscussionCountOutputType = {
     replies: number
-    bookmarks: number
   }
 
   export type DiscussionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     replies?: boolean | DiscussionCountOutputTypeCountRepliesArgs
-    bookmarks?: boolean | DiscussionCountOutputTypeCountBookmarksArgs
   }
 
   // Custom InputTypes
@@ -1891,13 +2089,6 @@ export namespace Prisma {
     where?: ReplyWhereInput
   }
 
-  /**
-   * DiscussionCountOutputType without action
-   */
-  export type DiscussionCountOutputTypeCountBookmarksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: BookmarkWhereInput
-  }
-
 
   /**
    * Count Type ReplyCountOutputType
@@ -1905,12 +2096,10 @@ export namespace Prisma {
 
   export type ReplyCountOutputType = {
     children: number
-    votes: number
   }
 
   export type ReplyCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     children?: boolean | ReplyCountOutputTypeCountChildrenArgs
-    votes?: boolean | ReplyCountOutputTypeCountVotesArgs
   }
 
   // Custom InputTypes
@@ -1931,42 +2120,66 @@ export namespace Prisma {
     where?: ReplyWhereInput
   }
 
-  /**
-   * ReplyCountOutputType without action
-   */
-  export type ReplyCountOutputTypeCountVotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: VoteWhereInput
-  }
-
 
   /**
-   * Count Type ReviewCountOutputType
+   * Count Type ScholarshipCountOutputType
    */
 
-  export type ReviewCountOutputType = {
-    votes: number
+  export type ScholarshipCountOutputType = {
+    applications: number
   }
 
-  export type ReviewCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    votes?: boolean | ReviewCountOutputTypeCountVotesArgs
+  export type ScholarshipCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    applications?: boolean | ScholarshipCountOutputTypeCountApplicationsArgs
   }
 
   // Custom InputTypes
   /**
-   * ReviewCountOutputType without action
+   * ScholarshipCountOutputType without action
    */
-  export type ReviewCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ScholarshipCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ReviewCountOutputType
+     * Select specific fields to fetch from the ScholarshipCountOutputType
      */
-    select?: ReviewCountOutputTypeSelect<ExtArgs> | null
+    select?: ScholarshipCountOutputTypeSelect<ExtArgs> | null
   }
 
   /**
-   * ReviewCountOutputType without action
+   * ScholarshipCountOutputType without action
    */
-  export type ReviewCountOutputTypeCountVotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: VoteWhereInput
+  export type ScholarshipCountOutputTypeCountApplicationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ScholarshipApplicationWhereInput
+  }
+
+
+  /**
+   * Count Type JobCountOutputType
+   */
+
+  export type JobCountOutputType = {
+    applications: number
+  }
+
+  export type JobCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    applications?: boolean | JobCountOutputTypeCountApplicationsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * JobCountOutputType without action
+   */
+  export type JobCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobCountOutputType
+     */
+    select?: JobCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * JobCountOutputType without action
+   */
+  export type JobCountOutputTypeCountApplicationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: JobApplicationWhereInput
   }
 
 
@@ -4381,6 +4594,8 @@ export namespace Prisma {
     reviews?: boolean | User$reviewsArgs<ExtArgs>
     votes?: boolean | User$votesArgs<ExtArgs>
     bookmarks?: boolean | User$bookmarksArgs<ExtArgs>
+    scholarshipApplications?: boolean | User$scholarshipApplicationsArgs<ExtArgs>
+    jobApplications?: boolean | User$jobApplicationsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -4420,6 +4635,8 @@ export namespace Prisma {
     reviews?: boolean | User$reviewsArgs<ExtArgs>
     votes?: boolean | User$votesArgs<ExtArgs>
     bookmarks?: boolean | User$bookmarksArgs<ExtArgs>
+    scholarshipApplications?: boolean | User$scholarshipApplicationsArgs<ExtArgs>
+    jobApplications?: boolean | User$jobApplicationsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -4435,6 +4652,8 @@ export namespace Prisma {
       reviews: Prisma.$ReviewPayload<ExtArgs>[]
       votes: Prisma.$VotePayload<ExtArgs>[]
       bookmarks: Prisma.$BookmarkPayload<ExtArgs>[]
+      scholarshipApplications: Prisma.$ScholarshipApplicationPayload<ExtArgs>[]
+      jobApplications: Prisma.$JobApplicationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4844,6 +5063,8 @@ export namespace Prisma {
     reviews<T extends User$reviewsArgs<ExtArgs> = {}>(args?: Subset<T, User$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     votes<T extends User$votesArgs<ExtArgs> = {}>(args?: Subset<T, User$votesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     bookmarks<T extends User$bookmarksArgs<ExtArgs> = {}>(args?: Subset<T, User$bookmarksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookmarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    scholarshipApplications<T extends User$scholarshipApplicationsArgs<ExtArgs> = {}>(args?: Subset<T, User$scholarshipApplicationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ScholarshipApplicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    jobApplications<T extends User$jobApplicationsArgs<ExtArgs> = {}>(args?: Subset<T, User$jobApplicationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JobApplicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5432,6 +5653,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: BookmarkScalarFieldEnum | BookmarkScalarFieldEnum[]
+  }
+
+  /**
+   * User.scholarshipApplications
+   */
+  export type User$scholarshipApplicationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ScholarshipApplication
+     */
+    select?: ScholarshipApplicationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ScholarshipApplication
+     */
+    omit?: ScholarshipApplicationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScholarshipApplicationInclude<ExtArgs> | null
+    where?: ScholarshipApplicationWhereInput
+    orderBy?: ScholarshipApplicationOrderByWithRelationInput | ScholarshipApplicationOrderByWithRelationInput[]
+    cursor?: ScholarshipApplicationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ScholarshipApplicationScalarFieldEnum | ScholarshipApplicationScalarFieldEnum[]
+  }
+
+  /**
+   * User.jobApplications
+   */
+  export type User$jobApplicationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobApplication
+     */
+    select?: JobApplicationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobApplication
+     */
+    omit?: JobApplicationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JobApplicationInclude<ExtArgs> | null
+    where?: JobApplicationWhereInput
+    orderBy?: JobApplicationOrderByWithRelationInput | JobApplicationOrderByWithRelationInput[]
+    cursor?: JobApplicationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: JobApplicationScalarFieldEnum | JobApplicationScalarFieldEnum[]
   }
 
   /**
@@ -6596,7 +6865,6 @@ export namespace Prisma {
     createdAt?: boolean
     author?: boolean | UserDefaultArgs<ExtArgs>
     replies?: boolean | Discussion$repliesArgs<ExtArgs>
-    bookmarks?: boolean | Discussion$bookmarksArgs<ExtArgs>
     _count?: boolean | DiscussionCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["discussion"]>
 
@@ -6633,7 +6901,6 @@ export namespace Prisma {
   export type DiscussionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     author?: boolean | UserDefaultArgs<ExtArgs>
     replies?: boolean | Discussion$repliesArgs<ExtArgs>
-    bookmarks?: boolean | Discussion$bookmarksArgs<ExtArgs>
     _count?: boolean | DiscussionCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type DiscussionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6648,7 +6915,6 @@ export namespace Prisma {
     objects: {
       author: Prisma.$UserPayload<ExtArgs>
       replies: Prisma.$ReplyPayload<ExtArgs>[]
-      bookmarks: Prisma.$BookmarkPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7053,7 +7319,6 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     author<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     replies<T extends Discussion$repliesArgs<ExtArgs> = {}>(args?: Subset<T, Discussion$repliesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReplyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    bookmarks<T extends Discussion$bookmarksArgs<ExtArgs> = {}>(args?: Subset<T, Discussion$bookmarksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookmarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7509,30 +7774,6 @@ export namespace Prisma {
   }
 
   /**
-   * Discussion.bookmarks
-   */
-  export type Discussion$bookmarksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Bookmark
-     */
-    select?: BookmarkSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Bookmark
-     */
-    omit?: BookmarkOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BookmarkInclude<ExtArgs> | null
-    where?: BookmarkWhereInput
-    orderBy?: BookmarkOrderByWithRelationInput | BookmarkOrderByWithRelationInput[]
-    cursor?: BookmarkWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: BookmarkScalarFieldEnum | BookmarkScalarFieldEnum[]
-  }
-
-  /**
    * Discussion without action
    */
   export type DiscussionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7727,7 +7968,6 @@ export namespace Prisma {
     discussion?: boolean | DiscussionDefaultArgs<ExtArgs>
     parent?: boolean | Reply$parentArgs<ExtArgs>
     children?: boolean | Reply$childrenArgs<ExtArgs>
-    votes?: boolean | Reply$votesArgs<ExtArgs>
     _count?: boolean | ReplyCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["reply"]>
 
@@ -7770,7 +8010,6 @@ export namespace Prisma {
     discussion?: boolean | DiscussionDefaultArgs<ExtArgs>
     parent?: boolean | Reply$parentArgs<ExtArgs>
     children?: boolean | Reply$childrenArgs<ExtArgs>
-    votes?: boolean | Reply$votesArgs<ExtArgs>
     _count?: boolean | ReplyCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ReplyIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7791,7 +8030,6 @@ export namespace Prisma {
       discussion: Prisma.$DiscussionPayload<ExtArgs>
       parent: Prisma.$ReplyPayload<ExtArgs> | null
       children: Prisma.$ReplyPayload<ExtArgs>[]
-      votes: Prisma.$VotePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -8198,7 +8436,6 @@ export namespace Prisma {
     discussion<T extends DiscussionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DiscussionDefaultArgs<ExtArgs>>): Prisma__DiscussionClient<$Result.GetResult<Prisma.$DiscussionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     parent<T extends Reply$parentArgs<ExtArgs> = {}>(args?: Subset<T, Reply$parentArgs<ExtArgs>>): Prisma__ReplyClient<$Result.GetResult<Prisma.$ReplyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     children<T extends Reply$childrenArgs<ExtArgs> = {}>(args?: Subset<T, Reply$childrenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReplyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    votes<T extends Reply$votesArgs<ExtArgs> = {}>(args?: Subset<T, Reply$votesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8673,30 +8910,6 @@ export namespace Prisma {
   }
 
   /**
-   * Reply.votes
-   */
-  export type Reply$votesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Vote
-     */
-    select?: VoteSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Vote
-     */
-    omit?: VoteOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VoteInclude<ExtArgs> | null
-    where?: VoteWhereInput
-    orderBy?: VoteOrderByWithRelationInput | VoteOrderByWithRelationInput[]
-    cursor?: VoteWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: VoteScalarFieldEnum | VoteScalarFieldEnum[]
-  }
-
-  /**
    * Reply without action
    */
   export type ReplyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8737,25 +8950,31 @@ export namespace Prisma {
 
   export type ReviewMinAggregateOutputType = {
     id: string | null
+    title: string | null
     content: string | null
     rating: number | null
     authorId: string | null
+    category: string | null
     createdAt: Date | null
   }
 
   export type ReviewMaxAggregateOutputType = {
     id: string | null
+    title: string | null
     content: string | null
     rating: number | null
     authorId: string | null
+    category: string | null
     createdAt: Date | null
   }
 
   export type ReviewCountAggregateOutputType = {
     id: number
+    title: number
     content: number
     rating: number
     authorId: number
+    category: number
     createdAt: number
     _all: number
   }
@@ -8771,25 +8990,31 @@ export namespace Prisma {
 
   export type ReviewMinAggregateInputType = {
     id?: true
+    title?: true
     content?: true
     rating?: true
     authorId?: true
+    category?: true
     createdAt?: true
   }
 
   export type ReviewMaxAggregateInputType = {
     id?: true
+    title?: true
     content?: true
     rating?: true
     authorId?: true
+    category?: true
     createdAt?: true
   }
 
   export type ReviewCountAggregateInputType = {
     id?: true
+    title?: true
     content?: true
     rating?: true
     authorId?: true
+    category?: true
     createdAt?: true
     _all?: true
   }
@@ -8882,9 +9107,11 @@ export namespace Prisma {
 
   export type ReviewGroupByOutputType = {
     id: string
+    title: string
     content: string
     rating: number
     authorId: string
+    category: string
     createdAt: Date
     _count: ReviewCountAggregateOutputType | null
     _avg: ReviewAvgAggregateOutputType | null
@@ -8909,46 +9136,50 @@ export namespace Prisma {
 
   export type ReviewSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    title?: boolean
     content?: boolean
     rating?: boolean
     authorId?: boolean
+    category?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-    votes?: boolean | Review$votesArgs<ExtArgs>
-    _count?: boolean | ReviewCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["review"]>
 
   export type ReviewSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    title?: boolean
     content?: boolean
     rating?: boolean
     authorId?: boolean
+    category?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["review"]>
 
   export type ReviewSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    title?: boolean
     content?: boolean
     rating?: boolean
     authorId?: boolean
+    category?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["review"]>
 
   export type ReviewSelectScalar = {
     id?: boolean
+    title?: boolean
     content?: boolean
     rating?: boolean
     authorId?: boolean
+    category?: boolean
     createdAt?: boolean
   }
 
-  export type ReviewOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "content" | "rating" | "authorId" | "createdAt", ExtArgs["result"]["review"]>
+  export type ReviewOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "content" | "rating" | "authorId" | "category" | "createdAt", ExtArgs["result"]["review"]>
   export type ReviewInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
-    votes?: boolean | Review$votesArgs<ExtArgs>
-    _count?: boolean | ReviewCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ReviewIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -8961,13 +9192,14 @@ export namespace Prisma {
     name: "Review"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
-      votes: Prisma.$VotePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      title: string
       content: string
       rating: number
       authorId: string
+      category: string
       createdAt: Date
     }, ExtArgs["result"]["review"]>
     composites: {}
@@ -9364,7 +9596,6 @@ export namespace Prisma {
   export interface Prisma__ReviewClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    votes<T extends Review$votesArgs<ExtArgs> = {}>(args?: Subset<T, Review$votesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9395,9 +9626,11 @@ export namespace Prisma {
    */
   interface ReviewFieldRefs {
     readonly id: FieldRef<"Review", 'String'>
+    readonly title: FieldRef<"Review", 'String'>
     readonly content: FieldRef<"Review", 'String'>
     readonly rating: FieldRef<"Review", 'Int'>
     readonly authorId: FieldRef<"Review", 'String'>
+    readonly category: FieldRef<"Review", 'String'>
     readonly createdAt: FieldRef<"Review", 'DateTime'>
   }
     
@@ -9795,30 +10028,6 @@ export namespace Prisma {
   }
 
   /**
-   * Review.votes
-   */
-  export type Review$votesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Vote
-     */
-    select?: VoteSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Vote
-     */
-    omit?: VoteOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VoteInclude<ExtArgs> | null
-    where?: VoteWhereInput
-    orderBy?: VoteOrderByWithRelationInput | VoteOrderByWithRelationInput[]
-    cursor?: VoteWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: VoteScalarFieldEnum | VoteScalarFieldEnum[]
-  }
-
-  /**
    * Review without action
    */
   export type ReviewDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -9860,25 +10069,28 @@ export namespace Prisma {
   export type VoteMinAggregateOutputType = {
     id: string | null
     userId: string | null
-    reviewId: string | null
-    replyId: string | null
+    itemId: string | null
+    type: string | null
     value: number | null
+    createdAt: Date | null
   }
 
   export type VoteMaxAggregateOutputType = {
     id: string | null
     userId: string | null
-    reviewId: string | null
-    replyId: string | null
+    itemId: string | null
+    type: string | null
     value: number | null
+    createdAt: Date | null
   }
 
   export type VoteCountAggregateOutputType = {
     id: number
     userId: number
-    reviewId: number
-    replyId: number
+    itemId: number
+    type: number
     value: number
+    createdAt: number
     _all: number
   }
 
@@ -9894,25 +10106,28 @@ export namespace Prisma {
   export type VoteMinAggregateInputType = {
     id?: true
     userId?: true
-    reviewId?: true
-    replyId?: true
+    itemId?: true
+    type?: true
     value?: true
+    createdAt?: true
   }
 
   export type VoteMaxAggregateInputType = {
     id?: true
     userId?: true
-    reviewId?: true
-    replyId?: true
+    itemId?: true
+    type?: true
     value?: true
+    createdAt?: true
   }
 
   export type VoteCountAggregateInputType = {
     id?: true
     userId?: true
-    reviewId?: true
-    replyId?: true
+    itemId?: true
+    type?: true
     value?: true
+    createdAt?: true
     _all?: true
   }
 
@@ -10005,9 +10220,10 @@ export namespace Prisma {
   export type VoteGroupByOutputType = {
     id: string
     userId: string
-    reviewId: string | null
-    replyId: string | null
+    itemId: string
+    type: string
     value: number
+    createdAt: Date
     _count: VoteCountAggregateOutputType | null
     _avg: VoteAvgAggregateOutputType | null
     _sum: VoteSumAggregateOutputType | null
@@ -10032,74 +10248,65 @@ export namespace Prisma {
   export type VoteSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    reviewId?: boolean
-    replyId?: boolean
+    itemId?: boolean
+    type?: boolean
     value?: boolean
+    createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-    review?: boolean | Vote$reviewArgs<ExtArgs>
-    reply?: boolean | Vote$replyArgs<ExtArgs>
   }, ExtArgs["result"]["vote"]>
 
   export type VoteSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    reviewId?: boolean
-    replyId?: boolean
+    itemId?: boolean
+    type?: boolean
     value?: boolean
+    createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-    review?: boolean | Vote$reviewArgs<ExtArgs>
-    reply?: boolean | Vote$replyArgs<ExtArgs>
   }, ExtArgs["result"]["vote"]>
 
   export type VoteSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    reviewId?: boolean
-    replyId?: boolean
+    itemId?: boolean
+    type?: boolean
     value?: boolean
+    createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-    review?: boolean | Vote$reviewArgs<ExtArgs>
-    reply?: boolean | Vote$replyArgs<ExtArgs>
   }, ExtArgs["result"]["vote"]>
 
   export type VoteSelectScalar = {
     id?: boolean
     userId?: boolean
-    reviewId?: boolean
-    replyId?: boolean
+    itemId?: boolean
+    type?: boolean
     value?: boolean
+    createdAt?: boolean
   }
 
-  export type VoteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "reviewId" | "replyId" | "value", ExtArgs["result"]["vote"]>
+  export type VoteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "itemId" | "type" | "value" | "createdAt", ExtArgs["result"]["vote"]>
   export type VoteInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
-    review?: boolean | Vote$reviewArgs<ExtArgs>
-    reply?: boolean | Vote$replyArgs<ExtArgs>
   }
   export type VoteIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
-    review?: boolean | Vote$reviewArgs<ExtArgs>
-    reply?: boolean | Vote$replyArgs<ExtArgs>
   }
   export type VoteIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
-    review?: boolean | Vote$reviewArgs<ExtArgs>
-    reply?: boolean | Vote$replyArgs<ExtArgs>
   }
 
   export type $VotePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Vote"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
-      review: Prisma.$ReviewPayload<ExtArgs> | null
-      reply: Prisma.$ReplyPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       userId: string
-      reviewId: string | null
-      replyId: string | null
+      itemId: string
+      type: string
       value: number
+      createdAt: Date
     }, ExtArgs["result"]["vote"]>
     composites: {}
   }
@@ -10495,8 +10702,6 @@ export namespace Prisma {
   export interface Prisma__VoteClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    review<T extends Vote$reviewArgs<ExtArgs> = {}>(args?: Subset<T, Vote$reviewArgs<ExtArgs>>): Prisma__ReviewClient<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    reply<T extends Vote$replyArgs<ExtArgs> = {}>(args?: Subset<T, Vote$replyArgs<ExtArgs>>): Prisma__ReplyClient<$Result.GetResult<Prisma.$ReplyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10528,9 +10733,10 @@ export namespace Prisma {
   interface VoteFieldRefs {
     readonly id: FieldRef<"Vote", 'String'>
     readonly userId: FieldRef<"Vote", 'String'>
-    readonly reviewId: FieldRef<"Vote", 'String'>
-    readonly replyId: FieldRef<"Vote", 'String'>
+    readonly itemId: FieldRef<"Vote", 'String'>
+    readonly type: FieldRef<"Vote", 'String'>
     readonly value: FieldRef<"Vote", 'Int'>
+    readonly createdAt: FieldRef<"Vote", 'DateTime'>
   }
     
 
@@ -10927,44 +11133,6 @@ export namespace Prisma {
   }
 
   /**
-   * Vote.review
-   */
-  export type Vote$reviewArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Review
-     */
-    select?: ReviewSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Review
-     */
-    omit?: ReviewOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReviewInclude<ExtArgs> | null
-    where?: ReviewWhereInput
-  }
-
-  /**
-   * Vote.reply
-   */
-  export type Vote$replyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Reply
-     */
-    select?: ReplySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Reply
-     */
-    omit?: ReplyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReplyInclude<ExtArgs> | null
-    where?: ReplyWhereInput
-  }
-
-  /**
    * Vote without action
    */
   export type VoteDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -10996,19 +11164,25 @@ export namespace Prisma {
   export type BookmarkMinAggregateOutputType = {
     id: string | null
     userId: string | null
-    discussionId: string | null
+    itemId: string | null
+    type: string | null
+    createdAt: Date | null
   }
 
   export type BookmarkMaxAggregateOutputType = {
     id: string | null
     userId: string | null
-    discussionId: string | null
+    itemId: string | null
+    type: string | null
+    createdAt: Date | null
   }
 
   export type BookmarkCountAggregateOutputType = {
     id: number
     userId: number
-    discussionId: number
+    itemId: number
+    type: number
+    createdAt: number
     _all: number
   }
 
@@ -11016,19 +11190,25 @@ export namespace Prisma {
   export type BookmarkMinAggregateInputType = {
     id?: true
     userId?: true
-    discussionId?: true
+    itemId?: true
+    type?: true
+    createdAt?: true
   }
 
   export type BookmarkMaxAggregateInputType = {
     id?: true
     userId?: true
-    discussionId?: true
+    itemId?: true
+    type?: true
+    createdAt?: true
   }
 
   export type BookmarkCountAggregateInputType = {
     id?: true
     userId?: true
-    discussionId?: true
+    itemId?: true
+    type?: true
+    createdAt?: true
     _all?: true
   }
 
@@ -11107,7 +11287,9 @@ export namespace Prisma {
   export type BookmarkGroupByOutputType = {
     id: string
     userId: string
-    discussionId: string | null
+    itemId: string | null
+    type: string | null
+    createdAt: Date
     _count: BookmarkCountAggregateOutputType | null
     _min: BookmarkMinAggregateOutputType | null
     _max: BookmarkMaxAggregateOutputType | null
@@ -11130,57 +11312,60 @@ export namespace Prisma {
   export type BookmarkSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    discussionId?: boolean
+    itemId?: boolean
+    type?: boolean
+    createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-    discussion?: boolean | Bookmark$discussionArgs<ExtArgs>
   }, ExtArgs["result"]["bookmark"]>
 
   export type BookmarkSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    discussionId?: boolean
+    itemId?: boolean
+    type?: boolean
+    createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-    discussion?: boolean | Bookmark$discussionArgs<ExtArgs>
   }, ExtArgs["result"]["bookmark"]>
 
   export type BookmarkSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    discussionId?: boolean
+    itemId?: boolean
+    type?: boolean
+    createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-    discussion?: boolean | Bookmark$discussionArgs<ExtArgs>
   }, ExtArgs["result"]["bookmark"]>
 
   export type BookmarkSelectScalar = {
     id?: boolean
     userId?: boolean
-    discussionId?: boolean
+    itemId?: boolean
+    type?: boolean
+    createdAt?: boolean
   }
 
-  export type BookmarkOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "discussionId", ExtArgs["result"]["bookmark"]>
+  export type BookmarkOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "itemId" | "type" | "createdAt", ExtArgs["result"]["bookmark"]>
   export type BookmarkInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
-    discussion?: boolean | Bookmark$discussionArgs<ExtArgs>
   }
   export type BookmarkIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
-    discussion?: boolean | Bookmark$discussionArgs<ExtArgs>
   }
   export type BookmarkIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
-    discussion?: boolean | Bookmark$discussionArgs<ExtArgs>
   }
 
   export type $BookmarkPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Bookmark"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
-      discussion: Prisma.$DiscussionPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       userId: string
-      discussionId: string | null
+      itemId: string | null
+      type: string | null
+      createdAt: Date
     }, ExtArgs["result"]["bookmark"]>
     composites: {}
   }
@@ -11576,7 +11761,6 @@ export namespace Prisma {
   export interface Prisma__BookmarkClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    discussion<T extends Bookmark$discussionArgs<ExtArgs> = {}>(args?: Subset<T, Bookmark$discussionArgs<ExtArgs>>): Prisma__DiscussionClient<$Result.GetResult<Prisma.$DiscussionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -11608,7 +11792,9 @@ export namespace Prisma {
   interface BookmarkFieldRefs {
     readonly id: FieldRef<"Bookmark", 'String'>
     readonly userId: FieldRef<"Bookmark", 'String'>
-    readonly discussionId: FieldRef<"Bookmark", 'String'>
+    readonly itemId: FieldRef<"Bookmark", 'String'>
+    readonly type: FieldRef<"Bookmark", 'String'>
+    readonly createdAt: FieldRef<"Bookmark", 'DateTime'>
   }
     
 
@@ -12005,25 +12191,6 @@ export namespace Prisma {
   }
 
   /**
-   * Bookmark.discussion
-   */
-  export type Bookmark$discussionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Discussion
-     */
-    select?: DiscussionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Discussion
-     */
-    omit?: DiscussionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DiscussionInclude<ExtArgs> | null
-    where?: DiscussionWhereInput
-  }
-
-  /**
    * Bookmark without action
    */
   export type BookmarkDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -12250,6 +12417,8 @@ export namespace Prisma {
     location?: boolean
     tags?: boolean
     posted_on?: boolean
+    applications?: boolean | Scholarship$applicationsArgs<ExtArgs>
+    _count?: boolean | ScholarshipCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["scholarship"]>
 
   export type ScholarshipSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -12295,10 +12464,18 @@ export namespace Prisma {
   }
 
   export type ScholarshipOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "scholarship_id" | "title" | "sponsor" | "description" | "deadline" | "amount" | "eligibility" | "location" | "tags" | "posted_on", ExtArgs["result"]["scholarship"]>
+  export type ScholarshipInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    applications?: boolean | Scholarship$applicationsArgs<ExtArgs>
+    _count?: boolean | ScholarshipCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ScholarshipIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type ScholarshipIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $ScholarshipPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Scholarship"
-    objects: {}
+    objects: {
+      applications: Prisma.$ScholarshipApplicationPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       scholarship_id: string
@@ -12705,6 +12882,7 @@ export namespace Prisma {
    */
   export interface Prisma__ScholarshipClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    applications<T extends Scholarship$applicationsArgs<ExtArgs> = {}>(args?: Subset<T, Scholarship$applicationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ScholarshipApplicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12762,6 +12940,10 @@ export namespace Prisma {
      */
     omit?: ScholarshipOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScholarshipInclude<ExtArgs> | null
+    /**
      * Filter, which Scholarship to fetch.
      */
     where: ScholarshipWhereUniqueInput
@@ -12780,6 +12962,10 @@ export namespace Prisma {
      */
     omit?: ScholarshipOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScholarshipInclude<ExtArgs> | null
+    /**
      * Filter, which Scholarship to fetch.
      */
     where: ScholarshipWhereUniqueInput
@@ -12797,6 +12983,10 @@ export namespace Prisma {
      * Omit specific fields from the Scholarship
      */
     omit?: ScholarshipOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScholarshipInclude<ExtArgs> | null
     /**
      * Filter, which Scholarship to fetch.
      */
@@ -12846,6 +13036,10 @@ export namespace Prisma {
      */
     omit?: ScholarshipOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScholarshipInclude<ExtArgs> | null
+    /**
      * Filter, which Scholarship to fetch.
      */
     where?: ScholarshipWhereInput
@@ -12894,6 +13088,10 @@ export namespace Prisma {
      */
     omit?: ScholarshipOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScholarshipInclude<ExtArgs> | null
+    /**
      * Filter, which Scholarships to fetch.
      */
     where?: ScholarshipWhereInput
@@ -12936,6 +13134,10 @@ export namespace Prisma {
      * Omit specific fields from the Scholarship
      */
     omit?: ScholarshipOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScholarshipInclude<ExtArgs> | null
     /**
      * The data needed to create a Scholarship.
      */
@@ -12984,6 +13186,10 @@ export namespace Prisma {
      * Omit specific fields from the Scholarship
      */
     omit?: ScholarshipOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScholarshipInclude<ExtArgs> | null
     /**
      * The data needed to update a Scholarship.
      */
@@ -13051,6 +13257,10 @@ export namespace Prisma {
      */
     omit?: ScholarshipOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScholarshipInclude<ExtArgs> | null
+    /**
      * The filter to search for the Scholarship to update in case it exists.
      */
     where: ScholarshipWhereUniqueInput
@@ -13077,6 +13287,10 @@ export namespace Prisma {
      */
     omit?: ScholarshipOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScholarshipInclude<ExtArgs> | null
+    /**
      * Filter which Scholarship to delete.
      */
     where: ScholarshipWhereUniqueInput
@@ -13097,6 +13311,30 @@ export namespace Prisma {
   }
 
   /**
+   * Scholarship.applications
+   */
+  export type Scholarship$applicationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ScholarshipApplication
+     */
+    select?: ScholarshipApplicationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ScholarshipApplication
+     */
+    omit?: ScholarshipApplicationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScholarshipApplicationInclude<ExtArgs> | null
+    where?: ScholarshipApplicationWhereInput
+    orderBy?: ScholarshipApplicationOrderByWithRelationInput | ScholarshipApplicationOrderByWithRelationInput[]
+    cursor?: ScholarshipApplicationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ScholarshipApplicationScalarFieldEnum | ScholarshipApplicationScalarFieldEnum[]
+  }
+
+  /**
    * Scholarship without action
    */
   export type ScholarshipDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -13108,6 +13346,10 @@ export namespace Prisma {
      * Omit specific fields from the Scholarship
      */
     omit?: ScholarshipOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScholarshipInclude<ExtArgs> | null
   }
 
 
@@ -13331,6 +13573,8 @@ export namespace Prisma {
     job_description?: boolean
     posted_on?: boolean
     deadline?: boolean
+    applications?: boolean | Job$applicationsArgs<ExtArgs>
+    _count?: boolean | JobCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["job"]>
 
   export type JobSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -13382,10 +13626,18 @@ export namespace Prisma {
   }
 
   export type JobOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "job_id" | "job_title" | "company_name" | "company_logo" | "date" | "location" | "position" | "salary_range" | "job_tags" | "job_description" | "posted_on" | "deadline", ExtArgs["result"]["job"]>
+  export type JobInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    applications?: boolean | Job$applicationsArgs<ExtArgs>
+    _count?: boolean | JobCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type JobIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type JobIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $JobPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Job"
-    objects: {}
+    objects: {
+      applications: Prisma.$JobApplicationPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       job_id: string
@@ -13794,6 +14046,7 @@ export namespace Prisma {
    */
   export interface Prisma__JobClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    applications<T extends Job$applicationsArgs<ExtArgs> = {}>(args?: Subset<T, Job$applicationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JobApplicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -13853,6 +14106,10 @@ export namespace Prisma {
      */
     omit?: JobOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JobInclude<ExtArgs> | null
+    /**
      * Filter, which Job to fetch.
      */
     where: JobWhereUniqueInput
@@ -13871,6 +14128,10 @@ export namespace Prisma {
      */
     omit?: JobOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JobInclude<ExtArgs> | null
+    /**
      * Filter, which Job to fetch.
      */
     where: JobWhereUniqueInput
@@ -13888,6 +14149,10 @@ export namespace Prisma {
      * Omit specific fields from the Job
      */
     omit?: JobOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JobInclude<ExtArgs> | null
     /**
      * Filter, which Job to fetch.
      */
@@ -13937,6 +14202,10 @@ export namespace Prisma {
      */
     omit?: JobOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JobInclude<ExtArgs> | null
+    /**
      * Filter, which Job to fetch.
      */
     where?: JobWhereInput
@@ -13985,6 +14254,10 @@ export namespace Prisma {
      */
     omit?: JobOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JobInclude<ExtArgs> | null
+    /**
      * Filter, which Jobs to fetch.
      */
     where?: JobWhereInput
@@ -14027,6 +14300,10 @@ export namespace Prisma {
      * Omit specific fields from the Job
      */
     omit?: JobOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JobInclude<ExtArgs> | null
     /**
      * The data needed to create a Job.
      */
@@ -14075,6 +14352,10 @@ export namespace Prisma {
      * Omit specific fields from the Job
      */
     omit?: JobOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JobInclude<ExtArgs> | null
     /**
      * The data needed to update a Job.
      */
@@ -14142,6 +14423,10 @@ export namespace Prisma {
      */
     omit?: JobOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JobInclude<ExtArgs> | null
+    /**
      * The filter to search for the Job to update in case it exists.
      */
     where: JobWhereUniqueInput
@@ -14168,6 +14453,10 @@ export namespace Prisma {
      */
     omit?: JobOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JobInclude<ExtArgs> | null
+    /**
      * Filter which Job to delete.
      */
     where: JobWhereUniqueInput
@@ -14188,6 +14477,30 @@ export namespace Prisma {
   }
 
   /**
+   * Job.applications
+   */
+  export type Job$applicationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobApplication
+     */
+    select?: JobApplicationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobApplication
+     */
+    omit?: JobApplicationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JobApplicationInclude<ExtArgs> | null
+    where?: JobApplicationWhereInput
+    orderBy?: JobApplicationOrderByWithRelationInput | JobApplicationOrderByWithRelationInput[]
+    cursor?: JobApplicationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: JobApplicationScalarFieldEnum | JobApplicationScalarFieldEnum[]
+  }
+
+  /**
    * Job without action
    */
   export type JobDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -14199,6 +14512,2311 @@ export namespace Prisma {
      * Omit specific fields from the Job
      */
     omit?: JobOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JobInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ScholarshipApplication
+   */
+
+  export type AggregateScholarshipApplication = {
+    _count: ScholarshipApplicationCountAggregateOutputType | null
+    _min: ScholarshipApplicationMinAggregateOutputType | null
+    _max: ScholarshipApplicationMaxAggregateOutputType | null
+  }
+
+  export type ScholarshipApplicationMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    scholarshipId: string | null
+    fullName: string | null
+    email: string | null
+    phone: string | null
+    academicInfo: string | null
+    coverLetter: string | null
+    documents: string | null
+    status: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ScholarshipApplicationMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    scholarshipId: string | null
+    fullName: string | null
+    email: string | null
+    phone: string | null
+    academicInfo: string | null
+    coverLetter: string | null
+    documents: string | null
+    status: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ScholarshipApplicationCountAggregateOutputType = {
+    id: number
+    userId: number
+    scholarshipId: number
+    fullName: number
+    email: number
+    phone: number
+    academicInfo: number
+    coverLetter: number
+    documents: number
+    status: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ScholarshipApplicationMinAggregateInputType = {
+    id?: true
+    userId?: true
+    scholarshipId?: true
+    fullName?: true
+    email?: true
+    phone?: true
+    academicInfo?: true
+    coverLetter?: true
+    documents?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ScholarshipApplicationMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    scholarshipId?: true
+    fullName?: true
+    email?: true
+    phone?: true
+    academicInfo?: true
+    coverLetter?: true
+    documents?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ScholarshipApplicationCountAggregateInputType = {
+    id?: true
+    userId?: true
+    scholarshipId?: true
+    fullName?: true
+    email?: true
+    phone?: true
+    academicInfo?: true
+    coverLetter?: true
+    documents?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ScholarshipApplicationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ScholarshipApplication to aggregate.
+     */
+    where?: ScholarshipApplicationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ScholarshipApplications to fetch.
+     */
+    orderBy?: ScholarshipApplicationOrderByWithRelationInput | ScholarshipApplicationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ScholarshipApplicationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ScholarshipApplications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ScholarshipApplications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ScholarshipApplications
+    **/
+    _count?: true | ScholarshipApplicationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ScholarshipApplicationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ScholarshipApplicationMaxAggregateInputType
+  }
+
+  export type GetScholarshipApplicationAggregateType<T extends ScholarshipApplicationAggregateArgs> = {
+        [P in keyof T & keyof AggregateScholarshipApplication]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateScholarshipApplication[P]>
+      : GetScalarType<T[P], AggregateScholarshipApplication[P]>
+  }
+
+
+
+
+  export type ScholarshipApplicationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ScholarshipApplicationWhereInput
+    orderBy?: ScholarshipApplicationOrderByWithAggregationInput | ScholarshipApplicationOrderByWithAggregationInput[]
+    by: ScholarshipApplicationScalarFieldEnum[] | ScholarshipApplicationScalarFieldEnum
+    having?: ScholarshipApplicationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ScholarshipApplicationCountAggregateInputType | true
+    _min?: ScholarshipApplicationMinAggregateInputType
+    _max?: ScholarshipApplicationMaxAggregateInputType
+  }
+
+  export type ScholarshipApplicationGroupByOutputType = {
+    id: string
+    userId: string
+    scholarshipId: string
+    fullName: string
+    email: string
+    phone: string
+    academicInfo: string
+    coverLetter: string
+    documents: string | null
+    status: string
+    createdAt: Date
+    updatedAt: Date
+    _count: ScholarshipApplicationCountAggregateOutputType | null
+    _min: ScholarshipApplicationMinAggregateOutputType | null
+    _max: ScholarshipApplicationMaxAggregateOutputType | null
+  }
+
+  type GetScholarshipApplicationGroupByPayload<T extends ScholarshipApplicationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ScholarshipApplicationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ScholarshipApplicationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ScholarshipApplicationGroupByOutputType[P]>
+            : GetScalarType<T[P], ScholarshipApplicationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ScholarshipApplicationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    scholarshipId?: boolean
+    fullName?: boolean
+    email?: boolean
+    phone?: boolean
+    academicInfo?: boolean
+    coverLetter?: boolean
+    documents?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    scholarship?: boolean | ScholarshipDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["scholarshipApplication"]>
+
+  export type ScholarshipApplicationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    scholarshipId?: boolean
+    fullName?: boolean
+    email?: boolean
+    phone?: boolean
+    academicInfo?: boolean
+    coverLetter?: boolean
+    documents?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    scholarship?: boolean | ScholarshipDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["scholarshipApplication"]>
+
+  export type ScholarshipApplicationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    scholarshipId?: boolean
+    fullName?: boolean
+    email?: boolean
+    phone?: boolean
+    academicInfo?: boolean
+    coverLetter?: boolean
+    documents?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    scholarship?: boolean | ScholarshipDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["scholarshipApplication"]>
+
+  export type ScholarshipApplicationSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    scholarshipId?: boolean
+    fullName?: boolean
+    email?: boolean
+    phone?: boolean
+    academicInfo?: boolean
+    coverLetter?: boolean
+    documents?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ScholarshipApplicationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "scholarshipId" | "fullName" | "email" | "phone" | "academicInfo" | "coverLetter" | "documents" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["scholarshipApplication"]>
+  export type ScholarshipApplicationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    scholarship?: boolean | ScholarshipDefaultArgs<ExtArgs>
+  }
+  export type ScholarshipApplicationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    scholarship?: boolean | ScholarshipDefaultArgs<ExtArgs>
+  }
+  export type ScholarshipApplicationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    scholarship?: boolean | ScholarshipDefaultArgs<ExtArgs>
+  }
+
+  export type $ScholarshipApplicationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ScholarshipApplication"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      scholarship: Prisma.$ScholarshipPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      scholarshipId: string
+      fullName: string
+      email: string
+      phone: string
+      academicInfo: string
+      coverLetter: string
+      documents: string | null
+      status: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["scholarshipApplication"]>
+    composites: {}
+  }
+
+  type ScholarshipApplicationGetPayload<S extends boolean | null | undefined | ScholarshipApplicationDefaultArgs> = $Result.GetResult<Prisma.$ScholarshipApplicationPayload, S>
+
+  type ScholarshipApplicationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ScholarshipApplicationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ScholarshipApplicationCountAggregateInputType | true
+    }
+
+  export interface ScholarshipApplicationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ScholarshipApplication'], meta: { name: 'ScholarshipApplication' } }
+    /**
+     * Find zero or one ScholarshipApplication that matches the filter.
+     * @param {ScholarshipApplicationFindUniqueArgs} args - Arguments to find a ScholarshipApplication
+     * @example
+     * // Get one ScholarshipApplication
+     * const scholarshipApplication = await prisma.scholarshipApplication.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ScholarshipApplicationFindUniqueArgs>(args: SelectSubset<T, ScholarshipApplicationFindUniqueArgs<ExtArgs>>): Prisma__ScholarshipApplicationClient<$Result.GetResult<Prisma.$ScholarshipApplicationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ScholarshipApplication that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ScholarshipApplicationFindUniqueOrThrowArgs} args - Arguments to find a ScholarshipApplication
+     * @example
+     * // Get one ScholarshipApplication
+     * const scholarshipApplication = await prisma.scholarshipApplication.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ScholarshipApplicationFindUniqueOrThrowArgs>(args: SelectSubset<T, ScholarshipApplicationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ScholarshipApplicationClient<$Result.GetResult<Prisma.$ScholarshipApplicationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ScholarshipApplication that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ScholarshipApplicationFindFirstArgs} args - Arguments to find a ScholarshipApplication
+     * @example
+     * // Get one ScholarshipApplication
+     * const scholarshipApplication = await prisma.scholarshipApplication.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ScholarshipApplicationFindFirstArgs>(args?: SelectSubset<T, ScholarshipApplicationFindFirstArgs<ExtArgs>>): Prisma__ScholarshipApplicationClient<$Result.GetResult<Prisma.$ScholarshipApplicationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ScholarshipApplication that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ScholarshipApplicationFindFirstOrThrowArgs} args - Arguments to find a ScholarshipApplication
+     * @example
+     * // Get one ScholarshipApplication
+     * const scholarshipApplication = await prisma.scholarshipApplication.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ScholarshipApplicationFindFirstOrThrowArgs>(args?: SelectSubset<T, ScholarshipApplicationFindFirstOrThrowArgs<ExtArgs>>): Prisma__ScholarshipApplicationClient<$Result.GetResult<Prisma.$ScholarshipApplicationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ScholarshipApplications that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ScholarshipApplicationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ScholarshipApplications
+     * const scholarshipApplications = await prisma.scholarshipApplication.findMany()
+     * 
+     * // Get first 10 ScholarshipApplications
+     * const scholarshipApplications = await prisma.scholarshipApplication.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const scholarshipApplicationWithIdOnly = await prisma.scholarshipApplication.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ScholarshipApplicationFindManyArgs>(args?: SelectSubset<T, ScholarshipApplicationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ScholarshipApplicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ScholarshipApplication.
+     * @param {ScholarshipApplicationCreateArgs} args - Arguments to create a ScholarshipApplication.
+     * @example
+     * // Create one ScholarshipApplication
+     * const ScholarshipApplication = await prisma.scholarshipApplication.create({
+     *   data: {
+     *     // ... data to create a ScholarshipApplication
+     *   }
+     * })
+     * 
+     */
+    create<T extends ScholarshipApplicationCreateArgs>(args: SelectSubset<T, ScholarshipApplicationCreateArgs<ExtArgs>>): Prisma__ScholarshipApplicationClient<$Result.GetResult<Prisma.$ScholarshipApplicationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ScholarshipApplications.
+     * @param {ScholarshipApplicationCreateManyArgs} args - Arguments to create many ScholarshipApplications.
+     * @example
+     * // Create many ScholarshipApplications
+     * const scholarshipApplication = await prisma.scholarshipApplication.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ScholarshipApplicationCreateManyArgs>(args?: SelectSubset<T, ScholarshipApplicationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ScholarshipApplications and returns the data saved in the database.
+     * @param {ScholarshipApplicationCreateManyAndReturnArgs} args - Arguments to create many ScholarshipApplications.
+     * @example
+     * // Create many ScholarshipApplications
+     * const scholarshipApplication = await prisma.scholarshipApplication.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ScholarshipApplications and only return the `id`
+     * const scholarshipApplicationWithIdOnly = await prisma.scholarshipApplication.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ScholarshipApplicationCreateManyAndReturnArgs>(args?: SelectSubset<T, ScholarshipApplicationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ScholarshipApplicationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ScholarshipApplication.
+     * @param {ScholarshipApplicationDeleteArgs} args - Arguments to delete one ScholarshipApplication.
+     * @example
+     * // Delete one ScholarshipApplication
+     * const ScholarshipApplication = await prisma.scholarshipApplication.delete({
+     *   where: {
+     *     // ... filter to delete one ScholarshipApplication
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ScholarshipApplicationDeleteArgs>(args: SelectSubset<T, ScholarshipApplicationDeleteArgs<ExtArgs>>): Prisma__ScholarshipApplicationClient<$Result.GetResult<Prisma.$ScholarshipApplicationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ScholarshipApplication.
+     * @param {ScholarshipApplicationUpdateArgs} args - Arguments to update one ScholarshipApplication.
+     * @example
+     * // Update one ScholarshipApplication
+     * const scholarshipApplication = await prisma.scholarshipApplication.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ScholarshipApplicationUpdateArgs>(args: SelectSubset<T, ScholarshipApplicationUpdateArgs<ExtArgs>>): Prisma__ScholarshipApplicationClient<$Result.GetResult<Prisma.$ScholarshipApplicationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ScholarshipApplications.
+     * @param {ScholarshipApplicationDeleteManyArgs} args - Arguments to filter ScholarshipApplications to delete.
+     * @example
+     * // Delete a few ScholarshipApplications
+     * const { count } = await prisma.scholarshipApplication.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ScholarshipApplicationDeleteManyArgs>(args?: SelectSubset<T, ScholarshipApplicationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ScholarshipApplications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ScholarshipApplicationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ScholarshipApplications
+     * const scholarshipApplication = await prisma.scholarshipApplication.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ScholarshipApplicationUpdateManyArgs>(args: SelectSubset<T, ScholarshipApplicationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ScholarshipApplications and returns the data updated in the database.
+     * @param {ScholarshipApplicationUpdateManyAndReturnArgs} args - Arguments to update many ScholarshipApplications.
+     * @example
+     * // Update many ScholarshipApplications
+     * const scholarshipApplication = await prisma.scholarshipApplication.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ScholarshipApplications and only return the `id`
+     * const scholarshipApplicationWithIdOnly = await prisma.scholarshipApplication.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ScholarshipApplicationUpdateManyAndReturnArgs>(args: SelectSubset<T, ScholarshipApplicationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ScholarshipApplicationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ScholarshipApplication.
+     * @param {ScholarshipApplicationUpsertArgs} args - Arguments to update or create a ScholarshipApplication.
+     * @example
+     * // Update or create a ScholarshipApplication
+     * const scholarshipApplication = await prisma.scholarshipApplication.upsert({
+     *   create: {
+     *     // ... data to create a ScholarshipApplication
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ScholarshipApplication we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ScholarshipApplicationUpsertArgs>(args: SelectSubset<T, ScholarshipApplicationUpsertArgs<ExtArgs>>): Prisma__ScholarshipApplicationClient<$Result.GetResult<Prisma.$ScholarshipApplicationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ScholarshipApplications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ScholarshipApplicationCountArgs} args - Arguments to filter ScholarshipApplications to count.
+     * @example
+     * // Count the number of ScholarshipApplications
+     * const count = await prisma.scholarshipApplication.count({
+     *   where: {
+     *     // ... the filter for the ScholarshipApplications we want to count
+     *   }
+     * })
+    **/
+    count<T extends ScholarshipApplicationCountArgs>(
+      args?: Subset<T, ScholarshipApplicationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ScholarshipApplicationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ScholarshipApplication.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ScholarshipApplicationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ScholarshipApplicationAggregateArgs>(args: Subset<T, ScholarshipApplicationAggregateArgs>): Prisma.PrismaPromise<GetScholarshipApplicationAggregateType<T>>
+
+    /**
+     * Group by ScholarshipApplication.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ScholarshipApplicationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ScholarshipApplicationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ScholarshipApplicationGroupByArgs['orderBy'] }
+        : { orderBy?: ScholarshipApplicationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ScholarshipApplicationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetScholarshipApplicationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ScholarshipApplication model
+   */
+  readonly fields: ScholarshipApplicationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ScholarshipApplication.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ScholarshipApplicationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    scholarship<T extends ScholarshipDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ScholarshipDefaultArgs<ExtArgs>>): Prisma__ScholarshipClient<$Result.GetResult<Prisma.$ScholarshipPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ScholarshipApplication model
+   */
+  interface ScholarshipApplicationFieldRefs {
+    readonly id: FieldRef<"ScholarshipApplication", 'String'>
+    readonly userId: FieldRef<"ScholarshipApplication", 'String'>
+    readonly scholarshipId: FieldRef<"ScholarshipApplication", 'String'>
+    readonly fullName: FieldRef<"ScholarshipApplication", 'String'>
+    readonly email: FieldRef<"ScholarshipApplication", 'String'>
+    readonly phone: FieldRef<"ScholarshipApplication", 'String'>
+    readonly academicInfo: FieldRef<"ScholarshipApplication", 'String'>
+    readonly coverLetter: FieldRef<"ScholarshipApplication", 'String'>
+    readonly documents: FieldRef<"ScholarshipApplication", 'String'>
+    readonly status: FieldRef<"ScholarshipApplication", 'String'>
+    readonly createdAt: FieldRef<"ScholarshipApplication", 'DateTime'>
+    readonly updatedAt: FieldRef<"ScholarshipApplication", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ScholarshipApplication findUnique
+   */
+  export type ScholarshipApplicationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ScholarshipApplication
+     */
+    select?: ScholarshipApplicationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ScholarshipApplication
+     */
+    omit?: ScholarshipApplicationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScholarshipApplicationInclude<ExtArgs> | null
+    /**
+     * Filter, which ScholarshipApplication to fetch.
+     */
+    where: ScholarshipApplicationWhereUniqueInput
+  }
+
+  /**
+   * ScholarshipApplication findUniqueOrThrow
+   */
+  export type ScholarshipApplicationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ScholarshipApplication
+     */
+    select?: ScholarshipApplicationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ScholarshipApplication
+     */
+    omit?: ScholarshipApplicationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScholarshipApplicationInclude<ExtArgs> | null
+    /**
+     * Filter, which ScholarshipApplication to fetch.
+     */
+    where: ScholarshipApplicationWhereUniqueInput
+  }
+
+  /**
+   * ScholarshipApplication findFirst
+   */
+  export type ScholarshipApplicationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ScholarshipApplication
+     */
+    select?: ScholarshipApplicationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ScholarshipApplication
+     */
+    omit?: ScholarshipApplicationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScholarshipApplicationInclude<ExtArgs> | null
+    /**
+     * Filter, which ScholarshipApplication to fetch.
+     */
+    where?: ScholarshipApplicationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ScholarshipApplications to fetch.
+     */
+    orderBy?: ScholarshipApplicationOrderByWithRelationInput | ScholarshipApplicationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ScholarshipApplications.
+     */
+    cursor?: ScholarshipApplicationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ScholarshipApplications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ScholarshipApplications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ScholarshipApplications.
+     */
+    distinct?: ScholarshipApplicationScalarFieldEnum | ScholarshipApplicationScalarFieldEnum[]
+  }
+
+  /**
+   * ScholarshipApplication findFirstOrThrow
+   */
+  export type ScholarshipApplicationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ScholarshipApplication
+     */
+    select?: ScholarshipApplicationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ScholarshipApplication
+     */
+    omit?: ScholarshipApplicationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScholarshipApplicationInclude<ExtArgs> | null
+    /**
+     * Filter, which ScholarshipApplication to fetch.
+     */
+    where?: ScholarshipApplicationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ScholarshipApplications to fetch.
+     */
+    orderBy?: ScholarshipApplicationOrderByWithRelationInput | ScholarshipApplicationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ScholarshipApplications.
+     */
+    cursor?: ScholarshipApplicationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ScholarshipApplications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ScholarshipApplications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ScholarshipApplications.
+     */
+    distinct?: ScholarshipApplicationScalarFieldEnum | ScholarshipApplicationScalarFieldEnum[]
+  }
+
+  /**
+   * ScholarshipApplication findMany
+   */
+  export type ScholarshipApplicationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ScholarshipApplication
+     */
+    select?: ScholarshipApplicationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ScholarshipApplication
+     */
+    omit?: ScholarshipApplicationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScholarshipApplicationInclude<ExtArgs> | null
+    /**
+     * Filter, which ScholarshipApplications to fetch.
+     */
+    where?: ScholarshipApplicationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ScholarshipApplications to fetch.
+     */
+    orderBy?: ScholarshipApplicationOrderByWithRelationInput | ScholarshipApplicationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ScholarshipApplications.
+     */
+    cursor?: ScholarshipApplicationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ScholarshipApplications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ScholarshipApplications.
+     */
+    skip?: number
+    distinct?: ScholarshipApplicationScalarFieldEnum | ScholarshipApplicationScalarFieldEnum[]
+  }
+
+  /**
+   * ScholarshipApplication create
+   */
+  export type ScholarshipApplicationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ScholarshipApplication
+     */
+    select?: ScholarshipApplicationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ScholarshipApplication
+     */
+    omit?: ScholarshipApplicationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScholarshipApplicationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ScholarshipApplication.
+     */
+    data: XOR<ScholarshipApplicationCreateInput, ScholarshipApplicationUncheckedCreateInput>
+  }
+
+  /**
+   * ScholarshipApplication createMany
+   */
+  export type ScholarshipApplicationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ScholarshipApplications.
+     */
+    data: ScholarshipApplicationCreateManyInput | ScholarshipApplicationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ScholarshipApplication createManyAndReturn
+   */
+  export type ScholarshipApplicationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ScholarshipApplication
+     */
+    select?: ScholarshipApplicationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ScholarshipApplication
+     */
+    omit?: ScholarshipApplicationOmit<ExtArgs> | null
+    /**
+     * The data used to create many ScholarshipApplications.
+     */
+    data: ScholarshipApplicationCreateManyInput | ScholarshipApplicationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScholarshipApplicationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ScholarshipApplication update
+   */
+  export type ScholarshipApplicationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ScholarshipApplication
+     */
+    select?: ScholarshipApplicationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ScholarshipApplication
+     */
+    omit?: ScholarshipApplicationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScholarshipApplicationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ScholarshipApplication.
+     */
+    data: XOR<ScholarshipApplicationUpdateInput, ScholarshipApplicationUncheckedUpdateInput>
+    /**
+     * Choose, which ScholarshipApplication to update.
+     */
+    where: ScholarshipApplicationWhereUniqueInput
+  }
+
+  /**
+   * ScholarshipApplication updateMany
+   */
+  export type ScholarshipApplicationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ScholarshipApplications.
+     */
+    data: XOR<ScholarshipApplicationUpdateManyMutationInput, ScholarshipApplicationUncheckedUpdateManyInput>
+    /**
+     * Filter which ScholarshipApplications to update
+     */
+    where?: ScholarshipApplicationWhereInput
+    /**
+     * Limit how many ScholarshipApplications to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ScholarshipApplication updateManyAndReturn
+   */
+  export type ScholarshipApplicationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ScholarshipApplication
+     */
+    select?: ScholarshipApplicationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ScholarshipApplication
+     */
+    omit?: ScholarshipApplicationOmit<ExtArgs> | null
+    /**
+     * The data used to update ScholarshipApplications.
+     */
+    data: XOR<ScholarshipApplicationUpdateManyMutationInput, ScholarshipApplicationUncheckedUpdateManyInput>
+    /**
+     * Filter which ScholarshipApplications to update
+     */
+    where?: ScholarshipApplicationWhereInput
+    /**
+     * Limit how many ScholarshipApplications to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScholarshipApplicationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ScholarshipApplication upsert
+   */
+  export type ScholarshipApplicationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ScholarshipApplication
+     */
+    select?: ScholarshipApplicationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ScholarshipApplication
+     */
+    omit?: ScholarshipApplicationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScholarshipApplicationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ScholarshipApplication to update in case it exists.
+     */
+    where: ScholarshipApplicationWhereUniqueInput
+    /**
+     * In case the ScholarshipApplication found by the `where` argument doesn't exist, create a new ScholarshipApplication with this data.
+     */
+    create: XOR<ScholarshipApplicationCreateInput, ScholarshipApplicationUncheckedCreateInput>
+    /**
+     * In case the ScholarshipApplication was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ScholarshipApplicationUpdateInput, ScholarshipApplicationUncheckedUpdateInput>
+  }
+
+  /**
+   * ScholarshipApplication delete
+   */
+  export type ScholarshipApplicationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ScholarshipApplication
+     */
+    select?: ScholarshipApplicationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ScholarshipApplication
+     */
+    omit?: ScholarshipApplicationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScholarshipApplicationInclude<ExtArgs> | null
+    /**
+     * Filter which ScholarshipApplication to delete.
+     */
+    where: ScholarshipApplicationWhereUniqueInput
+  }
+
+  /**
+   * ScholarshipApplication deleteMany
+   */
+  export type ScholarshipApplicationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ScholarshipApplications to delete
+     */
+    where?: ScholarshipApplicationWhereInput
+    /**
+     * Limit how many ScholarshipApplications to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ScholarshipApplication without action
+   */
+  export type ScholarshipApplicationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ScholarshipApplication
+     */
+    select?: ScholarshipApplicationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ScholarshipApplication
+     */
+    omit?: ScholarshipApplicationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScholarshipApplicationInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model JobApplication
+   */
+
+  export type AggregateJobApplication = {
+    _count: JobApplicationCountAggregateOutputType | null
+    _min: JobApplicationMinAggregateOutputType | null
+    _max: JobApplicationMaxAggregateOutputType | null
+  }
+
+  export type JobApplicationMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    jobId: string | null
+    fullName: string | null
+    email: string | null
+    phone: string | null
+    coverLetter: string | null
+    resume: string | null
+    status: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type JobApplicationMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    jobId: string | null
+    fullName: string | null
+    email: string | null
+    phone: string | null
+    coverLetter: string | null
+    resume: string | null
+    status: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type JobApplicationCountAggregateOutputType = {
+    id: number
+    userId: number
+    jobId: number
+    fullName: number
+    email: number
+    phone: number
+    coverLetter: number
+    resume: number
+    status: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type JobApplicationMinAggregateInputType = {
+    id?: true
+    userId?: true
+    jobId?: true
+    fullName?: true
+    email?: true
+    phone?: true
+    coverLetter?: true
+    resume?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type JobApplicationMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    jobId?: true
+    fullName?: true
+    email?: true
+    phone?: true
+    coverLetter?: true
+    resume?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type JobApplicationCountAggregateInputType = {
+    id?: true
+    userId?: true
+    jobId?: true
+    fullName?: true
+    email?: true
+    phone?: true
+    coverLetter?: true
+    resume?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type JobApplicationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which JobApplication to aggregate.
+     */
+    where?: JobApplicationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JobApplications to fetch.
+     */
+    orderBy?: JobApplicationOrderByWithRelationInput | JobApplicationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: JobApplicationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JobApplications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JobApplications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned JobApplications
+    **/
+    _count?: true | JobApplicationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: JobApplicationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: JobApplicationMaxAggregateInputType
+  }
+
+  export type GetJobApplicationAggregateType<T extends JobApplicationAggregateArgs> = {
+        [P in keyof T & keyof AggregateJobApplication]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateJobApplication[P]>
+      : GetScalarType<T[P], AggregateJobApplication[P]>
+  }
+
+
+
+
+  export type JobApplicationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: JobApplicationWhereInput
+    orderBy?: JobApplicationOrderByWithAggregationInput | JobApplicationOrderByWithAggregationInput[]
+    by: JobApplicationScalarFieldEnum[] | JobApplicationScalarFieldEnum
+    having?: JobApplicationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: JobApplicationCountAggregateInputType | true
+    _min?: JobApplicationMinAggregateInputType
+    _max?: JobApplicationMaxAggregateInputType
+  }
+
+  export type JobApplicationGroupByOutputType = {
+    id: string
+    userId: string
+    jobId: string
+    fullName: string
+    email: string
+    phone: string
+    coverLetter: string
+    resume: string | null
+    status: string
+    createdAt: Date
+    updatedAt: Date
+    _count: JobApplicationCountAggregateOutputType | null
+    _min: JobApplicationMinAggregateOutputType | null
+    _max: JobApplicationMaxAggregateOutputType | null
+  }
+
+  type GetJobApplicationGroupByPayload<T extends JobApplicationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<JobApplicationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof JobApplicationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], JobApplicationGroupByOutputType[P]>
+            : GetScalarType<T[P], JobApplicationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type JobApplicationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    jobId?: boolean
+    fullName?: boolean
+    email?: boolean
+    phone?: boolean
+    coverLetter?: boolean
+    resume?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    job?: boolean | JobDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["jobApplication"]>
+
+  export type JobApplicationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    jobId?: boolean
+    fullName?: boolean
+    email?: boolean
+    phone?: boolean
+    coverLetter?: boolean
+    resume?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    job?: boolean | JobDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["jobApplication"]>
+
+  export type JobApplicationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    jobId?: boolean
+    fullName?: boolean
+    email?: boolean
+    phone?: boolean
+    coverLetter?: boolean
+    resume?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    job?: boolean | JobDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["jobApplication"]>
+
+  export type JobApplicationSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    jobId?: boolean
+    fullName?: boolean
+    email?: boolean
+    phone?: boolean
+    coverLetter?: boolean
+    resume?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type JobApplicationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "jobId" | "fullName" | "email" | "phone" | "coverLetter" | "resume" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["jobApplication"]>
+  export type JobApplicationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    job?: boolean | JobDefaultArgs<ExtArgs>
+  }
+  export type JobApplicationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    job?: boolean | JobDefaultArgs<ExtArgs>
+  }
+  export type JobApplicationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    job?: boolean | JobDefaultArgs<ExtArgs>
+  }
+
+  export type $JobApplicationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "JobApplication"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      job: Prisma.$JobPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      jobId: string
+      fullName: string
+      email: string
+      phone: string
+      coverLetter: string
+      resume: string | null
+      status: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["jobApplication"]>
+    composites: {}
+  }
+
+  type JobApplicationGetPayload<S extends boolean | null | undefined | JobApplicationDefaultArgs> = $Result.GetResult<Prisma.$JobApplicationPayload, S>
+
+  type JobApplicationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<JobApplicationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: JobApplicationCountAggregateInputType | true
+    }
+
+  export interface JobApplicationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['JobApplication'], meta: { name: 'JobApplication' } }
+    /**
+     * Find zero or one JobApplication that matches the filter.
+     * @param {JobApplicationFindUniqueArgs} args - Arguments to find a JobApplication
+     * @example
+     * // Get one JobApplication
+     * const jobApplication = await prisma.jobApplication.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends JobApplicationFindUniqueArgs>(args: SelectSubset<T, JobApplicationFindUniqueArgs<ExtArgs>>): Prisma__JobApplicationClient<$Result.GetResult<Prisma.$JobApplicationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one JobApplication that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {JobApplicationFindUniqueOrThrowArgs} args - Arguments to find a JobApplication
+     * @example
+     * // Get one JobApplication
+     * const jobApplication = await prisma.jobApplication.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends JobApplicationFindUniqueOrThrowArgs>(args: SelectSubset<T, JobApplicationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__JobApplicationClient<$Result.GetResult<Prisma.$JobApplicationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first JobApplication that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobApplicationFindFirstArgs} args - Arguments to find a JobApplication
+     * @example
+     * // Get one JobApplication
+     * const jobApplication = await prisma.jobApplication.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends JobApplicationFindFirstArgs>(args?: SelectSubset<T, JobApplicationFindFirstArgs<ExtArgs>>): Prisma__JobApplicationClient<$Result.GetResult<Prisma.$JobApplicationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first JobApplication that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobApplicationFindFirstOrThrowArgs} args - Arguments to find a JobApplication
+     * @example
+     * // Get one JobApplication
+     * const jobApplication = await prisma.jobApplication.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends JobApplicationFindFirstOrThrowArgs>(args?: SelectSubset<T, JobApplicationFindFirstOrThrowArgs<ExtArgs>>): Prisma__JobApplicationClient<$Result.GetResult<Prisma.$JobApplicationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more JobApplications that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobApplicationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all JobApplications
+     * const jobApplications = await prisma.jobApplication.findMany()
+     * 
+     * // Get first 10 JobApplications
+     * const jobApplications = await prisma.jobApplication.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const jobApplicationWithIdOnly = await prisma.jobApplication.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends JobApplicationFindManyArgs>(args?: SelectSubset<T, JobApplicationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JobApplicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a JobApplication.
+     * @param {JobApplicationCreateArgs} args - Arguments to create a JobApplication.
+     * @example
+     * // Create one JobApplication
+     * const JobApplication = await prisma.jobApplication.create({
+     *   data: {
+     *     // ... data to create a JobApplication
+     *   }
+     * })
+     * 
+     */
+    create<T extends JobApplicationCreateArgs>(args: SelectSubset<T, JobApplicationCreateArgs<ExtArgs>>): Prisma__JobApplicationClient<$Result.GetResult<Prisma.$JobApplicationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many JobApplications.
+     * @param {JobApplicationCreateManyArgs} args - Arguments to create many JobApplications.
+     * @example
+     * // Create many JobApplications
+     * const jobApplication = await prisma.jobApplication.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends JobApplicationCreateManyArgs>(args?: SelectSubset<T, JobApplicationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many JobApplications and returns the data saved in the database.
+     * @param {JobApplicationCreateManyAndReturnArgs} args - Arguments to create many JobApplications.
+     * @example
+     * // Create many JobApplications
+     * const jobApplication = await prisma.jobApplication.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many JobApplications and only return the `id`
+     * const jobApplicationWithIdOnly = await prisma.jobApplication.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends JobApplicationCreateManyAndReturnArgs>(args?: SelectSubset<T, JobApplicationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JobApplicationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a JobApplication.
+     * @param {JobApplicationDeleteArgs} args - Arguments to delete one JobApplication.
+     * @example
+     * // Delete one JobApplication
+     * const JobApplication = await prisma.jobApplication.delete({
+     *   where: {
+     *     // ... filter to delete one JobApplication
+     *   }
+     * })
+     * 
+     */
+    delete<T extends JobApplicationDeleteArgs>(args: SelectSubset<T, JobApplicationDeleteArgs<ExtArgs>>): Prisma__JobApplicationClient<$Result.GetResult<Prisma.$JobApplicationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one JobApplication.
+     * @param {JobApplicationUpdateArgs} args - Arguments to update one JobApplication.
+     * @example
+     * // Update one JobApplication
+     * const jobApplication = await prisma.jobApplication.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends JobApplicationUpdateArgs>(args: SelectSubset<T, JobApplicationUpdateArgs<ExtArgs>>): Prisma__JobApplicationClient<$Result.GetResult<Prisma.$JobApplicationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more JobApplications.
+     * @param {JobApplicationDeleteManyArgs} args - Arguments to filter JobApplications to delete.
+     * @example
+     * // Delete a few JobApplications
+     * const { count } = await prisma.jobApplication.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends JobApplicationDeleteManyArgs>(args?: SelectSubset<T, JobApplicationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more JobApplications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobApplicationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many JobApplications
+     * const jobApplication = await prisma.jobApplication.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends JobApplicationUpdateManyArgs>(args: SelectSubset<T, JobApplicationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more JobApplications and returns the data updated in the database.
+     * @param {JobApplicationUpdateManyAndReturnArgs} args - Arguments to update many JobApplications.
+     * @example
+     * // Update many JobApplications
+     * const jobApplication = await prisma.jobApplication.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more JobApplications and only return the `id`
+     * const jobApplicationWithIdOnly = await prisma.jobApplication.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends JobApplicationUpdateManyAndReturnArgs>(args: SelectSubset<T, JobApplicationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JobApplicationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one JobApplication.
+     * @param {JobApplicationUpsertArgs} args - Arguments to update or create a JobApplication.
+     * @example
+     * // Update or create a JobApplication
+     * const jobApplication = await prisma.jobApplication.upsert({
+     *   create: {
+     *     // ... data to create a JobApplication
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the JobApplication we want to update
+     *   }
+     * })
+     */
+    upsert<T extends JobApplicationUpsertArgs>(args: SelectSubset<T, JobApplicationUpsertArgs<ExtArgs>>): Prisma__JobApplicationClient<$Result.GetResult<Prisma.$JobApplicationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of JobApplications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobApplicationCountArgs} args - Arguments to filter JobApplications to count.
+     * @example
+     * // Count the number of JobApplications
+     * const count = await prisma.jobApplication.count({
+     *   where: {
+     *     // ... the filter for the JobApplications we want to count
+     *   }
+     * })
+    **/
+    count<T extends JobApplicationCountArgs>(
+      args?: Subset<T, JobApplicationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], JobApplicationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a JobApplication.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobApplicationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends JobApplicationAggregateArgs>(args: Subset<T, JobApplicationAggregateArgs>): Prisma.PrismaPromise<GetJobApplicationAggregateType<T>>
+
+    /**
+     * Group by JobApplication.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobApplicationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends JobApplicationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: JobApplicationGroupByArgs['orderBy'] }
+        : { orderBy?: JobApplicationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, JobApplicationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetJobApplicationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the JobApplication model
+   */
+  readonly fields: JobApplicationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for JobApplication.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__JobApplicationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    job<T extends JobDefaultArgs<ExtArgs> = {}>(args?: Subset<T, JobDefaultArgs<ExtArgs>>): Prisma__JobClient<$Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the JobApplication model
+   */
+  interface JobApplicationFieldRefs {
+    readonly id: FieldRef<"JobApplication", 'String'>
+    readonly userId: FieldRef<"JobApplication", 'String'>
+    readonly jobId: FieldRef<"JobApplication", 'String'>
+    readonly fullName: FieldRef<"JobApplication", 'String'>
+    readonly email: FieldRef<"JobApplication", 'String'>
+    readonly phone: FieldRef<"JobApplication", 'String'>
+    readonly coverLetter: FieldRef<"JobApplication", 'String'>
+    readonly resume: FieldRef<"JobApplication", 'String'>
+    readonly status: FieldRef<"JobApplication", 'String'>
+    readonly createdAt: FieldRef<"JobApplication", 'DateTime'>
+    readonly updatedAt: FieldRef<"JobApplication", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * JobApplication findUnique
+   */
+  export type JobApplicationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobApplication
+     */
+    select?: JobApplicationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobApplication
+     */
+    omit?: JobApplicationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JobApplicationInclude<ExtArgs> | null
+    /**
+     * Filter, which JobApplication to fetch.
+     */
+    where: JobApplicationWhereUniqueInput
+  }
+
+  /**
+   * JobApplication findUniqueOrThrow
+   */
+  export type JobApplicationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobApplication
+     */
+    select?: JobApplicationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobApplication
+     */
+    omit?: JobApplicationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JobApplicationInclude<ExtArgs> | null
+    /**
+     * Filter, which JobApplication to fetch.
+     */
+    where: JobApplicationWhereUniqueInput
+  }
+
+  /**
+   * JobApplication findFirst
+   */
+  export type JobApplicationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobApplication
+     */
+    select?: JobApplicationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobApplication
+     */
+    omit?: JobApplicationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JobApplicationInclude<ExtArgs> | null
+    /**
+     * Filter, which JobApplication to fetch.
+     */
+    where?: JobApplicationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JobApplications to fetch.
+     */
+    orderBy?: JobApplicationOrderByWithRelationInput | JobApplicationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for JobApplications.
+     */
+    cursor?: JobApplicationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JobApplications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JobApplications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of JobApplications.
+     */
+    distinct?: JobApplicationScalarFieldEnum | JobApplicationScalarFieldEnum[]
+  }
+
+  /**
+   * JobApplication findFirstOrThrow
+   */
+  export type JobApplicationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobApplication
+     */
+    select?: JobApplicationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobApplication
+     */
+    omit?: JobApplicationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JobApplicationInclude<ExtArgs> | null
+    /**
+     * Filter, which JobApplication to fetch.
+     */
+    where?: JobApplicationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JobApplications to fetch.
+     */
+    orderBy?: JobApplicationOrderByWithRelationInput | JobApplicationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for JobApplications.
+     */
+    cursor?: JobApplicationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JobApplications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JobApplications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of JobApplications.
+     */
+    distinct?: JobApplicationScalarFieldEnum | JobApplicationScalarFieldEnum[]
+  }
+
+  /**
+   * JobApplication findMany
+   */
+  export type JobApplicationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobApplication
+     */
+    select?: JobApplicationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobApplication
+     */
+    omit?: JobApplicationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JobApplicationInclude<ExtArgs> | null
+    /**
+     * Filter, which JobApplications to fetch.
+     */
+    where?: JobApplicationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JobApplications to fetch.
+     */
+    orderBy?: JobApplicationOrderByWithRelationInput | JobApplicationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing JobApplications.
+     */
+    cursor?: JobApplicationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JobApplications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JobApplications.
+     */
+    skip?: number
+    distinct?: JobApplicationScalarFieldEnum | JobApplicationScalarFieldEnum[]
+  }
+
+  /**
+   * JobApplication create
+   */
+  export type JobApplicationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobApplication
+     */
+    select?: JobApplicationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobApplication
+     */
+    omit?: JobApplicationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JobApplicationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a JobApplication.
+     */
+    data: XOR<JobApplicationCreateInput, JobApplicationUncheckedCreateInput>
+  }
+
+  /**
+   * JobApplication createMany
+   */
+  export type JobApplicationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many JobApplications.
+     */
+    data: JobApplicationCreateManyInput | JobApplicationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * JobApplication createManyAndReturn
+   */
+  export type JobApplicationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobApplication
+     */
+    select?: JobApplicationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobApplication
+     */
+    omit?: JobApplicationOmit<ExtArgs> | null
+    /**
+     * The data used to create many JobApplications.
+     */
+    data: JobApplicationCreateManyInput | JobApplicationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JobApplicationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * JobApplication update
+   */
+  export type JobApplicationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobApplication
+     */
+    select?: JobApplicationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobApplication
+     */
+    omit?: JobApplicationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JobApplicationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a JobApplication.
+     */
+    data: XOR<JobApplicationUpdateInput, JobApplicationUncheckedUpdateInput>
+    /**
+     * Choose, which JobApplication to update.
+     */
+    where: JobApplicationWhereUniqueInput
+  }
+
+  /**
+   * JobApplication updateMany
+   */
+  export type JobApplicationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update JobApplications.
+     */
+    data: XOR<JobApplicationUpdateManyMutationInput, JobApplicationUncheckedUpdateManyInput>
+    /**
+     * Filter which JobApplications to update
+     */
+    where?: JobApplicationWhereInput
+    /**
+     * Limit how many JobApplications to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * JobApplication updateManyAndReturn
+   */
+  export type JobApplicationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobApplication
+     */
+    select?: JobApplicationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobApplication
+     */
+    omit?: JobApplicationOmit<ExtArgs> | null
+    /**
+     * The data used to update JobApplications.
+     */
+    data: XOR<JobApplicationUpdateManyMutationInput, JobApplicationUncheckedUpdateManyInput>
+    /**
+     * Filter which JobApplications to update
+     */
+    where?: JobApplicationWhereInput
+    /**
+     * Limit how many JobApplications to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JobApplicationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * JobApplication upsert
+   */
+  export type JobApplicationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobApplication
+     */
+    select?: JobApplicationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobApplication
+     */
+    omit?: JobApplicationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JobApplicationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the JobApplication to update in case it exists.
+     */
+    where: JobApplicationWhereUniqueInput
+    /**
+     * In case the JobApplication found by the `where` argument doesn't exist, create a new JobApplication with this data.
+     */
+    create: XOR<JobApplicationCreateInput, JobApplicationUncheckedCreateInput>
+    /**
+     * In case the JobApplication was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<JobApplicationUpdateInput, JobApplicationUncheckedUpdateInput>
+  }
+
+  /**
+   * JobApplication delete
+   */
+  export type JobApplicationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobApplication
+     */
+    select?: JobApplicationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobApplication
+     */
+    omit?: JobApplicationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JobApplicationInclude<ExtArgs> | null
+    /**
+     * Filter which JobApplication to delete.
+     */
+    where: JobApplicationWhereUniqueInput
+  }
+
+  /**
+   * JobApplication deleteMany
+   */
+  export type JobApplicationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which JobApplications to delete
+     */
+    where?: JobApplicationWhereInput
+    /**
+     * Limit how many JobApplications to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * JobApplication without action
+   */
+  export type JobApplicationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobApplication
+     */
+    select?: JobApplicationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobApplication
+     */
+    omit?: JobApplicationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JobApplicationInclude<ExtArgs> | null
   }
 
 
@@ -14291,9 +16909,11 @@ export namespace Prisma {
 
   export const ReviewScalarFieldEnum: {
     id: 'id',
+    title: 'title',
     content: 'content',
     rating: 'rating',
     authorId: 'authorId',
+    category: 'category',
     createdAt: 'createdAt'
   };
 
@@ -14303,9 +16923,10 @@ export namespace Prisma {
   export const VoteScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
-    reviewId: 'reviewId',
-    replyId: 'replyId',
-    value: 'value'
+    itemId: 'itemId',
+    type: 'type',
+    value: 'value',
+    createdAt: 'createdAt'
   };
 
   export type VoteScalarFieldEnum = (typeof VoteScalarFieldEnum)[keyof typeof VoteScalarFieldEnum]
@@ -14314,7 +16935,9 @@ export namespace Prisma {
   export const BookmarkScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
-    discussionId: 'discussionId'
+    itemId: 'itemId',
+    type: 'type',
+    createdAt: 'createdAt'
   };
 
   export type BookmarkScalarFieldEnum = (typeof BookmarkScalarFieldEnum)[keyof typeof BookmarkScalarFieldEnum]
@@ -14354,6 +16977,41 @@ export namespace Prisma {
   };
 
   export type JobScalarFieldEnum = (typeof JobScalarFieldEnum)[keyof typeof JobScalarFieldEnum]
+
+
+  export const ScholarshipApplicationScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    scholarshipId: 'scholarshipId',
+    fullName: 'fullName',
+    email: 'email',
+    phone: 'phone',
+    academicInfo: 'academicInfo',
+    coverLetter: 'coverLetter',
+    documents: 'documents',
+    status: 'status',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ScholarshipApplicationScalarFieldEnum = (typeof ScholarshipApplicationScalarFieldEnum)[keyof typeof ScholarshipApplicationScalarFieldEnum]
+
+
+  export const JobApplicationScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    jobId: 'jobId',
+    fullName: 'fullName',
+    email: 'email',
+    phone: 'phone',
+    coverLetter: 'coverLetter',
+    resume: 'resume',
+    status: 'status',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type JobApplicationScalarFieldEnum = (typeof JobApplicationScalarFieldEnum)[keyof typeof JobApplicationScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -14634,6 +17292,8 @@ export namespace Prisma {
     reviews?: ReviewListRelationFilter
     votes?: VoteListRelationFilter
     bookmarks?: BookmarkListRelationFilter
+    scholarshipApplications?: ScholarshipApplicationListRelationFilter
+    jobApplications?: JobApplicationListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -14650,6 +17310,8 @@ export namespace Prisma {
     reviews?: ReviewOrderByRelationAggregateInput
     votes?: VoteOrderByRelationAggregateInput
     bookmarks?: BookmarkOrderByRelationAggregateInput
+    scholarshipApplications?: ScholarshipApplicationOrderByRelationAggregateInput
+    jobApplications?: JobApplicationOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -14669,6 +17331,8 @@ export namespace Prisma {
     reviews?: ReviewListRelationFilter
     votes?: VoteListRelationFilter
     bookmarks?: BookmarkListRelationFilter
+    scholarshipApplications?: ScholarshipApplicationListRelationFilter
+    jobApplications?: JobApplicationListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -14750,7 +17414,6 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Discussion"> | Date | string
     author?: XOR<UserScalarRelationFilter, UserWhereInput>
     replies?: ReplyListRelationFilter
-    bookmarks?: BookmarkListRelationFilter
   }
 
   export type DiscussionOrderByWithRelationInput = {
@@ -14762,7 +17425,6 @@ export namespace Prisma {
     createdAt?: SortOrder
     author?: UserOrderByWithRelationInput
     replies?: ReplyOrderByRelationAggregateInput
-    bookmarks?: BookmarkOrderByRelationAggregateInput
   }
 
   export type DiscussionWhereUniqueInput = Prisma.AtLeast<{
@@ -14777,7 +17439,6 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Discussion"> | Date | string
     author?: XOR<UserScalarRelationFilter, UserWhereInput>
     replies?: ReplyListRelationFilter
-    bookmarks?: BookmarkListRelationFilter
   }, "id">
 
   export type DiscussionOrderByWithAggregationInput = {
@@ -14818,7 +17479,6 @@ export namespace Prisma {
     discussion?: XOR<DiscussionScalarRelationFilter, DiscussionWhereInput>
     parent?: XOR<ReplyNullableScalarRelationFilter, ReplyWhereInput> | null
     children?: ReplyListRelationFilter
-    votes?: VoteListRelationFilter
   }
 
   export type ReplyOrderByWithRelationInput = {
@@ -14832,7 +17492,6 @@ export namespace Prisma {
     discussion?: DiscussionOrderByWithRelationInput
     parent?: ReplyOrderByWithRelationInput
     children?: ReplyOrderByRelationAggregateInput
-    votes?: VoteOrderByRelationAggregateInput
   }
 
   export type ReplyWhereUniqueInput = Prisma.AtLeast<{
@@ -14849,7 +17508,6 @@ export namespace Prisma {
     discussion?: XOR<DiscussionScalarRelationFilter, DiscussionWhereInput>
     parent?: XOR<ReplyNullableScalarRelationFilter, ReplyWhereInput> | null
     children?: ReplyListRelationFilter
-    votes?: VoteListRelationFilter
   }, "id">
 
   export type ReplyOrderByWithAggregationInput = {
@@ -14881,22 +17539,24 @@ export namespace Prisma {
     OR?: ReviewWhereInput[]
     NOT?: ReviewWhereInput | ReviewWhereInput[]
     id?: StringFilter<"Review"> | string
+    title?: StringFilter<"Review"> | string
     content?: StringFilter<"Review"> | string
     rating?: IntFilter<"Review"> | number
     authorId?: StringFilter<"Review"> | string
+    category?: StringFilter<"Review"> | string
     createdAt?: DateTimeFilter<"Review"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    votes?: VoteListRelationFilter
   }
 
   export type ReviewOrderByWithRelationInput = {
     id?: SortOrder
+    title?: SortOrder
     content?: SortOrder
     rating?: SortOrder
     authorId?: SortOrder
+    category?: SortOrder
     createdAt?: SortOrder
     user?: UserOrderByWithRelationInput
-    votes?: VoteOrderByRelationAggregateInput
   }
 
   export type ReviewWhereUniqueInput = Prisma.AtLeast<{
@@ -14904,19 +17564,22 @@ export namespace Prisma {
     AND?: ReviewWhereInput | ReviewWhereInput[]
     OR?: ReviewWhereInput[]
     NOT?: ReviewWhereInput | ReviewWhereInput[]
+    title?: StringFilter<"Review"> | string
     content?: StringFilter<"Review"> | string
     rating?: IntFilter<"Review"> | number
     authorId?: StringFilter<"Review"> | string
+    category?: StringFilter<"Review"> | string
     createdAt?: DateTimeFilter<"Review"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    votes?: VoteListRelationFilter
   }, "id">
 
   export type ReviewOrderByWithAggregationInput = {
     id?: SortOrder
+    title?: SortOrder
     content?: SortOrder
     rating?: SortOrder
     authorId?: SortOrder
+    category?: SortOrder
     createdAt?: SortOrder
     _count?: ReviewCountOrderByAggregateInput
     _avg?: ReviewAvgOrderByAggregateInput
@@ -14930,9 +17593,11 @@ export namespace Prisma {
     OR?: ReviewScalarWhereWithAggregatesInput[]
     NOT?: ReviewScalarWhereWithAggregatesInput | ReviewScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Review"> | string
+    title?: StringWithAggregatesFilter<"Review"> | string
     content?: StringWithAggregatesFilter<"Review"> | string
     rating?: IntWithAggregatesFilter<"Review"> | number
     authorId?: StringWithAggregatesFilter<"Review"> | string
+    category?: StringWithAggregatesFilter<"Review"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Review"> | Date | string
   }
 
@@ -14942,45 +17607,44 @@ export namespace Prisma {
     NOT?: VoteWhereInput | VoteWhereInput[]
     id?: StringFilter<"Vote"> | string
     userId?: StringFilter<"Vote"> | string
-    reviewId?: StringNullableFilter<"Vote"> | string | null
-    replyId?: StringNullableFilter<"Vote"> | string | null
+    itemId?: StringFilter<"Vote"> | string
+    type?: StringFilter<"Vote"> | string
     value?: IntFilter<"Vote"> | number
+    createdAt?: DateTimeFilter<"Vote"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    review?: XOR<ReviewNullableScalarRelationFilter, ReviewWhereInput> | null
-    reply?: XOR<ReplyNullableScalarRelationFilter, ReplyWhereInput> | null
   }
 
   export type VoteOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
-    reviewId?: SortOrderInput | SortOrder
-    replyId?: SortOrderInput | SortOrder
+    itemId?: SortOrder
+    type?: SortOrder
     value?: SortOrder
+    createdAt?: SortOrder
     user?: UserOrderByWithRelationInput
-    review?: ReviewOrderByWithRelationInput
-    reply?: ReplyOrderByWithRelationInput
   }
 
   export type VoteWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    userId_itemId?: VoteUserIdItemIdCompoundUniqueInput
     AND?: VoteWhereInput | VoteWhereInput[]
     OR?: VoteWhereInput[]
     NOT?: VoteWhereInput | VoteWhereInput[]
     userId?: StringFilter<"Vote"> | string
-    reviewId?: StringNullableFilter<"Vote"> | string | null
-    replyId?: StringNullableFilter<"Vote"> | string | null
+    itemId?: StringFilter<"Vote"> | string
+    type?: StringFilter<"Vote"> | string
     value?: IntFilter<"Vote"> | number
+    createdAt?: DateTimeFilter<"Vote"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    review?: XOR<ReviewNullableScalarRelationFilter, ReviewWhereInput> | null
-    reply?: XOR<ReplyNullableScalarRelationFilter, ReplyWhereInput> | null
-  }, "id">
+  }, "id" | "userId_itemId">
 
   export type VoteOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
-    reviewId?: SortOrderInput | SortOrder
-    replyId?: SortOrderInput | SortOrder
+    itemId?: SortOrder
+    type?: SortOrder
     value?: SortOrder
+    createdAt?: SortOrder
     _count?: VoteCountOrderByAggregateInput
     _avg?: VoteAvgOrderByAggregateInput
     _max?: VoteMaxOrderByAggregateInput
@@ -14994,9 +17658,10 @@ export namespace Prisma {
     NOT?: VoteScalarWhereWithAggregatesInput | VoteScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Vote"> | string
     userId?: StringWithAggregatesFilter<"Vote"> | string
-    reviewId?: StringNullableWithAggregatesFilter<"Vote"> | string | null
-    replyId?: StringNullableWithAggregatesFilter<"Vote"> | string | null
+    itemId?: StringWithAggregatesFilter<"Vote"> | string
+    type?: StringWithAggregatesFilter<"Vote"> | string
     value?: IntWithAggregatesFilter<"Vote"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Vote"> | Date | string
   }
 
   export type BookmarkWhereInput = {
@@ -15005,34 +17670,40 @@ export namespace Prisma {
     NOT?: BookmarkWhereInput | BookmarkWhereInput[]
     id?: StringFilter<"Bookmark"> | string
     userId?: StringFilter<"Bookmark"> | string
-    discussionId?: StringNullableFilter<"Bookmark"> | string | null
+    itemId?: StringNullableFilter<"Bookmark"> | string | null
+    type?: StringNullableFilter<"Bookmark"> | string | null
+    createdAt?: DateTimeFilter<"Bookmark"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    discussion?: XOR<DiscussionNullableScalarRelationFilter, DiscussionWhereInput> | null
   }
 
   export type BookmarkOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
-    discussionId?: SortOrderInput | SortOrder
+    itemId?: SortOrderInput | SortOrder
+    type?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
     user?: UserOrderByWithRelationInput
-    discussion?: DiscussionOrderByWithRelationInput
   }
 
   export type BookmarkWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    userId_itemId?: BookmarkUserIdItemIdCompoundUniqueInput
     AND?: BookmarkWhereInput | BookmarkWhereInput[]
     OR?: BookmarkWhereInput[]
     NOT?: BookmarkWhereInput | BookmarkWhereInput[]
     userId?: StringFilter<"Bookmark"> | string
-    discussionId?: StringNullableFilter<"Bookmark"> | string | null
+    itemId?: StringNullableFilter<"Bookmark"> | string | null
+    type?: StringNullableFilter<"Bookmark"> | string | null
+    createdAt?: DateTimeFilter<"Bookmark"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    discussion?: XOR<DiscussionNullableScalarRelationFilter, DiscussionWhereInput> | null
-  }, "id">
+  }, "id" | "userId_itemId">
 
   export type BookmarkOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
-    discussionId?: SortOrderInput | SortOrder
+    itemId?: SortOrderInput | SortOrder
+    type?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
     _count?: BookmarkCountOrderByAggregateInput
     _max?: BookmarkMaxOrderByAggregateInput
     _min?: BookmarkMinOrderByAggregateInput
@@ -15044,7 +17715,9 @@ export namespace Prisma {
     NOT?: BookmarkScalarWhereWithAggregatesInput | BookmarkScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Bookmark"> | string
     userId?: StringWithAggregatesFilter<"Bookmark"> | string
-    discussionId?: StringNullableWithAggregatesFilter<"Bookmark"> | string | null
+    itemId?: StringNullableWithAggregatesFilter<"Bookmark"> | string | null
+    type?: StringNullableWithAggregatesFilter<"Bookmark"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Bookmark"> | Date | string
   }
 
   export type ScholarshipWhereInput = {
@@ -15062,6 +17735,7 @@ export namespace Prisma {
     location?: StringFilter<"Scholarship"> | string
     tags?: StringNullableListFilter<"Scholarship">
     posted_on?: DateTimeFilter<"Scholarship"> | Date | string
+    applications?: ScholarshipApplicationListRelationFilter
   }
 
   export type ScholarshipOrderByWithRelationInput = {
@@ -15076,6 +17750,7 @@ export namespace Prisma {
     location?: SortOrder
     tags?: SortOrder
     posted_on?: SortOrder
+    applications?: ScholarshipApplicationOrderByRelationAggregateInput
   }
 
   export type ScholarshipWhereUniqueInput = Prisma.AtLeast<{
@@ -15093,6 +17768,7 @@ export namespace Prisma {
     location?: StringFilter<"Scholarship"> | string
     tags?: StringNullableListFilter<"Scholarship">
     posted_on?: DateTimeFilter<"Scholarship"> | Date | string
+    applications?: ScholarshipApplicationListRelationFilter
   }, "id" | "scholarship_id">
 
   export type ScholarshipOrderByWithAggregationInput = {
@@ -15146,6 +17822,7 @@ export namespace Prisma {
     job_description?: StringFilter<"Job"> | string
     posted_on?: DateTimeFilter<"Job"> | Date | string
     deadline?: DateTimeFilter<"Job"> | Date | string
+    applications?: JobApplicationListRelationFilter
   }
 
   export type JobOrderByWithRelationInput = {
@@ -15162,6 +17839,7 @@ export namespace Prisma {
     job_description?: SortOrder
     posted_on?: SortOrder
     deadline?: SortOrder
+    applications?: JobApplicationOrderByRelationAggregateInput
   }
 
   export type JobWhereUniqueInput = Prisma.AtLeast<{
@@ -15181,6 +17859,7 @@ export namespace Prisma {
     job_description?: StringFilter<"Job"> | string
     posted_on?: DateTimeFilter<"Job"> | Date | string
     deadline?: DateTimeFilter<"Job"> | Date | string
+    applications?: JobApplicationListRelationFilter
   }, "id" | "job_id">
 
   export type JobOrderByWithAggregationInput = {
@@ -15219,6 +17898,187 @@ export namespace Prisma {
     job_description?: StringWithAggregatesFilter<"Job"> | string
     posted_on?: DateTimeWithAggregatesFilter<"Job"> | Date | string
     deadline?: DateTimeWithAggregatesFilter<"Job"> | Date | string
+  }
+
+  export type ScholarshipApplicationWhereInput = {
+    AND?: ScholarshipApplicationWhereInput | ScholarshipApplicationWhereInput[]
+    OR?: ScholarshipApplicationWhereInput[]
+    NOT?: ScholarshipApplicationWhereInput | ScholarshipApplicationWhereInput[]
+    id?: StringFilter<"ScholarshipApplication"> | string
+    userId?: StringFilter<"ScholarshipApplication"> | string
+    scholarshipId?: StringFilter<"ScholarshipApplication"> | string
+    fullName?: StringFilter<"ScholarshipApplication"> | string
+    email?: StringFilter<"ScholarshipApplication"> | string
+    phone?: StringFilter<"ScholarshipApplication"> | string
+    academicInfo?: StringFilter<"ScholarshipApplication"> | string
+    coverLetter?: StringFilter<"ScholarshipApplication"> | string
+    documents?: StringNullableFilter<"ScholarshipApplication"> | string | null
+    status?: StringFilter<"ScholarshipApplication"> | string
+    createdAt?: DateTimeFilter<"ScholarshipApplication"> | Date | string
+    updatedAt?: DateTimeFilter<"ScholarshipApplication"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    scholarship?: XOR<ScholarshipScalarRelationFilter, ScholarshipWhereInput>
+  }
+
+  export type ScholarshipApplicationOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    scholarshipId?: SortOrder
+    fullName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    academicInfo?: SortOrder
+    coverLetter?: SortOrder
+    documents?: SortOrderInput | SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    scholarship?: ScholarshipOrderByWithRelationInput
+  }
+
+  export type ScholarshipApplicationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ScholarshipApplicationWhereInput | ScholarshipApplicationWhereInput[]
+    OR?: ScholarshipApplicationWhereInput[]
+    NOT?: ScholarshipApplicationWhereInput | ScholarshipApplicationWhereInput[]
+    userId?: StringFilter<"ScholarshipApplication"> | string
+    scholarshipId?: StringFilter<"ScholarshipApplication"> | string
+    fullName?: StringFilter<"ScholarshipApplication"> | string
+    email?: StringFilter<"ScholarshipApplication"> | string
+    phone?: StringFilter<"ScholarshipApplication"> | string
+    academicInfo?: StringFilter<"ScholarshipApplication"> | string
+    coverLetter?: StringFilter<"ScholarshipApplication"> | string
+    documents?: StringNullableFilter<"ScholarshipApplication"> | string | null
+    status?: StringFilter<"ScholarshipApplication"> | string
+    createdAt?: DateTimeFilter<"ScholarshipApplication"> | Date | string
+    updatedAt?: DateTimeFilter<"ScholarshipApplication"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    scholarship?: XOR<ScholarshipScalarRelationFilter, ScholarshipWhereInput>
+  }, "id">
+
+  export type ScholarshipApplicationOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    scholarshipId?: SortOrder
+    fullName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    academicInfo?: SortOrder
+    coverLetter?: SortOrder
+    documents?: SortOrderInput | SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ScholarshipApplicationCountOrderByAggregateInput
+    _max?: ScholarshipApplicationMaxOrderByAggregateInput
+    _min?: ScholarshipApplicationMinOrderByAggregateInput
+  }
+
+  export type ScholarshipApplicationScalarWhereWithAggregatesInput = {
+    AND?: ScholarshipApplicationScalarWhereWithAggregatesInput | ScholarshipApplicationScalarWhereWithAggregatesInput[]
+    OR?: ScholarshipApplicationScalarWhereWithAggregatesInput[]
+    NOT?: ScholarshipApplicationScalarWhereWithAggregatesInput | ScholarshipApplicationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ScholarshipApplication"> | string
+    userId?: StringWithAggregatesFilter<"ScholarshipApplication"> | string
+    scholarshipId?: StringWithAggregatesFilter<"ScholarshipApplication"> | string
+    fullName?: StringWithAggregatesFilter<"ScholarshipApplication"> | string
+    email?: StringWithAggregatesFilter<"ScholarshipApplication"> | string
+    phone?: StringWithAggregatesFilter<"ScholarshipApplication"> | string
+    academicInfo?: StringWithAggregatesFilter<"ScholarshipApplication"> | string
+    coverLetter?: StringWithAggregatesFilter<"ScholarshipApplication"> | string
+    documents?: StringNullableWithAggregatesFilter<"ScholarshipApplication"> | string | null
+    status?: StringWithAggregatesFilter<"ScholarshipApplication"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"ScholarshipApplication"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ScholarshipApplication"> | Date | string
+  }
+
+  export type JobApplicationWhereInput = {
+    AND?: JobApplicationWhereInput | JobApplicationWhereInput[]
+    OR?: JobApplicationWhereInput[]
+    NOT?: JobApplicationWhereInput | JobApplicationWhereInput[]
+    id?: StringFilter<"JobApplication"> | string
+    userId?: StringFilter<"JobApplication"> | string
+    jobId?: StringFilter<"JobApplication"> | string
+    fullName?: StringFilter<"JobApplication"> | string
+    email?: StringFilter<"JobApplication"> | string
+    phone?: StringFilter<"JobApplication"> | string
+    coverLetter?: StringFilter<"JobApplication"> | string
+    resume?: StringNullableFilter<"JobApplication"> | string | null
+    status?: StringFilter<"JobApplication"> | string
+    createdAt?: DateTimeFilter<"JobApplication"> | Date | string
+    updatedAt?: DateTimeFilter<"JobApplication"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    job?: XOR<JobScalarRelationFilter, JobWhereInput>
+  }
+
+  export type JobApplicationOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    jobId?: SortOrder
+    fullName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    coverLetter?: SortOrder
+    resume?: SortOrderInput | SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    job?: JobOrderByWithRelationInput
+  }
+
+  export type JobApplicationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: JobApplicationWhereInput | JobApplicationWhereInput[]
+    OR?: JobApplicationWhereInput[]
+    NOT?: JobApplicationWhereInput | JobApplicationWhereInput[]
+    userId?: StringFilter<"JobApplication"> | string
+    jobId?: StringFilter<"JobApplication"> | string
+    fullName?: StringFilter<"JobApplication"> | string
+    email?: StringFilter<"JobApplication"> | string
+    phone?: StringFilter<"JobApplication"> | string
+    coverLetter?: StringFilter<"JobApplication"> | string
+    resume?: StringNullableFilter<"JobApplication"> | string | null
+    status?: StringFilter<"JobApplication"> | string
+    createdAt?: DateTimeFilter<"JobApplication"> | Date | string
+    updatedAt?: DateTimeFilter<"JobApplication"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    job?: XOR<JobScalarRelationFilter, JobWhereInput>
+  }, "id">
+
+  export type JobApplicationOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    jobId?: SortOrder
+    fullName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    coverLetter?: SortOrder
+    resume?: SortOrderInput | SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: JobApplicationCountOrderByAggregateInput
+    _max?: JobApplicationMaxOrderByAggregateInput
+    _min?: JobApplicationMinOrderByAggregateInput
+  }
+
+  export type JobApplicationScalarWhereWithAggregatesInput = {
+    AND?: JobApplicationScalarWhereWithAggregatesInput | JobApplicationScalarWhereWithAggregatesInput[]
+    OR?: JobApplicationScalarWhereWithAggregatesInput[]
+    NOT?: JobApplicationScalarWhereWithAggregatesInput | JobApplicationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"JobApplication"> | string
+    userId?: StringWithAggregatesFilter<"JobApplication"> | string
+    jobId?: StringWithAggregatesFilter<"JobApplication"> | string
+    fullName?: StringWithAggregatesFilter<"JobApplication"> | string
+    email?: StringWithAggregatesFilter<"JobApplication"> | string
+    phone?: StringWithAggregatesFilter<"JobApplication"> | string
+    coverLetter?: StringWithAggregatesFilter<"JobApplication"> | string
+    resume?: StringNullableWithAggregatesFilter<"JobApplication"> | string | null
+    status?: StringWithAggregatesFilter<"JobApplication"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"JobApplication"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"JobApplication"> | Date | string
   }
 
   export type AccountCreateInput = {
@@ -15387,6 +18247,8 @@ export namespace Prisma {
     reviews?: ReviewCreateNestedManyWithoutUserInput
     votes?: VoteCreateNestedManyWithoutUserInput
     bookmarks?: BookmarkCreateNestedManyWithoutUserInput
+    scholarshipApplications?: ScholarshipApplicationCreateNestedManyWithoutUserInput
+    jobApplications?: JobApplicationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -15403,6 +18265,8 @@ export namespace Prisma {
     reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
     votes?: VoteUncheckedCreateNestedManyWithoutUserInput
     bookmarks?: BookmarkUncheckedCreateNestedManyWithoutUserInput
+    scholarshipApplications?: ScholarshipApplicationUncheckedCreateNestedManyWithoutUserInput
+    jobApplications?: JobApplicationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -15419,6 +18283,8 @@ export namespace Prisma {
     reviews?: ReviewUpdateManyWithoutUserNestedInput
     votes?: VoteUpdateManyWithoutUserNestedInput
     bookmarks?: BookmarkUpdateManyWithoutUserNestedInput
+    scholarshipApplications?: ScholarshipApplicationUpdateManyWithoutUserNestedInput
+    jobApplications?: JobApplicationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -15435,6 +18301,8 @@ export namespace Prisma {
     reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
     votes?: VoteUncheckedUpdateManyWithoutUserNestedInput
     bookmarks?: BookmarkUncheckedUpdateManyWithoutUserNestedInput
+    scholarshipApplications?: ScholarshipApplicationUncheckedUpdateManyWithoutUserNestedInput
+    jobApplications?: JobApplicationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -15514,7 +18382,6 @@ export namespace Prisma {
     createdAt?: Date | string
     author: UserCreateNestedOneWithoutDiscussionsInput
     replies?: ReplyCreateNestedManyWithoutDiscussionInput
-    bookmarks?: BookmarkCreateNestedManyWithoutDiscussionInput
   }
 
   export type DiscussionUncheckedCreateInput = {
@@ -15525,7 +18392,6 @@ export namespace Prisma {
     authorId: string
     createdAt?: Date | string
     replies?: ReplyUncheckedCreateNestedManyWithoutDiscussionInput
-    bookmarks?: BookmarkUncheckedCreateNestedManyWithoutDiscussionInput
   }
 
   export type DiscussionUpdateInput = {
@@ -15536,7 +18402,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: UserUpdateOneRequiredWithoutDiscussionsNestedInput
     replies?: ReplyUpdateManyWithoutDiscussionNestedInput
-    bookmarks?: BookmarkUpdateManyWithoutDiscussionNestedInput
   }
 
   export type DiscussionUncheckedUpdateInput = {
@@ -15547,7 +18412,6 @@ export namespace Prisma {
     authorId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     replies?: ReplyUncheckedUpdateManyWithoutDiscussionNestedInput
-    bookmarks?: BookmarkUncheckedUpdateManyWithoutDiscussionNestedInput
   }
 
   export type DiscussionCreateManyInput = {
@@ -15584,7 +18448,6 @@ export namespace Prisma {
     discussion: DiscussionCreateNestedOneWithoutRepliesInput
     parent?: ReplyCreateNestedOneWithoutChildrenInput
     children?: ReplyCreateNestedManyWithoutParentInput
-    votes?: VoteCreateNestedManyWithoutReplyInput
   }
 
   export type ReplyUncheckedCreateInput = {
@@ -15595,7 +18458,6 @@ export namespace Prisma {
     parentId?: string | null
     createdAt?: Date | string
     children?: ReplyUncheckedCreateNestedManyWithoutParentInput
-    votes?: VoteUncheckedCreateNestedManyWithoutReplyInput
   }
 
   export type ReplyUpdateInput = {
@@ -15606,7 +18468,6 @@ export namespace Prisma {
     discussion?: DiscussionUpdateOneRequiredWithoutRepliesNestedInput
     parent?: ReplyUpdateOneWithoutChildrenNestedInput
     children?: ReplyUpdateManyWithoutParentNestedInput
-    votes?: VoteUpdateManyWithoutReplyNestedInput
   }
 
   export type ReplyUncheckedUpdateInput = {
@@ -15617,7 +18478,6 @@ export namespace Prisma {
     parentId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     children?: ReplyUncheckedUpdateManyWithoutParentNestedInput
-    votes?: VoteUncheckedUpdateManyWithoutReplyNestedInput
   }
 
   export type ReplyCreateManyInput = {
@@ -15646,154 +18506,188 @@ export namespace Prisma {
 
   export type ReviewCreateInput = {
     id?: string
+    title: string
     content: string
     rating: number
+    category: string
     createdAt?: Date | string
     user: UserCreateNestedOneWithoutReviewsInput
-    votes?: VoteCreateNestedManyWithoutReviewInput
   }
 
   export type ReviewUncheckedCreateInput = {
     id?: string
+    title: string
     content: string
     rating: number
     authorId: string
+    category: string
     createdAt?: Date | string
-    votes?: VoteUncheckedCreateNestedManyWithoutReviewInput
   }
 
   export type ReviewUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutReviewsNestedInput
-    votes?: VoteUpdateManyWithoutReviewNestedInput
   }
 
   export type ReviewUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
     authorId?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    votes?: VoteUncheckedUpdateManyWithoutReviewNestedInput
   }
 
   export type ReviewCreateManyInput = {
     id?: string
+    title: string
     content: string
     rating: number
     authorId: string
+    category: string
     createdAt?: Date | string
   }
 
   export type ReviewUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ReviewUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
     authorId?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type VoteCreateInput = {
     id?: string
+    itemId: string
+    type: string
     value: number
+    createdAt?: Date | string
     user: UserCreateNestedOneWithoutVotesInput
-    review?: ReviewCreateNestedOneWithoutVotesInput
-    reply?: ReplyCreateNestedOneWithoutVotesInput
   }
 
   export type VoteUncheckedCreateInput = {
     id?: string
     userId: string
-    reviewId?: string | null
-    replyId?: string | null
+    itemId: string
+    type: string
     value: number
+    createdAt?: Date | string
   }
 
   export type VoteUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    itemId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
     value?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutVotesNestedInput
-    review?: ReviewUpdateOneWithoutVotesNestedInput
-    reply?: ReplyUpdateOneWithoutVotesNestedInput
   }
 
   export type VoteUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    reviewId?: NullableStringFieldUpdateOperationsInput | string | null
-    replyId?: NullableStringFieldUpdateOperationsInput | string | null
+    itemId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
     value?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type VoteCreateManyInput = {
     id?: string
     userId: string
-    reviewId?: string | null
-    replyId?: string | null
+    itemId: string
+    type: string
     value: number
+    createdAt?: Date | string
   }
 
   export type VoteUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    itemId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
     value?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type VoteUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    reviewId?: NullableStringFieldUpdateOperationsInput | string | null
-    replyId?: NullableStringFieldUpdateOperationsInput | string | null
+    itemId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
     value?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BookmarkCreateInput = {
     id?: string
+    itemId?: string | null
+    type?: string | null
+    createdAt?: Date | string
     user: UserCreateNestedOneWithoutBookmarksInput
-    discussion?: DiscussionCreateNestedOneWithoutBookmarksInput
   }
 
   export type BookmarkUncheckedCreateInput = {
     id?: string
     userId: string
-    discussionId?: string | null
+    itemId?: string | null
+    type?: string | null
+    createdAt?: Date | string
   }
 
   export type BookmarkUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    itemId?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutBookmarksNestedInput
-    discussion?: DiscussionUpdateOneWithoutBookmarksNestedInput
   }
 
   export type BookmarkUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    discussionId?: NullableStringFieldUpdateOperationsInput | string | null
+    itemId?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BookmarkCreateManyInput = {
     id?: string
     userId: string
-    discussionId?: string | null
+    itemId?: string | null
+    type?: string | null
+    createdAt?: Date | string
   }
 
   export type BookmarkUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    itemId?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BookmarkUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    discussionId?: NullableStringFieldUpdateOperationsInput | string | null
+    itemId?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ScholarshipCreateInput = {
@@ -15808,6 +18702,7 @@ export namespace Prisma {
     location: string
     tags?: ScholarshipCreatetagsInput | string[]
     posted_on: Date | string
+    applications?: ScholarshipApplicationCreateNestedManyWithoutScholarshipInput
   }
 
   export type ScholarshipUncheckedCreateInput = {
@@ -15822,6 +18717,7 @@ export namespace Prisma {
     location: string
     tags?: ScholarshipCreatetagsInput | string[]
     posted_on: Date | string
+    applications?: ScholarshipApplicationUncheckedCreateNestedManyWithoutScholarshipInput
   }
 
   export type ScholarshipUpdateInput = {
@@ -15836,6 +18732,7 @@ export namespace Prisma {
     location?: StringFieldUpdateOperationsInput | string
     tags?: ScholarshipUpdatetagsInput | string[]
     posted_on?: DateTimeFieldUpdateOperationsInput | Date | string
+    applications?: ScholarshipApplicationUpdateManyWithoutScholarshipNestedInput
   }
 
   export type ScholarshipUncheckedUpdateInput = {
@@ -15850,6 +18747,7 @@ export namespace Prisma {
     location?: StringFieldUpdateOperationsInput | string
     tags?: ScholarshipUpdatetagsInput | string[]
     posted_on?: DateTimeFieldUpdateOperationsInput | Date | string
+    applications?: ScholarshipApplicationUncheckedUpdateManyWithoutScholarshipNestedInput
   }
 
   export type ScholarshipCreateManyInput = {
@@ -15908,6 +18806,7 @@ export namespace Prisma {
     job_description: string
     posted_on: Date | string
     deadline: Date | string
+    applications?: JobApplicationCreateNestedManyWithoutJobInput
   }
 
   export type JobUncheckedCreateInput = {
@@ -15924,6 +18823,7 @@ export namespace Prisma {
     job_description: string
     posted_on: Date | string
     deadline: Date | string
+    applications?: JobApplicationUncheckedCreateNestedManyWithoutJobInput
   }
 
   export type JobUpdateInput = {
@@ -15940,6 +18840,7 @@ export namespace Prisma {
     job_description?: StringFieldUpdateOperationsInput | string
     posted_on?: DateTimeFieldUpdateOperationsInput | Date | string
     deadline?: DateTimeFieldUpdateOperationsInput | Date | string
+    applications?: JobApplicationUpdateManyWithoutJobNestedInput
   }
 
   export type JobUncheckedUpdateInput = {
@@ -15956,6 +18857,7 @@ export namespace Prisma {
     job_description?: StringFieldUpdateOperationsInput | string
     posted_on?: DateTimeFieldUpdateOperationsInput | Date | string
     deadline?: DateTimeFieldUpdateOperationsInput | Date | string
+    applications?: JobApplicationUncheckedUpdateManyWithoutJobNestedInput
   }
 
   export type JobCreateManyInput = {
@@ -16004,6 +18906,205 @@ export namespace Prisma {
     job_description?: StringFieldUpdateOperationsInput | string
     posted_on?: DateTimeFieldUpdateOperationsInput | Date | string
     deadline?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ScholarshipApplicationCreateInput = {
+    id?: string
+    fullName: string
+    email: string
+    phone: string
+    academicInfo: string
+    coverLetter: string
+    documents?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutScholarshipApplicationsInput
+    scholarship: ScholarshipCreateNestedOneWithoutApplicationsInput
+  }
+
+  export type ScholarshipApplicationUncheckedCreateInput = {
+    id?: string
+    userId: string
+    scholarshipId: string
+    fullName: string
+    email: string
+    phone: string
+    academicInfo: string
+    coverLetter: string
+    documents?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ScholarshipApplicationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    academicInfo?: StringFieldUpdateOperationsInput | string
+    coverLetter?: StringFieldUpdateOperationsInput | string
+    documents?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutScholarshipApplicationsNestedInput
+    scholarship?: ScholarshipUpdateOneRequiredWithoutApplicationsNestedInput
+  }
+
+  export type ScholarshipApplicationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    scholarshipId?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    academicInfo?: StringFieldUpdateOperationsInput | string
+    coverLetter?: StringFieldUpdateOperationsInput | string
+    documents?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ScholarshipApplicationCreateManyInput = {
+    id?: string
+    userId: string
+    scholarshipId: string
+    fullName: string
+    email: string
+    phone: string
+    academicInfo: string
+    coverLetter: string
+    documents?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ScholarshipApplicationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    academicInfo?: StringFieldUpdateOperationsInput | string
+    coverLetter?: StringFieldUpdateOperationsInput | string
+    documents?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ScholarshipApplicationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    scholarshipId?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    academicInfo?: StringFieldUpdateOperationsInput | string
+    coverLetter?: StringFieldUpdateOperationsInput | string
+    documents?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JobApplicationCreateInput = {
+    id?: string
+    fullName: string
+    email: string
+    phone: string
+    coverLetter: string
+    resume?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutJobApplicationsInput
+    job: JobCreateNestedOneWithoutApplicationsInput
+  }
+
+  export type JobApplicationUncheckedCreateInput = {
+    id?: string
+    userId: string
+    jobId: string
+    fullName: string
+    email: string
+    phone: string
+    coverLetter: string
+    resume?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type JobApplicationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    coverLetter?: StringFieldUpdateOperationsInput | string
+    resume?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutJobApplicationsNestedInput
+    job?: JobUpdateOneRequiredWithoutApplicationsNestedInput
+  }
+
+  export type JobApplicationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    jobId?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    coverLetter?: StringFieldUpdateOperationsInput | string
+    resume?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JobApplicationCreateManyInput = {
+    id?: string
+    userId: string
+    jobId: string
+    fullName: string
+    email: string
+    phone: string
+    coverLetter: string
+    resume?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type JobApplicationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    coverLetter?: StringFieldUpdateOperationsInput | string
+    resume?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JobApplicationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    jobId?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    coverLetter?: StringFieldUpdateOperationsInput | string
+    resume?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -16266,6 +19367,18 @@ export namespace Prisma {
     none?: BookmarkWhereInput
   }
 
+  export type ScholarshipApplicationListRelationFilter = {
+    every?: ScholarshipApplicationWhereInput
+    some?: ScholarshipApplicationWhereInput
+    none?: ScholarshipApplicationWhereInput
+  }
+
+  export type JobApplicationListRelationFilter = {
+    every?: JobApplicationWhereInput
+    some?: JobApplicationWhereInput
+    none?: JobApplicationWhereInput
+  }
+
   export type AccountOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -16291,6 +19404,14 @@ export namespace Prisma {
   }
 
   export type BookmarkOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ScholarshipApplicationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type JobApplicationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -16435,9 +19556,11 @@ export namespace Prisma {
 
   export type ReviewCountOrderByAggregateInput = {
     id?: SortOrder
+    title?: SortOrder
     content?: SortOrder
     rating?: SortOrder
     authorId?: SortOrder
+    category?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -16447,17 +19570,21 @@ export namespace Prisma {
 
   export type ReviewMaxOrderByAggregateInput = {
     id?: SortOrder
+    title?: SortOrder
     content?: SortOrder
     rating?: SortOrder
     authorId?: SortOrder
+    category?: SortOrder
     createdAt?: SortOrder
   }
 
   export type ReviewMinOrderByAggregateInput = {
     id?: SortOrder
+    title?: SortOrder
     content?: SortOrder
     rating?: SortOrder
     authorId?: SortOrder
+    category?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -16481,17 +19608,18 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
-  export type ReviewNullableScalarRelationFilter = {
-    is?: ReviewWhereInput | null
-    isNot?: ReviewWhereInput | null
+  export type VoteUserIdItemIdCompoundUniqueInput = {
+    userId: string
+    itemId: string
   }
 
   export type VoteCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    reviewId?: SortOrder
-    replyId?: SortOrder
+    itemId?: SortOrder
+    type?: SortOrder
     value?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type VoteAvgOrderByAggregateInput = {
@@ -16501,44 +19629,52 @@ export namespace Prisma {
   export type VoteMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    reviewId?: SortOrder
-    replyId?: SortOrder
+    itemId?: SortOrder
+    type?: SortOrder
     value?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type VoteMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    reviewId?: SortOrder
-    replyId?: SortOrder
+    itemId?: SortOrder
+    type?: SortOrder
     value?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type VoteSumOrderByAggregateInput = {
     value?: SortOrder
   }
 
-  export type DiscussionNullableScalarRelationFilter = {
-    is?: DiscussionWhereInput | null
-    isNot?: DiscussionWhereInput | null
+  export type BookmarkUserIdItemIdCompoundUniqueInput = {
+    userId: string
+    itemId: string
   }
 
   export type BookmarkCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    discussionId?: SortOrder
+    itemId?: SortOrder
+    type?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type BookmarkMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    discussionId?: SortOrder
+    itemId?: SortOrder
+    type?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type BookmarkMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    discussionId?: SortOrder
+    itemId?: SortOrder
+    type?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type StringNullableListFilter<$PrismaModel = never> = {
@@ -16682,6 +19818,103 @@ export namespace Prisma {
     _max?: NestedJsonFilter<$PrismaModel>
   }
 
+  export type ScholarshipScalarRelationFilter = {
+    is?: ScholarshipWhereInput
+    isNot?: ScholarshipWhereInput
+  }
+
+  export type ScholarshipApplicationCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    scholarshipId?: SortOrder
+    fullName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    academicInfo?: SortOrder
+    coverLetter?: SortOrder
+    documents?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ScholarshipApplicationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    scholarshipId?: SortOrder
+    fullName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    academicInfo?: SortOrder
+    coverLetter?: SortOrder
+    documents?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ScholarshipApplicationMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    scholarshipId?: SortOrder
+    fullName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    academicInfo?: SortOrder
+    coverLetter?: SortOrder
+    documents?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type JobScalarRelationFilter = {
+    is?: JobWhereInput
+    isNot?: JobWhereInput
+  }
+
+  export type JobApplicationCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    jobId?: SortOrder
+    fullName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    coverLetter?: SortOrder
+    resume?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type JobApplicationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    jobId?: SortOrder
+    fullName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    coverLetter?: SortOrder
+    resume?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type JobApplicationMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    jobId?: SortOrder
+    fullName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    coverLetter?: SortOrder
+    resume?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type UserCreateNestedOneWithoutAccountsInput = {
     create?: XOR<UserCreateWithoutAccountsInput, UserUncheckedCreateWithoutAccountsInput>
     connectOrCreate?: UserCreateOrConnectWithoutAccountsInput
@@ -16779,6 +20012,20 @@ export namespace Prisma {
     connect?: BookmarkWhereUniqueInput | BookmarkWhereUniqueInput[]
   }
 
+  export type ScholarshipApplicationCreateNestedManyWithoutUserInput = {
+    create?: XOR<ScholarshipApplicationCreateWithoutUserInput, ScholarshipApplicationUncheckedCreateWithoutUserInput> | ScholarshipApplicationCreateWithoutUserInput[] | ScholarshipApplicationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ScholarshipApplicationCreateOrConnectWithoutUserInput | ScholarshipApplicationCreateOrConnectWithoutUserInput[]
+    createMany?: ScholarshipApplicationCreateManyUserInputEnvelope
+    connect?: ScholarshipApplicationWhereUniqueInput | ScholarshipApplicationWhereUniqueInput[]
+  }
+
+  export type JobApplicationCreateNestedManyWithoutUserInput = {
+    create?: XOR<JobApplicationCreateWithoutUserInput, JobApplicationUncheckedCreateWithoutUserInput> | JobApplicationCreateWithoutUserInput[] | JobApplicationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: JobApplicationCreateOrConnectWithoutUserInput | JobApplicationCreateOrConnectWithoutUserInput[]
+    createMany?: JobApplicationCreateManyUserInputEnvelope
+    connect?: JobApplicationWhereUniqueInput | JobApplicationWhereUniqueInput[]
+  }
+
   export type AccountUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -16826,6 +20073,20 @@ export namespace Prisma {
     connectOrCreate?: BookmarkCreateOrConnectWithoutUserInput | BookmarkCreateOrConnectWithoutUserInput[]
     createMany?: BookmarkCreateManyUserInputEnvelope
     connect?: BookmarkWhereUniqueInput | BookmarkWhereUniqueInput[]
+  }
+
+  export type ScholarshipApplicationUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ScholarshipApplicationCreateWithoutUserInput, ScholarshipApplicationUncheckedCreateWithoutUserInput> | ScholarshipApplicationCreateWithoutUserInput[] | ScholarshipApplicationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ScholarshipApplicationCreateOrConnectWithoutUserInput | ScholarshipApplicationCreateOrConnectWithoutUserInput[]
+    createMany?: ScholarshipApplicationCreateManyUserInputEnvelope
+    connect?: ScholarshipApplicationWhereUniqueInput | ScholarshipApplicationWhereUniqueInput[]
+  }
+
+  export type JobApplicationUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<JobApplicationCreateWithoutUserInput, JobApplicationUncheckedCreateWithoutUserInput> | JobApplicationCreateWithoutUserInput[] | JobApplicationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: JobApplicationCreateOrConnectWithoutUserInput | JobApplicationCreateOrConnectWithoutUserInput[]
+    createMany?: JobApplicationCreateManyUserInputEnvelope
+    connect?: JobApplicationWhereUniqueInput | JobApplicationWhereUniqueInput[]
   }
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -16930,6 +20191,34 @@ export namespace Prisma {
     deleteMany?: BookmarkScalarWhereInput | BookmarkScalarWhereInput[]
   }
 
+  export type ScholarshipApplicationUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ScholarshipApplicationCreateWithoutUserInput, ScholarshipApplicationUncheckedCreateWithoutUserInput> | ScholarshipApplicationCreateWithoutUserInput[] | ScholarshipApplicationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ScholarshipApplicationCreateOrConnectWithoutUserInput | ScholarshipApplicationCreateOrConnectWithoutUserInput[]
+    upsert?: ScholarshipApplicationUpsertWithWhereUniqueWithoutUserInput | ScholarshipApplicationUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ScholarshipApplicationCreateManyUserInputEnvelope
+    set?: ScholarshipApplicationWhereUniqueInput | ScholarshipApplicationWhereUniqueInput[]
+    disconnect?: ScholarshipApplicationWhereUniqueInput | ScholarshipApplicationWhereUniqueInput[]
+    delete?: ScholarshipApplicationWhereUniqueInput | ScholarshipApplicationWhereUniqueInput[]
+    connect?: ScholarshipApplicationWhereUniqueInput | ScholarshipApplicationWhereUniqueInput[]
+    update?: ScholarshipApplicationUpdateWithWhereUniqueWithoutUserInput | ScholarshipApplicationUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ScholarshipApplicationUpdateManyWithWhereWithoutUserInput | ScholarshipApplicationUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ScholarshipApplicationScalarWhereInput | ScholarshipApplicationScalarWhereInput[]
+  }
+
+  export type JobApplicationUpdateManyWithoutUserNestedInput = {
+    create?: XOR<JobApplicationCreateWithoutUserInput, JobApplicationUncheckedCreateWithoutUserInput> | JobApplicationCreateWithoutUserInput[] | JobApplicationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: JobApplicationCreateOrConnectWithoutUserInput | JobApplicationCreateOrConnectWithoutUserInput[]
+    upsert?: JobApplicationUpsertWithWhereUniqueWithoutUserInput | JobApplicationUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: JobApplicationCreateManyUserInputEnvelope
+    set?: JobApplicationWhereUniqueInput | JobApplicationWhereUniqueInput[]
+    disconnect?: JobApplicationWhereUniqueInput | JobApplicationWhereUniqueInput[]
+    delete?: JobApplicationWhereUniqueInput | JobApplicationWhereUniqueInput[]
+    connect?: JobApplicationWhereUniqueInput | JobApplicationWhereUniqueInput[]
+    update?: JobApplicationUpdateWithWhereUniqueWithoutUserInput | JobApplicationUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: JobApplicationUpdateManyWithWhereWithoutUserInput | JobApplicationUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: JobApplicationScalarWhereInput | JobApplicationScalarWhereInput[]
+  }
+
   export type AccountUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -17028,6 +20317,34 @@ export namespace Prisma {
     deleteMany?: BookmarkScalarWhereInput | BookmarkScalarWhereInput[]
   }
 
+  export type ScholarshipApplicationUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ScholarshipApplicationCreateWithoutUserInput, ScholarshipApplicationUncheckedCreateWithoutUserInput> | ScholarshipApplicationCreateWithoutUserInput[] | ScholarshipApplicationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ScholarshipApplicationCreateOrConnectWithoutUserInput | ScholarshipApplicationCreateOrConnectWithoutUserInput[]
+    upsert?: ScholarshipApplicationUpsertWithWhereUniqueWithoutUserInput | ScholarshipApplicationUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ScholarshipApplicationCreateManyUserInputEnvelope
+    set?: ScholarshipApplicationWhereUniqueInput | ScholarshipApplicationWhereUniqueInput[]
+    disconnect?: ScholarshipApplicationWhereUniqueInput | ScholarshipApplicationWhereUniqueInput[]
+    delete?: ScholarshipApplicationWhereUniqueInput | ScholarshipApplicationWhereUniqueInput[]
+    connect?: ScholarshipApplicationWhereUniqueInput | ScholarshipApplicationWhereUniqueInput[]
+    update?: ScholarshipApplicationUpdateWithWhereUniqueWithoutUserInput | ScholarshipApplicationUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ScholarshipApplicationUpdateManyWithWhereWithoutUserInput | ScholarshipApplicationUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ScholarshipApplicationScalarWhereInput | ScholarshipApplicationScalarWhereInput[]
+  }
+
+  export type JobApplicationUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<JobApplicationCreateWithoutUserInput, JobApplicationUncheckedCreateWithoutUserInput> | JobApplicationCreateWithoutUserInput[] | JobApplicationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: JobApplicationCreateOrConnectWithoutUserInput | JobApplicationCreateOrConnectWithoutUserInput[]
+    upsert?: JobApplicationUpsertWithWhereUniqueWithoutUserInput | JobApplicationUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: JobApplicationCreateManyUserInputEnvelope
+    set?: JobApplicationWhereUniqueInput | JobApplicationWhereUniqueInput[]
+    disconnect?: JobApplicationWhereUniqueInput | JobApplicationWhereUniqueInput[]
+    delete?: JobApplicationWhereUniqueInput | JobApplicationWhereUniqueInput[]
+    connect?: JobApplicationWhereUniqueInput | JobApplicationWhereUniqueInput[]
+    update?: JobApplicationUpdateWithWhereUniqueWithoutUserInput | JobApplicationUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: JobApplicationUpdateManyWithWhereWithoutUserInput | JobApplicationUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: JobApplicationScalarWhereInput | JobApplicationScalarWhereInput[]
+  }
+
   export type UserCreateNestedOneWithoutDiscussionsInput = {
     create?: XOR<UserCreateWithoutDiscussionsInput, UserUncheckedCreateWithoutDiscussionsInput>
     connectOrCreate?: UserCreateOrConnectWithoutDiscussionsInput
@@ -17041,25 +20358,11 @@ export namespace Prisma {
     connect?: ReplyWhereUniqueInput | ReplyWhereUniqueInput[]
   }
 
-  export type BookmarkCreateNestedManyWithoutDiscussionInput = {
-    create?: XOR<BookmarkCreateWithoutDiscussionInput, BookmarkUncheckedCreateWithoutDiscussionInput> | BookmarkCreateWithoutDiscussionInput[] | BookmarkUncheckedCreateWithoutDiscussionInput[]
-    connectOrCreate?: BookmarkCreateOrConnectWithoutDiscussionInput | BookmarkCreateOrConnectWithoutDiscussionInput[]
-    createMany?: BookmarkCreateManyDiscussionInputEnvelope
-    connect?: BookmarkWhereUniqueInput | BookmarkWhereUniqueInput[]
-  }
-
   export type ReplyUncheckedCreateNestedManyWithoutDiscussionInput = {
     create?: XOR<ReplyCreateWithoutDiscussionInput, ReplyUncheckedCreateWithoutDiscussionInput> | ReplyCreateWithoutDiscussionInput[] | ReplyUncheckedCreateWithoutDiscussionInput[]
     connectOrCreate?: ReplyCreateOrConnectWithoutDiscussionInput | ReplyCreateOrConnectWithoutDiscussionInput[]
     createMany?: ReplyCreateManyDiscussionInputEnvelope
     connect?: ReplyWhereUniqueInput | ReplyWhereUniqueInput[]
-  }
-
-  export type BookmarkUncheckedCreateNestedManyWithoutDiscussionInput = {
-    create?: XOR<BookmarkCreateWithoutDiscussionInput, BookmarkUncheckedCreateWithoutDiscussionInput> | BookmarkCreateWithoutDiscussionInput[] | BookmarkUncheckedCreateWithoutDiscussionInput[]
-    connectOrCreate?: BookmarkCreateOrConnectWithoutDiscussionInput | BookmarkCreateOrConnectWithoutDiscussionInput[]
-    createMany?: BookmarkCreateManyDiscussionInputEnvelope
-    connect?: BookmarkWhereUniqueInput | BookmarkWhereUniqueInput[]
   }
 
   export type UserUpdateOneRequiredWithoutDiscussionsNestedInput = {
@@ -17084,20 +20387,6 @@ export namespace Prisma {
     deleteMany?: ReplyScalarWhereInput | ReplyScalarWhereInput[]
   }
 
-  export type BookmarkUpdateManyWithoutDiscussionNestedInput = {
-    create?: XOR<BookmarkCreateWithoutDiscussionInput, BookmarkUncheckedCreateWithoutDiscussionInput> | BookmarkCreateWithoutDiscussionInput[] | BookmarkUncheckedCreateWithoutDiscussionInput[]
-    connectOrCreate?: BookmarkCreateOrConnectWithoutDiscussionInput | BookmarkCreateOrConnectWithoutDiscussionInput[]
-    upsert?: BookmarkUpsertWithWhereUniqueWithoutDiscussionInput | BookmarkUpsertWithWhereUniqueWithoutDiscussionInput[]
-    createMany?: BookmarkCreateManyDiscussionInputEnvelope
-    set?: BookmarkWhereUniqueInput | BookmarkWhereUniqueInput[]
-    disconnect?: BookmarkWhereUniqueInput | BookmarkWhereUniqueInput[]
-    delete?: BookmarkWhereUniqueInput | BookmarkWhereUniqueInput[]
-    connect?: BookmarkWhereUniqueInput | BookmarkWhereUniqueInput[]
-    update?: BookmarkUpdateWithWhereUniqueWithoutDiscussionInput | BookmarkUpdateWithWhereUniqueWithoutDiscussionInput[]
-    updateMany?: BookmarkUpdateManyWithWhereWithoutDiscussionInput | BookmarkUpdateManyWithWhereWithoutDiscussionInput[]
-    deleteMany?: BookmarkScalarWhereInput | BookmarkScalarWhereInput[]
-  }
-
   export type ReplyUncheckedUpdateManyWithoutDiscussionNestedInput = {
     create?: XOR<ReplyCreateWithoutDiscussionInput, ReplyUncheckedCreateWithoutDiscussionInput> | ReplyCreateWithoutDiscussionInput[] | ReplyUncheckedCreateWithoutDiscussionInput[]
     connectOrCreate?: ReplyCreateOrConnectWithoutDiscussionInput | ReplyCreateOrConnectWithoutDiscussionInput[]
@@ -17110,20 +20399,6 @@ export namespace Prisma {
     update?: ReplyUpdateWithWhereUniqueWithoutDiscussionInput | ReplyUpdateWithWhereUniqueWithoutDiscussionInput[]
     updateMany?: ReplyUpdateManyWithWhereWithoutDiscussionInput | ReplyUpdateManyWithWhereWithoutDiscussionInput[]
     deleteMany?: ReplyScalarWhereInput | ReplyScalarWhereInput[]
-  }
-
-  export type BookmarkUncheckedUpdateManyWithoutDiscussionNestedInput = {
-    create?: XOR<BookmarkCreateWithoutDiscussionInput, BookmarkUncheckedCreateWithoutDiscussionInput> | BookmarkCreateWithoutDiscussionInput[] | BookmarkUncheckedCreateWithoutDiscussionInput[]
-    connectOrCreate?: BookmarkCreateOrConnectWithoutDiscussionInput | BookmarkCreateOrConnectWithoutDiscussionInput[]
-    upsert?: BookmarkUpsertWithWhereUniqueWithoutDiscussionInput | BookmarkUpsertWithWhereUniqueWithoutDiscussionInput[]
-    createMany?: BookmarkCreateManyDiscussionInputEnvelope
-    set?: BookmarkWhereUniqueInput | BookmarkWhereUniqueInput[]
-    disconnect?: BookmarkWhereUniqueInput | BookmarkWhereUniqueInput[]
-    delete?: BookmarkWhereUniqueInput | BookmarkWhereUniqueInput[]
-    connect?: BookmarkWhereUniqueInput | BookmarkWhereUniqueInput[]
-    update?: BookmarkUpdateWithWhereUniqueWithoutDiscussionInput | BookmarkUpdateWithWhereUniqueWithoutDiscussionInput[]
-    updateMany?: BookmarkUpdateManyWithWhereWithoutDiscussionInput | BookmarkUpdateManyWithWhereWithoutDiscussionInput[]
-    deleteMany?: BookmarkScalarWhereInput | BookmarkScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutRepliesInput = {
@@ -17151,25 +20426,11 @@ export namespace Prisma {
     connect?: ReplyWhereUniqueInput | ReplyWhereUniqueInput[]
   }
 
-  export type VoteCreateNestedManyWithoutReplyInput = {
-    create?: XOR<VoteCreateWithoutReplyInput, VoteUncheckedCreateWithoutReplyInput> | VoteCreateWithoutReplyInput[] | VoteUncheckedCreateWithoutReplyInput[]
-    connectOrCreate?: VoteCreateOrConnectWithoutReplyInput | VoteCreateOrConnectWithoutReplyInput[]
-    createMany?: VoteCreateManyReplyInputEnvelope
-    connect?: VoteWhereUniqueInput | VoteWhereUniqueInput[]
-  }
-
   export type ReplyUncheckedCreateNestedManyWithoutParentInput = {
     create?: XOR<ReplyCreateWithoutParentInput, ReplyUncheckedCreateWithoutParentInput> | ReplyCreateWithoutParentInput[] | ReplyUncheckedCreateWithoutParentInput[]
     connectOrCreate?: ReplyCreateOrConnectWithoutParentInput | ReplyCreateOrConnectWithoutParentInput[]
     createMany?: ReplyCreateManyParentInputEnvelope
     connect?: ReplyWhereUniqueInput | ReplyWhereUniqueInput[]
-  }
-
-  export type VoteUncheckedCreateNestedManyWithoutReplyInput = {
-    create?: XOR<VoteCreateWithoutReplyInput, VoteUncheckedCreateWithoutReplyInput> | VoteCreateWithoutReplyInput[] | VoteUncheckedCreateWithoutReplyInput[]
-    connectOrCreate?: VoteCreateOrConnectWithoutReplyInput | VoteCreateOrConnectWithoutReplyInput[]
-    createMany?: VoteCreateManyReplyInputEnvelope
-    connect?: VoteWhereUniqueInput | VoteWhereUniqueInput[]
   }
 
   export type UserUpdateOneRequiredWithoutRepliesNestedInput = {
@@ -17212,20 +20473,6 @@ export namespace Prisma {
     deleteMany?: ReplyScalarWhereInput | ReplyScalarWhereInput[]
   }
 
-  export type VoteUpdateManyWithoutReplyNestedInput = {
-    create?: XOR<VoteCreateWithoutReplyInput, VoteUncheckedCreateWithoutReplyInput> | VoteCreateWithoutReplyInput[] | VoteUncheckedCreateWithoutReplyInput[]
-    connectOrCreate?: VoteCreateOrConnectWithoutReplyInput | VoteCreateOrConnectWithoutReplyInput[]
-    upsert?: VoteUpsertWithWhereUniqueWithoutReplyInput | VoteUpsertWithWhereUniqueWithoutReplyInput[]
-    createMany?: VoteCreateManyReplyInputEnvelope
-    set?: VoteWhereUniqueInput | VoteWhereUniqueInput[]
-    disconnect?: VoteWhereUniqueInput | VoteWhereUniqueInput[]
-    delete?: VoteWhereUniqueInput | VoteWhereUniqueInput[]
-    connect?: VoteWhereUniqueInput | VoteWhereUniqueInput[]
-    update?: VoteUpdateWithWhereUniqueWithoutReplyInput | VoteUpdateWithWhereUniqueWithoutReplyInput[]
-    updateMany?: VoteUpdateManyWithWhereWithoutReplyInput | VoteUpdateManyWithWhereWithoutReplyInput[]
-    deleteMany?: VoteScalarWhereInput | VoteScalarWhereInput[]
-  }
-
   export type ReplyUncheckedUpdateManyWithoutParentNestedInput = {
     create?: XOR<ReplyCreateWithoutParentInput, ReplyUncheckedCreateWithoutParentInput> | ReplyCreateWithoutParentInput[] | ReplyUncheckedCreateWithoutParentInput[]
     connectOrCreate?: ReplyCreateOrConnectWithoutParentInput | ReplyCreateOrConnectWithoutParentInput[]
@@ -17240,38 +20487,10 @@ export namespace Prisma {
     deleteMany?: ReplyScalarWhereInput | ReplyScalarWhereInput[]
   }
 
-  export type VoteUncheckedUpdateManyWithoutReplyNestedInput = {
-    create?: XOR<VoteCreateWithoutReplyInput, VoteUncheckedCreateWithoutReplyInput> | VoteCreateWithoutReplyInput[] | VoteUncheckedCreateWithoutReplyInput[]
-    connectOrCreate?: VoteCreateOrConnectWithoutReplyInput | VoteCreateOrConnectWithoutReplyInput[]
-    upsert?: VoteUpsertWithWhereUniqueWithoutReplyInput | VoteUpsertWithWhereUniqueWithoutReplyInput[]
-    createMany?: VoteCreateManyReplyInputEnvelope
-    set?: VoteWhereUniqueInput | VoteWhereUniqueInput[]
-    disconnect?: VoteWhereUniqueInput | VoteWhereUniqueInput[]
-    delete?: VoteWhereUniqueInput | VoteWhereUniqueInput[]
-    connect?: VoteWhereUniqueInput | VoteWhereUniqueInput[]
-    update?: VoteUpdateWithWhereUniqueWithoutReplyInput | VoteUpdateWithWhereUniqueWithoutReplyInput[]
-    updateMany?: VoteUpdateManyWithWhereWithoutReplyInput | VoteUpdateManyWithWhereWithoutReplyInput[]
-    deleteMany?: VoteScalarWhereInput | VoteScalarWhereInput[]
-  }
-
   export type UserCreateNestedOneWithoutReviewsInput = {
     create?: XOR<UserCreateWithoutReviewsInput, UserUncheckedCreateWithoutReviewsInput>
     connectOrCreate?: UserCreateOrConnectWithoutReviewsInput
     connect?: UserWhereUniqueInput
-  }
-
-  export type VoteCreateNestedManyWithoutReviewInput = {
-    create?: XOR<VoteCreateWithoutReviewInput, VoteUncheckedCreateWithoutReviewInput> | VoteCreateWithoutReviewInput[] | VoteUncheckedCreateWithoutReviewInput[]
-    connectOrCreate?: VoteCreateOrConnectWithoutReviewInput | VoteCreateOrConnectWithoutReviewInput[]
-    createMany?: VoteCreateManyReviewInputEnvelope
-    connect?: VoteWhereUniqueInput | VoteWhereUniqueInput[]
-  }
-
-  export type VoteUncheckedCreateNestedManyWithoutReviewInput = {
-    create?: XOR<VoteCreateWithoutReviewInput, VoteUncheckedCreateWithoutReviewInput> | VoteCreateWithoutReviewInput[] | VoteUncheckedCreateWithoutReviewInput[]
-    connectOrCreate?: VoteCreateOrConnectWithoutReviewInput | VoteCreateOrConnectWithoutReviewInput[]
-    createMany?: VoteCreateManyReviewInputEnvelope
-    connect?: VoteWhereUniqueInput | VoteWhereUniqueInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -17290,50 +20509,10 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutReviewsInput, UserUpdateWithoutReviewsInput>, UserUncheckedUpdateWithoutReviewsInput>
   }
 
-  export type VoteUpdateManyWithoutReviewNestedInput = {
-    create?: XOR<VoteCreateWithoutReviewInput, VoteUncheckedCreateWithoutReviewInput> | VoteCreateWithoutReviewInput[] | VoteUncheckedCreateWithoutReviewInput[]
-    connectOrCreate?: VoteCreateOrConnectWithoutReviewInput | VoteCreateOrConnectWithoutReviewInput[]
-    upsert?: VoteUpsertWithWhereUniqueWithoutReviewInput | VoteUpsertWithWhereUniqueWithoutReviewInput[]
-    createMany?: VoteCreateManyReviewInputEnvelope
-    set?: VoteWhereUniqueInput | VoteWhereUniqueInput[]
-    disconnect?: VoteWhereUniqueInput | VoteWhereUniqueInput[]
-    delete?: VoteWhereUniqueInput | VoteWhereUniqueInput[]
-    connect?: VoteWhereUniqueInput | VoteWhereUniqueInput[]
-    update?: VoteUpdateWithWhereUniqueWithoutReviewInput | VoteUpdateWithWhereUniqueWithoutReviewInput[]
-    updateMany?: VoteUpdateManyWithWhereWithoutReviewInput | VoteUpdateManyWithWhereWithoutReviewInput[]
-    deleteMany?: VoteScalarWhereInput | VoteScalarWhereInput[]
-  }
-
-  export type VoteUncheckedUpdateManyWithoutReviewNestedInput = {
-    create?: XOR<VoteCreateWithoutReviewInput, VoteUncheckedCreateWithoutReviewInput> | VoteCreateWithoutReviewInput[] | VoteUncheckedCreateWithoutReviewInput[]
-    connectOrCreate?: VoteCreateOrConnectWithoutReviewInput | VoteCreateOrConnectWithoutReviewInput[]
-    upsert?: VoteUpsertWithWhereUniqueWithoutReviewInput | VoteUpsertWithWhereUniqueWithoutReviewInput[]
-    createMany?: VoteCreateManyReviewInputEnvelope
-    set?: VoteWhereUniqueInput | VoteWhereUniqueInput[]
-    disconnect?: VoteWhereUniqueInput | VoteWhereUniqueInput[]
-    delete?: VoteWhereUniqueInput | VoteWhereUniqueInput[]
-    connect?: VoteWhereUniqueInput | VoteWhereUniqueInput[]
-    update?: VoteUpdateWithWhereUniqueWithoutReviewInput | VoteUpdateWithWhereUniqueWithoutReviewInput[]
-    updateMany?: VoteUpdateManyWithWhereWithoutReviewInput | VoteUpdateManyWithWhereWithoutReviewInput[]
-    deleteMany?: VoteScalarWhereInput | VoteScalarWhereInput[]
-  }
-
   export type UserCreateNestedOneWithoutVotesInput = {
     create?: XOR<UserCreateWithoutVotesInput, UserUncheckedCreateWithoutVotesInput>
     connectOrCreate?: UserCreateOrConnectWithoutVotesInput
     connect?: UserWhereUniqueInput
-  }
-
-  export type ReviewCreateNestedOneWithoutVotesInput = {
-    create?: XOR<ReviewCreateWithoutVotesInput, ReviewUncheckedCreateWithoutVotesInput>
-    connectOrCreate?: ReviewCreateOrConnectWithoutVotesInput
-    connect?: ReviewWhereUniqueInput
-  }
-
-  export type ReplyCreateNestedOneWithoutVotesInput = {
-    create?: XOR<ReplyCreateWithoutVotesInput, ReplyUncheckedCreateWithoutVotesInput>
-    connectOrCreate?: ReplyCreateOrConnectWithoutVotesInput
-    connect?: ReplyWhereUniqueInput
   }
 
   export type UserUpdateOneRequiredWithoutVotesNestedInput = {
@@ -17344,36 +20523,10 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutVotesInput, UserUpdateWithoutVotesInput>, UserUncheckedUpdateWithoutVotesInput>
   }
 
-  export type ReviewUpdateOneWithoutVotesNestedInput = {
-    create?: XOR<ReviewCreateWithoutVotesInput, ReviewUncheckedCreateWithoutVotesInput>
-    connectOrCreate?: ReviewCreateOrConnectWithoutVotesInput
-    upsert?: ReviewUpsertWithoutVotesInput
-    disconnect?: ReviewWhereInput | boolean
-    delete?: ReviewWhereInput | boolean
-    connect?: ReviewWhereUniqueInput
-    update?: XOR<XOR<ReviewUpdateToOneWithWhereWithoutVotesInput, ReviewUpdateWithoutVotesInput>, ReviewUncheckedUpdateWithoutVotesInput>
-  }
-
-  export type ReplyUpdateOneWithoutVotesNestedInput = {
-    create?: XOR<ReplyCreateWithoutVotesInput, ReplyUncheckedCreateWithoutVotesInput>
-    connectOrCreate?: ReplyCreateOrConnectWithoutVotesInput
-    upsert?: ReplyUpsertWithoutVotesInput
-    disconnect?: ReplyWhereInput | boolean
-    delete?: ReplyWhereInput | boolean
-    connect?: ReplyWhereUniqueInput
-    update?: XOR<XOR<ReplyUpdateToOneWithWhereWithoutVotesInput, ReplyUpdateWithoutVotesInput>, ReplyUncheckedUpdateWithoutVotesInput>
-  }
-
   export type UserCreateNestedOneWithoutBookmarksInput = {
     create?: XOR<UserCreateWithoutBookmarksInput, UserUncheckedCreateWithoutBookmarksInput>
     connectOrCreate?: UserCreateOrConnectWithoutBookmarksInput
     connect?: UserWhereUniqueInput
-  }
-
-  export type DiscussionCreateNestedOneWithoutBookmarksInput = {
-    create?: XOR<DiscussionCreateWithoutBookmarksInput, DiscussionUncheckedCreateWithoutBookmarksInput>
-    connectOrCreate?: DiscussionCreateOrConnectWithoutBookmarksInput
-    connect?: DiscussionWhereUniqueInput
   }
 
   export type UserUpdateOneRequiredWithoutBookmarksNestedInput = {
@@ -17384,18 +20537,22 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutBookmarksInput, UserUpdateWithoutBookmarksInput>, UserUncheckedUpdateWithoutBookmarksInput>
   }
 
-  export type DiscussionUpdateOneWithoutBookmarksNestedInput = {
-    create?: XOR<DiscussionCreateWithoutBookmarksInput, DiscussionUncheckedCreateWithoutBookmarksInput>
-    connectOrCreate?: DiscussionCreateOrConnectWithoutBookmarksInput
-    upsert?: DiscussionUpsertWithoutBookmarksInput
-    disconnect?: DiscussionWhereInput | boolean
-    delete?: DiscussionWhereInput | boolean
-    connect?: DiscussionWhereUniqueInput
-    update?: XOR<XOR<DiscussionUpdateToOneWithWhereWithoutBookmarksInput, DiscussionUpdateWithoutBookmarksInput>, DiscussionUncheckedUpdateWithoutBookmarksInput>
-  }
-
   export type ScholarshipCreatetagsInput = {
     set: string[]
+  }
+
+  export type ScholarshipApplicationCreateNestedManyWithoutScholarshipInput = {
+    create?: XOR<ScholarshipApplicationCreateWithoutScholarshipInput, ScholarshipApplicationUncheckedCreateWithoutScholarshipInput> | ScholarshipApplicationCreateWithoutScholarshipInput[] | ScholarshipApplicationUncheckedCreateWithoutScholarshipInput[]
+    connectOrCreate?: ScholarshipApplicationCreateOrConnectWithoutScholarshipInput | ScholarshipApplicationCreateOrConnectWithoutScholarshipInput[]
+    createMany?: ScholarshipApplicationCreateManyScholarshipInputEnvelope
+    connect?: ScholarshipApplicationWhereUniqueInput | ScholarshipApplicationWhereUniqueInput[]
+  }
+
+  export type ScholarshipApplicationUncheckedCreateNestedManyWithoutScholarshipInput = {
+    create?: XOR<ScholarshipApplicationCreateWithoutScholarshipInput, ScholarshipApplicationUncheckedCreateWithoutScholarshipInput> | ScholarshipApplicationCreateWithoutScholarshipInput[] | ScholarshipApplicationUncheckedCreateWithoutScholarshipInput[]
+    connectOrCreate?: ScholarshipApplicationCreateOrConnectWithoutScholarshipInput | ScholarshipApplicationCreateOrConnectWithoutScholarshipInput[]
+    createMany?: ScholarshipApplicationCreateManyScholarshipInputEnvelope
+    connect?: ScholarshipApplicationWhereUniqueInput | ScholarshipApplicationWhereUniqueInput[]
   }
 
   export type ScholarshipUpdatetagsInput = {
@@ -17403,13 +20560,139 @@ export namespace Prisma {
     push?: string | string[]
   }
 
+  export type ScholarshipApplicationUpdateManyWithoutScholarshipNestedInput = {
+    create?: XOR<ScholarshipApplicationCreateWithoutScholarshipInput, ScholarshipApplicationUncheckedCreateWithoutScholarshipInput> | ScholarshipApplicationCreateWithoutScholarshipInput[] | ScholarshipApplicationUncheckedCreateWithoutScholarshipInput[]
+    connectOrCreate?: ScholarshipApplicationCreateOrConnectWithoutScholarshipInput | ScholarshipApplicationCreateOrConnectWithoutScholarshipInput[]
+    upsert?: ScholarshipApplicationUpsertWithWhereUniqueWithoutScholarshipInput | ScholarshipApplicationUpsertWithWhereUniqueWithoutScholarshipInput[]
+    createMany?: ScholarshipApplicationCreateManyScholarshipInputEnvelope
+    set?: ScholarshipApplicationWhereUniqueInput | ScholarshipApplicationWhereUniqueInput[]
+    disconnect?: ScholarshipApplicationWhereUniqueInput | ScholarshipApplicationWhereUniqueInput[]
+    delete?: ScholarshipApplicationWhereUniqueInput | ScholarshipApplicationWhereUniqueInput[]
+    connect?: ScholarshipApplicationWhereUniqueInput | ScholarshipApplicationWhereUniqueInput[]
+    update?: ScholarshipApplicationUpdateWithWhereUniqueWithoutScholarshipInput | ScholarshipApplicationUpdateWithWhereUniqueWithoutScholarshipInput[]
+    updateMany?: ScholarshipApplicationUpdateManyWithWhereWithoutScholarshipInput | ScholarshipApplicationUpdateManyWithWhereWithoutScholarshipInput[]
+    deleteMany?: ScholarshipApplicationScalarWhereInput | ScholarshipApplicationScalarWhereInput[]
+  }
+
+  export type ScholarshipApplicationUncheckedUpdateManyWithoutScholarshipNestedInput = {
+    create?: XOR<ScholarshipApplicationCreateWithoutScholarshipInput, ScholarshipApplicationUncheckedCreateWithoutScholarshipInput> | ScholarshipApplicationCreateWithoutScholarshipInput[] | ScholarshipApplicationUncheckedCreateWithoutScholarshipInput[]
+    connectOrCreate?: ScholarshipApplicationCreateOrConnectWithoutScholarshipInput | ScholarshipApplicationCreateOrConnectWithoutScholarshipInput[]
+    upsert?: ScholarshipApplicationUpsertWithWhereUniqueWithoutScholarshipInput | ScholarshipApplicationUpsertWithWhereUniqueWithoutScholarshipInput[]
+    createMany?: ScholarshipApplicationCreateManyScholarshipInputEnvelope
+    set?: ScholarshipApplicationWhereUniqueInput | ScholarshipApplicationWhereUniqueInput[]
+    disconnect?: ScholarshipApplicationWhereUniqueInput | ScholarshipApplicationWhereUniqueInput[]
+    delete?: ScholarshipApplicationWhereUniqueInput | ScholarshipApplicationWhereUniqueInput[]
+    connect?: ScholarshipApplicationWhereUniqueInput | ScholarshipApplicationWhereUniqueInput[]
+    update?: ScholarshipApplicationUpdateWithWhereUniqueWithoutScholarshipInput | ScholarshipApplicationUpdateWithWhereUniqueWithoutScholarshipInput[]
+    updateMany?: ScholarshipApplicationUpdateManyWithWhereWithoutScholarshipInput | ScholarshipApplicationUpdateManyWithWhereWithoutScholarshipInput[]
+    deleteMany?: ScholarshipApplicationScalarWhereInput | ScholarshipApplicationScalarWhereInput[]
+  }
+
   export type JobCreatejob_tagsInput = {
     set: string[]
+  }
+
+  export type JobApplicationCreateNestedManyWithoutJobInput = {
+    create?: XOR<JobApplicationCreateWithoutJobInput, JobApplicationUncheckedCreateWithoutJobInput> | JobApplicationCreateWithoutJobInput[] | JobApplicationUncheckedCreateWithoutJobInput[]
+    connectOrCreate?: JobApplicationCreateOrConnectWithoutJobInput | JobApplicationCreateOrConnectWithoutJobInput[]
+    createMany?: JobApplicationCreateManyJobInputEnvelope
+    connect?: JobApplicationWhereUniqueInput | JobApplicationWhereUniqueInput[]
+  }
+
+  export type JobApplicationUncheckedCreateNestedManyWithoutJobInput = {
+    create?: XOR<JobApplicationCreateWithoutJobInput, JobApplicationUncheckedCreateWithoutJobInput> | JobApplicationCreateWithoutJobInput[] | JobApplicationUncheckedCreateWithoutJobInput[]
+    connectOrCreate?: JobApplicationCreateOrConnectWithoutJobInput | JobApplicationCreateOrConnectWithoutJobInput[]
+    createMany?: JobApplicationCreateManyJobInputEnvelope
+    connect?: JobApplicationWhereUniqueInput | JobApplicationWhereUniqueInput[]
   }
 
   export type JobUpdatejob_tagsInput = {
     set?: string[]
     push?: string | string[]
+  }
+
+  export type JobApplicationUpdateManyWithoutJobNestedInput = {
+    create?: XOR<JobApplicationCreateWithoutJobInput, JobApplicationUncheckedCreateWithoutJobInput> | JobApplicationCreateWithoutJobInput[] | JobApplicationUncheckedCreateWithoutJobInput[]
+    connectOrCreate?: JobApplicationCreateOrConnectWithoutJobInput | JobApplicationCreateOrConnectWithoutJobInput[]
+    upsert?: JobApplicationUpsertWithWhereUniqueWithoutJobInput | JobApplicationUpsertWithWhereUniqueWithoutJobInput[]
+    createMany?: JobApplicationCreateManyJobInputEnvelope
+    set?: JobApplicationWhereUniqueInput | JobApplicationWhereUniqueInput[]
+    disconnect?: JobApplicationWhereUniqueInput | JobApplicationWhereUniqueInput[]
+    delete?: JobApplicationWhereUniqueInput | JobApplicationWhereUniqueInput[]
+    connect?: JobApplicationWhereUniqueInput | JobApplicationWhereUniqueInput[]
+    update?: JobApplicationUpdateWithWhereUniqueWithoutJobInput | JobApplicationUpdateWithWhereUniqueWithoutJobInput[]
+    updateMany?: JobApplicationUpdateManyWithWhereWithoutJobInput | JobApplicationUpdateManyWithWhereWithoutJobInput[]
+    deleteMany?: JobApplicationScalarWhereInput | JobApplicationScalarWhereInput[]
+  }
+
+  export type JobApplicationUncheckedUpdateManyWithoutJobNestedInput = {
+    create?: XOR<JobApplicationCreateWithoutJobInput, JobApplicationUncheckedCreateWithoutJobInput> | JobApplicationCreateWithoutJobInput[] | JobApplicationUncheckedCreateWithoutJobInput[]
+    connectOrCreate?: JobApplicationCreateOrConnectWithoutJobInput | JobApplicationCreateOrConnectWithoutJobInput[]
+    upsert?: JobApplicationUpsertWithWhereUniqueWithoutJobInput | JobApplicationUpsertWithWhereUniqueWithoutJobInput[]
+    createMany?: JobApplicationCreateManyJobInputEnvelope
+    set?: JobApplicationWhereUniqueInput | JobApplicationWhereUniqueInput[]
+    disconnect?: JobApplicationWhereUniqueInput | JobApplicationWhereUniqueInput[]
+    delete?: JobApplicationWhereUniqueInput | JobApplicationWhereUniqueInput[]
+    connect?: JobApplicationWhereUniqueInput | JobApplicationWhereUniqueInput[]
+    update?: JobApplicationUpdateWithWhereUniqueWithoutJobInput | JobApplicationUpdateWithWhereUniqueWithoutJobInput[]
+    updateMany?: JobApplicationUpdateManyWithWhereWithoutJobInput | JobApplicationUpdateManyWithWhereWithoutJobInput[]
+    deleteMany?: JobApplicationScalarWhereInput | JobApplicationScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutScholarshipApplicationsInput = {
+    create?: XOR<UserCreateWithoutScholarshipApplicationsInput, UserUncheckedCreateWithoutScholarshipApplicationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutScholarshipApplicationsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ScholarshipCreateNestedOneWithoutApplicationsInput = {
+    create?: XOR<ScholarshipCreateWithoutApplicationsInput, ScholarshipUncheckedCreateWithoutApplicationsInput>
+    connectOrCreate?: ScholarshipCreateOrConnectWithoutApplicationsInput
+    connect?: ScholarshipWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutScholarshipApplicationsNestedInput = {
+    create?: XOR<UserCreateWithoutScholarshipApplicationsInput, UserUncheckedCreateWithoutScholarshipApplicationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutScholarshipApplicationsInput
+    upsert?: UserUpsertWithoutScholarshipApplicationsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutScholarshipApplicationsInput, UserUpdateWithoutScholarshipApplicationsInput>, UserUncheckedUpdateWithoutScholarshipApplicationsInput>
+  }
+
+  export type ScholarshipUpdateOneRequiredWithoutApplicationsNestedInput = {
+    create?: XOR<ScholarshipCreateWithoutApplicationsInput, ScholarshipUncheckedCreateWithoutApplicationsInput>
+    connectOrCreate?: ScholarshipCreateOrConnectWithoutApplicationsInput
+    upsert?: ScholarshipUpsertWithoutApplicationsInput
+    connect?: ScholarshipWhereUniqueInput
+    update?: XOR<XOR<ScholarshipUpdateToOneWithWhereWithoutApplicationsInput, ScholarshipUpdateWithoutApplicationsInput>, ScholarshipUncheckedUpdateWithoutApplicationsInput>
+  }
+
+  export type UserCreateNestedOneWithoutJobApplicationsInput = {
+    create?: XOR<UserCreateWithoutJobApplicationsInput, UserUncheckedCreateWithoutJobApplicationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutJobApplicationsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type JobCreateNestedOneWithoutApplicationsInput = {
+    create?: XOR<JobCreateWithoutApplicationsInput, JobUncheckedCreateWithoutApplicationsInput>
+    connectOrCreate?: JobCreateOrConnectWithoutApplicationsInput
+    connect?: JobWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutJobApplicationsNestedInput = {
+    create?: XOR<UserCreateWithoutJobApplicationsInput, UserUncheckedCreateWithoutJobApplicationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutJobApplicationsInput
+    upsert?: UserUpsertWithoutJobApplicationsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutJobApplicationsInput, UserUpdateWithoutJobApplicationsInput>, UserUncheckedUpdateWithoutJobApplicationsInput>
+  }
+
+  export type JobUpdateOneRequiredWithoutApplicationsNestedInput = {
+    create?: XOR<JobCreateWithoutApplicationsInput, JobUncheckedCreateWithoutApplicationsInput>
+    connectOrCreate?: JobCreateOrConnectWithoutApplicationsInput
+    upsert?: JobUpsertWithoutApplicationsInput
+    connect?: JobWhereUniqueInput
+    update?: XOR<XOR<JobUpdateToOneWithWhereWithoutApplicationsInput, JobUpdateWithoutApplicationsInput>, JobUncheckedUpdateWithoutApplicationsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -17636,6 +20919,8 @@ export namespace Prisma {
     reviews?: ReviewCreateNestedManyWithoutUserInput
     votes?: VoteCreateNestedManyWithoutUserInput
     bookmarks?: BookmarkCreateNestedManyWithoutUserInput
+    scholarshipApplications?: ScholarshipApplicationCreateNestedManyWithoutUserInput
+    jobApplications?: JobApplicationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -17651,6 +20936,8 @@ export namespace Prisma {
     reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
     votes?: VoteUncheckedCreateNestedManyWithoutUserInput
     bookmarks?: BookmarkUncheckedCreateNestedManyWithoutUserInput
+    scholarshipApplications?: ScholarshipApplicationUncheckedCreateNestedManyWithoutUserInput
+    jobApplications?: JobApplicationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -17682,6 +20969,8 @@ export namespace Prisma {
     reviews?: ReviewUpdateManyWithoutUserNestedInput
     votes?: VoteUpdateManyWithoutUserNestedInput
     bookmarks?: BookmarkUpdateManyWithoutUserNestedInput
+    scholarshipApplications?: ScholarshipApplicationUpdateManyWithoutUserNestedInput
+    jobApplications?: JobApplicationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -17697,6 +20986,8 @@ export namespace Prisma {
     reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
     votes?: VoteUncheckedUpdateManyWithoutUserNestedInput
     bookmarks?: BookmarkUncheckedUpdateManyWithoutUserNestedInput
+    scholarshipApplications?: ScholarshipApplicationUncheckedUpdateManyWithoutUserNestedInput
+    jobApplications?: JobApplicationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -17712,6 +21003,8 @@ export namespace Prisma {
     reviews?: ReviewCreateNestedManyWithoutUserInput
     votes?: VoteCreateNestedManyWithoutUserInput
     bookmarks?: BookmarkCreateNestedManyWithoutUserInput
+    scholarshipApplications?: ScholarshipApplicationCreateNestedManyWithoutUserInput
+    jobApplications?: JobApplicationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -17727,6 +21020,8 @@ export namespace Prisma {
     reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
     votes?: VoteUncheckedCreateNestedManyWithoutUserInput
     bookmarks?: BookmarkUncheckedCreateNestedManyWithoutUserInput
+    scholarshipApplications?: ScholarshipApplicationUncheckedCreateNestedManyWithoutUserInput
+    jobApplications?: JobApplicationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -17758,6 +21053,8 @@ export namespace Prisma {
     reviews?: ReviewUpdateManyWithoutUserNestedInput
     votes?: VoteUpdateManyWithoutUserNestedInput
     bookmarks?: BookmarkUpdateManyWithoutUserNestedInput
+    scholarshipApplications?: ScholarshipApplicationUpdateManyWithoutUserNestedInput
+    jobApplications?: JobApplicationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -17773,6 +21070,8 @@ export namespace Prisma {
     reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
     votes?: VoteUncheckedUpdateManyWithoutUserNestedInput
     bookmarks?: BookmarkUncheckedUpdateManyWithoutUserNestedInput
+    scholarshipApplications?: ScholarshipApplicationUncheckedUpdateManyWithoutUserNestedInput
+    jobApplications?: JobApplicationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type AccountCreateWithoutUserInput = {
@@ -17842,7 +21141,6 @@ export namespace Prisma {
     category?: string | null
     createdAt?: Date | string
     replies?: ReplyCreateNestedManyWithoutDiscussionInput
-    bookmarks?: BookmarkCreateNestedManyWithoutDiscussionInput
   }
 
   export type DiscussionUncheckedCreateWithoutAuthorInput = {
@@ -17852,7 +21150,6 @@ export namespace Prisma {
     category?: string | null
     createdAt?: Date | string
     replies?: ReplyUncheckedCreateNestedManyWithoutDiscussionInput
-    bookmarks?: BookmarkUncheckedCreateNestedManyWithoutDiscussionInput
   }
 
   export type DiscussionCreateOrConnectWithoutAuthorInput = {
@@ -17872,7 +21169,6 @@ export namespace Prisma {
     discussion: DiscussionCreateNestedOneWithoutRepliesInput
     parent?: ReplyCreateNestedOneWithoutChildrenInput
     children?: ReplyCreateNestedManyWithoutParentInput
-    votes?: VoteCreateNestedManyWithoutReplyInput
   }
 
   export type ReplyUncheckedCreateWithoutAuthorInput = {
@@ -17882,7 +21178,6 @@ export namespace Prisma {
     parentId?: string | null
     createdAt?: Date | string
     children?: ReplyUncheckedCreateNestedManyWithoutParentInput
-    votes?: VoteUncheckedCreateNestedManyWithoutReplyInput
   }
 
   export type ReplyCreateOrConnectWithoutAuthorInput = {
@@ -17897,18 +21192,20 @@ export namespace Prisma {
 
   export type ReviewCreateWithoutUserInput = {
     id?: string
+    title: string
     content: string
     rating: number
+    category: string
     createdAt?: Date | string
-    votes?: VoteCreateNestedManyWithoutReviewInput
   }
 
   export type ReviewUncheckedCreateWithoutUserInput = {
     id?: string
+    title: string
     content: string
     rating: number
+    category: string
     createdAt?: Date | string
-    votes?: VoteUncheckedCreateNestedManyWithoutReviewInput
   }
 
   export type ReviewCreateOrConnectWithoutUserInput = {
@@ -17923,16 +21220,18 @@ export namespace Prisma {
 
   export type VoteCreateWithoutUserInput = {
     id?: string
+    itemId: string
+    type: string
     value: number
-    review?: ReviewCreateNestedOneWithoutVotesInput
-    reply?: ReplyCreateNestedOneWithoutVotesInput
+    createdAt?: Date | string
   }
 
   export type VoteUncheckedCreateWithoutUserInput = {
     id?: string
-    reviewId?: string | null
-    replyId?: string | null
+    itemId: string
+    type: string
     value: number
+    createdAt?: Date | string
   }
 
   export type VoteCreateOrConnectWithoutUserInput = {
@@ -17947,12 +21246,16 @@ export namespace Prisma {
 
   export type BookmarkCreateWithoutUserInput = {
     id?: string
-    discussion?: DiscussionCreateNestedOneWithoutBookmarksInput
+    itemId?: string | null
+    type?: string | null
+    createdAt?: Date | string
   }
 
   export type BookmarkUncheckedCreateWithoutUserInput = {
     id?: string
-    discussionId?: string | null
+    itemId?: string | null
+    type?: string | null
+    createdAt?: Date | string
   }
 
   export type BookmarkCreateOrConnectWithoutUserInput = {
@@ -17962,6 +21265,80 @@ export namespace Prisma {
 
   export type BookmarkCreateManyUserInputEnvelope = {
     data: BookmarkCreateManyUserInput | BookmarkCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ScholarshipApplicationCreateWithoutUserInput = {
+    id?: string
+    fullName: string
+    email: string
+    phone: string
+    academicInfo: string
+    coverLetter: string
+    documents?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    scholarship: ScholarshipCreateNestedOneWithoutApplicationsInput
+  }
+
+  export type ScholarshipApplicationUncheckedCreateWithoutUserInput = {
+    id?: string
+    scholarshipId: string
+    fullName: string
+    email: string
+    phone: string
+    academicInfo: string
+    coverLetter: string
+    documents?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ScholarshipApplicationCreateOrConnectWithoutUserInput = {
+    where: ScholarshipApplicationWhereUniqueInput
+    create: XOR<ScholarshipApplicationCreateWithoutUserInput, ScholarshipApplicationUncheckedCreateWithoutUserInput>
+  }
+
+  export type ScholarshipApplicationCreateManyUserInputEnvelope = {
+    data: ScholarshipApplicationCreateManyUserInput | ScholarshipApplicationCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type JobApplicationCreateWithoutUserInput = {
+    id?: string
+    fullName: string
+    email: string
+    phone: string
+    coverLetter: string
+    resume?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    job: JobCreateNestedOneWithoutApplicationsInput
+  }
+
+  export type JobApplicationUncheckedCreateWithoutUserInput = {
+    id?: string
+    jobId: string
+    fullName: string
+    email: string
+    phone: string
+    coverLetter: string
+    resume?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type JobApplicationCreateOrConnectWithoutUserInput = {
+    where: JobApplicationWhereUniqueInput
+    create: XOR<JobApplicationCreateWithoutUserInput, JobApplicationUncheckedCreateWithoutUserInput>
+  }
+
+  export type JobApplicationCreateManyUserInputEnvelope = {
+    data: JobApplicationCreateManyUserInput | JobApplicationCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -18102,9 +21479,11 @@ export namespace Prisma {
     OR?: ReviewScalarWhereInput[]
     NOT?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
     id?: StringFilter<"Review"> | string
+    title?: StringFilter<"Review"> | string
     content?: StringFilter<"Review"> | string
     rating?: IntFilter<"Review"> | number
     authorId?: StringFilter<"Review"> | string
+    category?: StringFilter<"Review"> | string
     createdAt?: DateTimeFilter<"Review"> | Date | string
   }
 
@@ -18130,9 +21509,10 @@ export namespace Prisma {
     NOT?: VoteScalarWhereInput | VoteScalarWhereInput[]
     id?: StringFilter<"Vote"> | string
     userId?: StringFilter<"Vote"> | string
-    reviewId?: StringNullableFilter<"Vote"> | string | null
-    replyId?: StringNullableFilter<"Vote"> | string | null
+    itemId?: StringFilter<"Vote"> | string
+    type?: StringFilter<"Vote"> | string
     value?: IntFilter<"Vote"> | number
+    createdAt?: DateTimeFilter<"Vote"> | Date | string
   }
 
   export type BookmarkUpsertWithWhereUniqueWithoutUserInput = {
@@ -18157,7 +21537,76 @@ export namespace Prisma {
     NOT?: BookmarkScalarWhereInput | BookmarkScalarWhereInput[]
     id?: StringFilter<"Bookmark"> | string
     userId?: StringFilter<"Bookmark"> | string
-    discussionId?: StringNullableFilter<"Bookmark"> | string | null
+    itemId?: StringNullableFilter<"Bookmark"> | string | null
+    type?: StringNullableFilter<"Bookmark"> | string | null
+    createdAt?: DateTimeFilter<"Bookmark"> | Date | string
+  }
+
+  export type ScholarshipApplicationUpsertWithWhereUniqueWithoutUserInput = {
+    where: ScholarshipApplicationWhereUniqueInput
+    update: XOR<ScholarshipApplicationUpdateWithoutUserInput, ScholarshipApplicationUncheckedUpdateWithoutUserInput>
+    create: XOR<ScholarshipApplicationCreateWithoutUserInput, ScholarshipApplicationUncheckedCreateWithoutUserInput>
+  }
+
+  export type ScholarshipApplicationUpdateWithWhereUniqueWithoutUserInput = {
+    where: ScholarshipApplicationWhereUniqueInput
+    data: XOR<ScholarshipApplicationUpdateWithoutUserInput, ScholarshipApplicationUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ScholarshipApplicationUpdateManyWithWhereWithoutUserInput = {
+    where: ScholarshipApplicationScalarWhereInput
+    data: XOR<ScholarshipApplicationUpdateManyMutationInput, ScholarshipApplicationUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ScholarshipApplicationScalarWhereInput = {
+    AND?: ScholarshipApplicationScalarWhereInput | ScholarshipApplicationScalarWhereInput[]
+    OR?: ScholarshipApplicationScalarWhereInput[]
+    NOT?: ScholarshipApplicationScalarWhereInput | ScholarshipApplicationScalarWhereInput[]
+    id?: StringFilter<"ScholarshipApplication"> | string
+    userId?: StringFilter<"ScholarshipApplication"> | string
+    scholarshipId?: StringFilter<"ScholarshipApplication"> | string
+    fullName?: StringFilter<"ScholarshipApplication"> | string
+    email?: StringFilter<"ScholarshipApplication"> | string
+    phone?: StringFilter<"ScholarshipApplication"> | string
+    academicInfo?: StringFilter<"ScholarshipApplication"> | string
+    coverLetter?: StringFilter<"ScholarshipApplication"> | string
+    documents?: StringNullableFilter<"ScholarshipApplication"> | string | null
+    status?: StringFilter<"ScholarshipApplication"> | string
+    createdAt?: DateTimeFilter<"ScholarshipApplication"> | Date | string
+    updatedAt?: DateTimeFilter<"ScholarshipApplication"> | Date | string
+  }
+
+  export type JobApplicationUpsertWithWhereUniqueWithoutUserInput = {
+    where: JobApplicationWhereUniqueInput
+    update: XOR<JobApplicationUpdateWithoutUserInput, JobApplicationUncheckedUpdateWithoutUserInput>
+    create: XOR<JobApplicationCreateWithoutUserInput, JobApplicationUncheckedCreateWithoutUserInput>
+  }
+
+  export type JobApplicationUpdateWithWhereUniqueWithoutUserInput = {
+    where: JobApplicationWhereUniqueInput
+    data: XOR<JobApplicationUpdateWithoutUserInput, JobApplicationUncheckedUpdateWithoutUserInput>
+  }
+
+  export type JobApplicationUpdateManyWithWhereWithoutUserInput = {
+    where: JobApplicationScalarWhereInput
+    data: XOR<JobApplicationUpdateManyMutationInput, JobApplicationUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type JobApplicationScalarWhereInput = {
+    AND?: JobApplicationScalarWhereInput | JobApplicationScalarWhereInput[]
+    OR?: JobApplicationScalarWhereInput[]
+    NOT?: JobApplicationScalarWhereInput | JobApplicationScalarWhereInput[]
+    id?: StringFilter<"JobApplication"> | string
+    userId?: StringFilter<"JobApplication"> | string
+    jobId?: StringFilter<"JobApplication"> | string
+    fullName?: StringFilter<"JobApplication"> | string
+    email?: StringFilter<"JobApplication"> | string
+    phone?: StringFilter<"JobApplication"> | string
+    coverLetter?: StringFilter<"JobApplication"> | string
+    resume?: StringNullableFilter<"JobApplication"> | string | null
+    status?: StringFilter<"JobApplication"> | string
+    createdAt?: DateTimeFilter<"JobApplication"> | Date | string
+    updatedAt?: DateTimeFilter<"JobApplication"> | Date | string
   }
 
   export type UserCreateWithoutDiscussionsInput = {
@@ -18173,6 +21622,8 @@ export namespace Prisma {
     reviews?: ReviewCreateNestedManyWithoutUserInput
     votes?: VoteCreateNestedManyWithoutUserInput
     bookmarks?: BookmarkCreateNestedManyWithoutUserInput
+    scholarshipApplications?: ScholarshipApplicationCreateNestedManyWithoutUserInput
+    jobApplications?: JobApplicationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutDiscussionsInput = {
@@ -18188,6 +21639,8 @@ export namespace Prisma {
     reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
     votes?: VoteUncheckedCreateNestedManyWithoutUserInput
     bookmarks?: BookmarkUncheckedCreateNestedManyWithoutUserInput
+    scholarshipApplications?: ScholarshipApplicationUncheckedCreateNestedManyWithoutUserInput
+    jobApplications?: JobApplicationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutDiscussionsInput = {
@@ -18202,7 +21655,6 @@ export namespace Prisma {
     author: UserCreateNestedOneWithoutRepliesInput
     parent?: ReplyCreateNestedOneWithoutChildrenInput
     children?: ReplyCreateNestedManyWithoutParentInput
-    votes?: VoteCreateNestedManyWithoutReplyInput
   }
 
   export type ReplyUncheckedCreateWithoutDiscussionInput = {
@@ -18212,7 +21664,6 @@ export namespace Prisma {
     parentId?: string | null
     createdAt?: Date | string
     children?: ReplyUncheckedCreateNestedManyWithoutParentInput
-    votes?: VoteUncheckedCreateNestedManyWithoutReplyInput
   }
 
   export type ReplyCreateOrConnectWithoutDiscussionInput = {
@@ -18222,26 +21673,6 @@ export namespace Prisma {
 
   export type ReplyCreateManyDiscussionInputEnvelope = {
     data: ReplyCreateManyDiscussionInput | ReplyCreateManyDiscussionInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type BookmarkCreateWithoutDiscussionInput = {
-    id?: string
-    user: UserCreateNestedOneWithoutBookmarksInput
-  }
-
-  export type BookmarkUncheckedCreateWithoutDiscussionInput = {
-    id?: string
-    userId: string
-  }
-
-  export type BookmarkCreateOrConnectWithoutDiscussionInput = {
-    where: BookmarkWhereUniqueInput
-    create: XOR<BookmarkCreateWithoutDiscussionInput, BookmarkUncheckedCreateWithoutDiscussionInput>
-  }
-
-  export type BookmarkCreateManyDiscussionInputEnvelope = {
-    data: BookmarkCreateManyDiscussionInput | BookmarkCreateManyDiscussionInput[]
     skipDuplicates?: boolean
   }
 
@@ -18269,6 +21700,8 @@ export namespace Prisma {
     reviews?: ReviewUpdateManyWithoutUserNestedInput
     votes?: VoteUpdateManyWithoutUserNestedInput
     bookmarks?: BookmarkUpdateManyWithoutUserNestedInput
+    scholarshipApplications?: ScholarshipApplicationUpdateManyWithoutUserNestedInput
+    jobApplications?: JobApplicationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDiscussionsInput = {
@@ -18284,6 +21717,8 @@ export namespace Prisma {
     reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
     votes?: VoteUncheckedUpdateManyWithoutUserNestedInput
     bookmarks?: BookmarkUncheckedUpdateManyWithoutUserNestedInput
+    scholarshipApplications?: ScholarshipApplicationUncheckedUpdateManyWithoutUserNestedInput
+    jobApplications?: JobApplicationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ReplyUpsertWithWhereUniqueWithoutDiscussionInput = {
@@ -18302,22 +21737,6 @@ export namespace Prisma {
     data: XOR<ReplyUpdateManyMutationInput, ReplyUncheckedUpdateManyWithoutDiscussionInput>
   }
 
-  export type BookmarkUpsertWithWhereUniqueWithoutDiscussionInput = {
-    where: BookmarkWhereUniqueInput
-    update: XOR<BookmarkUpdateWithoutDiscussionInput, BookmarkUncheckedUpdateWithoutDiscussionInput>
-    create: XOR<BookmarkCreateWithoutDiscussionInput, BookmarkUncheckedCreateWithoutDiscussionInput>
-  }
-
-  export type BookmarkUpdateWithWhereUniqueWithoutDiscussionInput = {
-    where: BookmarkWhereUniqueInput
-    data: XOR<BookmarkUpdateWithoutDiscussionInput, BookmarkUncheckedUpdateWithoutDiscussionInput>
-  }
-
-  export type BookmarkUpdateManyWithWhereWithoutDiscussionInput = {
-    where: BookmarkScalarWhereInput
-    data: XOR<BookmarkUpdateManyMutationInput, BookmarkUncheckedUpdateManyWithoutDiscussionInput>
-  }
-
   export type UserCreateWithoutRepliesInput = {
     id?: string
     name?: string | null
@@ -18331,6 +21750,8 @@ export namespace Prisma {
     reviews?: ReviewCreateNestedManyWithoutUserInput
     votes?: VoteCreateNestedManyWithoutUserInput
     bookmarks?: BookmarkCreateNestedManyWithoutUserInput
+    scholarshipApplications?: ScholarshipApplicationCreateNestedManyWithoutUserInput
+    jobApplications?: JobApplicationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutRepliesInput = {
@@ -18346,6 +21767,8 @@ export namespace Prisma {
     reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
     votes?: VoteUncheckedCreateNestedManyWithoutUserInput
     bookmarks?: BookmarkUncheckedCreateNestedManyWithoutUserInput
+    scholarshipApplications?: ScholarshipApplicationUncheckedCreateNestedManyWithoutUserInput
+    jobApplications?: JobApplicationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutRepliesInput = {
@@ -18360,7 +21783,6 @@ export namespace Prisma {
     category?: string | null
     createdAt?: Date | string
     author: UserCreateNestedOneWithoutDiscussionsInput
-    bookmarks?: BookmarkCreateNestedManyWithoutDiscussionInput
   }
 
   export type DiscussionUncheckedCreateWithoutRepliesInput = {
@@ -18370,7 +21792,6 @@ export namespace Prisma {
     category?: string | null
     authorId: string
     createdAt?: Date | string
-    bookmarks?: BookmarkUncheckedCreateNestedManyWithoutDiscussionInput
   }
 
   export type DiscussionCreateOrConnectWithoutRepliesInput = {
@@ -18385,7 +21806,6 @@ export namespace Prisma {
     author: UserCreateNestedOneWithoutRepliesInput
     discussion: DiscussionCreateNestedOneWithoutRepliesInput
     parent?: ReplyCreateNestedOneWithoutChildrenInput
-    votes?: VoteCreateNestedManyWithoutReplyInput
   }
 
   export type ReplyUncheckedCreateWithoutChildrenInput = {
@@ -18395,7 +21815,6 @@ export namespace Prisma {
     discussionId: string
     parentId?: string | null
     createdAt?: Date | string
-    votes?: VoteUncheckedCreateNestedManyWithoutReplyInput
   }
 
   export type ReplyCreateOrConnectWithoutChildrenInput = {
@@ -18410,7 +21829,6 @@ export namespace Prisma {
     author: UserCreateNestedOneWithoutRepliesInput
     discussion: DiscussionCreateNestedOneWithoutRepliesInput
     children?: ReplyCreateNestedManyWithoutParentInput
-    votes?: VoteCreateNestedManyWithoutReplyInput
   }
 
   export type ReplyUncheckedCreateWithoutParentInput = {
@@ -18420,7 +21838,6 @@ export namespace Prisma {
     discussionId: string
     createdAt?: Date | string
     children?: ReplyUncheckedCreateNestedManyWithoutParentInput
-    votes?: VoteUncheckedCreateNestedManyWithoutReplyInput
   }
 
   export type ReplyCreateOrConnectWithoutParentInput = {
@@ -18430,30 +21847,6 @@ export namespace Prisma {
 
   export type ReplyCreateManyParentInputEnvelope = {
     data: ReplyCreateManyParentInput | ReplyCreateManyParentInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type VoteCreateWithoutReplyInput = {
-    id?: string
-    value: number
-    user: UserCreateNestedOneWithoutVotesInput
-    review?: ReviewCreateNestedOneWithoutVotesInput
-  }
-
-  export type VoteUncheckedCreateWithoutReplyInput = {
-    id?: string
-    userId: string
-    reviewId?: string | null
-    value: number
-  }
-
-  export type VoteCreateOrConnectWithoutReplyInput = {
-    where: VoteWhereUniqueInput
-    create: XOR<VoteCreateWithoutReplyInput, VoteUncheckedCreateWithoutReplyInput>
-  }
-
-  export type VoteCreateManyReplyInputEnvelope = {
-    data: VoteCreateManyReplyInput | VoteCreateManyReplyInput[]
     skipDuplicates?: boolean
   }
 
@@ -18481,6 +21874,8 @@ export namespace Prisma {
     reviews?: ReviewUpdateManyWithoutUserNestedInput
     votes?: VoteUpdateManyWithoutUserNestedInput
     bookmarks?: BookmarkUpdateManyWithoutUserNestedInput
+    scholarshipApplications?: ScholarshipApplicationUpdateManyWithoutUserNestedInput
+    jobApplications?: JobApplicationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRepliesInput = {
@@ -18496,6 +21891,8 @@ export namespace Prisma {
     reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
     votes?: VoteUncheckedUpdateManyWithoutUserNestedInput
     bookmarks?: BookmarkUncheckedUpdateManyWithoutUserNestedInput
+    scholarshipApplications?: ScholarshipApplicationUncheckedUpdateManyWithoutUserNestedInput
+    jobApplications?: JobApplicationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type DiscussionUpsertWithoutRepliesInput = {
@@ -18516,7 +21913,6 @@ export namespace Prisma {
     category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: UserUpdateOneRequiredWithoutDiscussionsNestedInput
-    bookmarks?: BookmarkUpdateManyWithoutDiscussionNestedInput
   }
 
   export type DiscussionUncheckedUpdateWithoutRepliesInput = {
@@ -18526,7 +21922,6 @@ export namespace Prisma {
     category?: NullableStringFieldUpdateOperationsInput | string | null
     authorId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    bookmarks?: BookmarkUncheckedUpdateManyWithoutDiscussionNestedInput
   }
 
   export type ReplyUpsertWithoutChildrenInput = {
@@ -18547,7 +21942,6 @@ export namespace Prisma {
     author?: UserUpdateOneRequiredWithoutRepliesNestedInput
     discussion?: DiscussionUpdateOneRequiredWithoutRepliesNestedInput
     parent?: ReplyUpdateOneWithoutChildrenNestedInput
-    votes?: VoteUpdateManyWithoutReplyNestedInput
   }
 
   export type ReplyUncheckedUpdateWithoutChildrenInput = {
@@ -18557,7 +21951,6 @@ export namespace Prisma {
     discussionId?: StringFieldUpdateOperationsInput | string
     parentId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    votes?: VoteUncheckedUpdateManyWithoutReplyNestedInput
   }
 
   export type ReplyUpsertWithWhereUniqueWithoutParentInput = {
@@ -18576,22 +21969,6 @@ export namespace Prisma {
     data: XOR<ReplyUpdateManyMutationInput, ReplyUncheckedUpdateManyWithoutParentInput>
   }
 
-  export type VoteUpsertWithWhereUniqueWithoutReplyInput = {
-    where: VoteWhereUniqueInput
-    update: XOR<VoteUpdateWithoutReplyInput, VoteUncheckedUpdateWithoutReplyInput>
-    create: XOR<VoteCreateWithoutReplyInput, VoteUncheckedCreateWithoutReplyInput>
-  }
-
-  export type VoteUpdateWithWhereUniqueWithoutReplyInput = {
-    where: VoteWhereUniqueInput
-    data: XOR<VoteUpdateWithoutReplyInput, VoteUncheckedUpdateWithoutReplyInput>
-  }
-
-  export type VoteUpdateManyWithWhereWithoutReplyInput = {
-    where: VoteScalarWhereInput
-    data: XOR<VoteUpdateManyMutationInput, VoteUncheckedUpdateManyWithoutReplyInput>
-  }
-
   export type UserCreateWithoutReviewsInput = {
     id?: string
     name?: string | null
@@ -18605,6 +21982,8 @@ export namespace Prisma {
     replies?: ReplyCreateNestedManyWithoutAuthorInput
     votes?: VoteCreateNestedManyWithoutUserInput
     bookmarks?: BookmarkCreateNestedManyWithoutUserInput
+    scholarshipApplications?: ScholarshipApplicationCreateNestedManyWithoutUserInput
+    jobApplications?: JobApplicationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutReviewsInput = {
@@ -18620,35 +21999,13 @@ export namespace Prisma {
     replies?: ReplyUncheckedCreateNestedManyWithoutAuthorInput
     votes?: VoteUncheckedCreateNestedManyWithoutUserInput
     bookmarks?: BookmarkUncheckedCreateNestedManyWithoutUserInput
+    scholarshipApplications?: ScholarshipApplicationUncheckedCreateNestedManyWithoutUserInput
+    jobApplications?: JobApplicationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutReviewsInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutReviewsInput, UserUncheckedCreateWithoutReviewsInput>
-  }
-
-  export type VoteCreateWithoutReviewInput = {
-    id?: string
-    value: number
-    user: UserCreateNestedOneWithoutVotesInput
-    reply?: ReplyCreateNestedOneWithoutVotesInput
-  }
-
-  export type VoteUncheckedCreateWithoutReviewInput = {
-    id?: string
-    userId: string
-    replyId?: string | null
-    value: number
-  }
-
-  export type VoteCreateOrConnectWithoutReviewInput = {
-    where: VoteWhereUniqueInput
-    create: XOR<VoteCreateWithoutReviewInput, VoteUncheckedCreateWithoutReviewInput>
-  }
-
-  export type VoteCreateManyReviewInputEnvelope = {
-    data: VoteCreateManyReviewInput | VoteCreateManyReviewInput[]
-    skipDuplicates?: boolean
   }
 
   export type UserUpsertWithoutReviewsInput = {
@@ -18675,6 +22032,8 @@ export namespace Prisma {
     replies?: ReplyUpdateManyWithoutAuthorNestedInput
     votes?: VoteUpdateManyWithoutUserNestedInput
     bookmarks?: BookmarkUpdateManyWithoutUserNestedInput
+    scholarshipApplications?: ScholarshipApplicationUpdateManyWithoutUserNestedInput
+    jobApplications?: JobApplicationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReviewsInput = {
@@ -18690,22 +22049,8 @@ export namespace Prisma {
     replies?: ReplyUncheckedUpdateManyWithoutAuthorNestedInput
     votes?: VoteUncheckedUpdateManyWithoutUserNestedInput
     bookmarks?: BookmarkUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type VoteUpsertWithWhereUniqueWithoutReviewInput = {
-    where: VoteWhereUniqueInput
-    update: XOR<VoteUpdateWithoutReviewInput, VoteUncheckedUpdateWithoutReviewInput>
-    create: XOR<VoteCreateWithoutReviewInput, VoteUncheckedCreateWithoutReviewInput>
-  }
-
-  export type VoteUpdateWithWhereUniqueWithoutReviewInput = {
-    where: VoteWhereUniqueInput
-    data: XOR<VoteUpdateWithoutReviewInput, VoteUncheckedUpdateWithoutReviewInput>
-  }
-
-  export type VoteUpdateManyWithWhereWithoutReviewInput = {
-    where: VoteScalarWhereInput
-    data: XOR<VoteUpdateManyMutationInput, VoteUncheckedUpdateManyWithoutReviewInput>
+    scholarshipApplications?: ScholarshipApplicationUncheckedUpdateManyWithoutUserNestedInput
+    jobApplications?: JobApplicationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutVotesInput = {
@@ -18721,6 +22066,8 @@ export namespace Prisma {
     replies?: ReplyCreateNestedManyWithoutAuthorInput
     reviews?: ReviewCreateNestedManyWithoutUserInput
     bookmarks?: BookmarkCreateNestedManyWithoutUserInput
+    scholarshipApplications?: ScholarshipApplicationCreateNestedManyWithoutUserInput
+    jobApplications?: JobApplicationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutVotesInput = {
@@ -18736,57 +22083,13 @@ export namespace Prisma {
     replies?: ReplyUncheckedCreateNestedManyWithoutAuthorInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
     bookmarks?: BookmarkUncheckedCreateNestedManyWithoutUserInput
+    scholarshipApplications?: ScholarshipApplicationUncheckedCreateNestedManyWithoutUserInput
+    jobApplications?: JobApplicationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutVotesInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutVotesInput, UserUncheckedCreateWithoutVotesInput>
-  }
-
-  export type ReviewCreateWithoutVotesInput = {
-    id?: string
-    content: string
-    rating: number
-    createdAt?: Date | string
-    user: UserCreateNestedOneWithoutReviewsInput
-  }
-
-  export type ReviewUncheckedCreateWithoutVotesInput = {
-    id?: string
-    content: string
-    rating: number
-    authorId: string
-    createdAt?: Date | string
-  }
-
-  export type ReviewCreateOrConnectWithoutVotesInput = {
-    where: ReviewWhereUniqueInput
-    create: XOR<ReviewCreateWithoutVotesInput, ReviewUncheckedCreateWithoutVotesInput>
-  }
-
-  export type ReplyCreateWithoutVotesInput = {
-    id?: string
-    content: string
-    createdAt?: Date | string
-    author: UserCreateNestedOneWithoutRepliesInput
-    discussion: DiscussionCreateNestedOneWithoutRepliesInput
-    parent?: ReplyCreateNestedOneWithoutChildrenInput
-    children?: ReplyCreateNestedManyWithoutParentInput
-  }
-
-  export type ReplyUncheckedCreateWithoutVotesInput = {
-    id?: string
-    content: string
-    authorId: string
-    discussionId: string
-    parentId?: string | null
-    createdAt?: Date | string
-    children?: ReplyUncheckedCreateNestedManyWithoutParentInput
-  }
-
-  export type ReplyCreateOrConnectWithoutVotesInput = {
-    where: ReplyWhereUniqueInput
-    create: XOR<ReplyCreateWithoutVotesInput, ReplyUncheckedCreateWithoutVotesInput>
   }
 
   export type UserUpsertWithoutVotesInput = {
@@ -18813,6 +22116,8 @@ export namespace Prisma {
     replies?: ReplyUpdateManyWithoutAuthorNestedInput
     reviews?: ReviewUpdateManyWithoutUserNestedInput
     bookmarks?: BookmarkUpdateManyWithoutUserNestedInput
+    scholarshipApplications?: ScholarshipApplicationUpdateManyWithoutUserNestedInput
+    jobApplications?: JobApplicationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutVotesInput = {
@@ -18828,64 +22133,8 @@ export namespace Prisma {
     replies?: ReplyUncheckedUpdateManyWithoutAuthorNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
     bookmarks?: BookmarkUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type ReviewUpsertWithoutVotesInput = {
-    update: XOR<ReviewUpdateWithoutVotesInput, ReviewUncheckedUpdateWithoutVotesInput>
-    create: XOR<ReviewCreateWithoutVotesInput, ReviewUncheckedCreateWithoutVotesInput>
-    where?: ReviewWhereInput
-  }
-
-  export type ReviewUpdateToOneWithWhereWithoutVotesInput = {
-    where?: ReviewWhereInput
-    data: XOR<ReviewUpdateWithoutVotesInput, ReviewUncheckedUpdateWithoutVotesInput>
-  }
-
-  export type ReviewUpdateWithoutVotesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
-    rating?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutReviewsNestedInput
-  }
-
-  export type ReviewUncheckedUpdateWithoutVotesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
-    rating?: IntFieldUpdateOperationsInput | number
-    authorId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ReplyUpsertWithoutVotesInput = {
-    update: XOR<ReplyUpdateWithoutVotesInput, ReplyUncheckedUpdateWithoutVotesInput>
-    create: XOR<ReplyCreateWithoutVotesInput, ReplyUncheckedCreateWithoutVotesInput>
-    where?: ReplyWhereInput
-  }
-
-  export type ReplyUpdateToOneWithWhereWithoutVotesInput = {
-    where?: ReplyWhereInput
-    data: XOR<ReplyUpdateWithoutVotesInput, ReplyUncheckedUpdateWithoutVotesInput>
-  }
-
-  export type ReplyUpdateWithoutVotesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    author?: UserUpdateOneRequiredWithoutRepliesNestedInput
-    discussion?: DiscussionUpdateOneRequiredWithoutRepliesNestedInput
-    parent?: ReplyUpdateOneWithoutChildrenNestedInput
-    children?: ReplyUpdateManyWithoutParentNestedInput
-  }
-
-  export type ReplyUncheckedUpdateWithoutVotesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
-    authorId?: StringFieldUpdateOperationsInput | string
-    discussionId?: StringFieldUpdateOperationsInput | string
-    parentId?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    children?: ReplyUncheckedUpdateManyWithoutParentNestedInput
+    scholarshipApplications?: ScholarshipApplicationUncheckedUpdateManyWithoutUserNestedInput
+    jobApplications?: JobApplicationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutBookmarksInput = {
@@ -18901,6 +22150,8 @@ export namespace Prisma {
     replies?: ReplyCreateNestedManyWithoutAuthorInput
     reviews?: ReviewCreateNestedManyWithoutUserInput
     votes?: VoteCreateNestedManyWithoutUserInput
+    scholarshipApplications?: ScholarshipApplicationCreateNestedManyWithoutUserInput
+    jobApplications?: JobApplicationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutBookmarksInput = {
@@ -18916,36 +22167,13 @@ export namespace Prisma {
     replies?: ReplyUncheckedCreateNestedManyWithoutAuthorInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
     votes?: VoteUncheckedCreateNestedManyWithoutUserInput
+    scholarshipApplications?: ScholarshipApplicationUncheckedCreateNestedManyWithoutUserInput
+    jobApplications?: JobApplicationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutBookmarksInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutBookmarksInput, UserUncheckedCreateWithoutBookmarksInput>
-  }
-
-  export type DiscussionCreateWithoutBookmarksInput = {
-    id?: string
-    title: string
-    content: string
-    category?: string | null
-    createdAt?: Date | string
-    author: UserCreateNestedOneWithoutDiscussionsInput
-    replies?: ReplyCreateNestedManyWithoutDiscussionInput
-  }
-
-  export type DiscussionUncheckedCreateWithoutBookmarksInput = {
-    id?: string
-    title: string
-    content: string
-    category?: string | null
-    authorId: string
-    createdAt?: Date | string
-    replies?: ReplyUncheckedCreateNestedManyWithoutDiscussionInput
-  }
-
-  export type DiscussionCreateOrConnectWithoutBookmarksInput = {
-    where: DiscussionWhereUniqueInput
-    create: XOR<DiscussionCreateWithoutBookmarksInput, DiscussionUncheckedCreateWithoutBookmarksInput>
   }
 
   export type UserUpsertWithoutBookmarksInput = {
@@ -18972,6 +22200,8 @@ export namespace Prisma {
     replies?: ReplyUpdateManyWithoutAuthorNestedInput
     reviews?: ReviewUpdateManyWithoutUserNestedInput
     votes?: VoteUpdateManyWithoutUserNestedInput
+    scholarshipApplications?: ScholarshipApplicationUpdateManyWithoutUserNestedInput
+    jobApplications?: JobApplicationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBookmarksInput = {
@@ -18987,37 +22217,434 @@ export namespace Prisma {
     replies?: ReplyUncheckedUpdateManyWithoutAuthorNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
     votes?: VoteUncheckedUpdateManyWithoutUserNestedInput
+    scholarshipApplications?: ScholarshipApplicationUncheckedUpdateManyWithoutUserNestedInput
+    jobApplications?: JobApplicationUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type DiscussionUpsertWithoutBookmarksInput = {
-    update: XOR<DiscussionUpdateWithoutBookmarksInput, DiscussionUncheckedUpdateWithoutBookmarksInput>
-    create: XOR<DiscussionCreateWithoutBookmarksInput, DiscussionUncheckedCreateWithoutBookmarksInput>
-    where?: DiscussionWhereInput
+  export type ScholarshipApplicationCreateWithoutScholarshipInput = {
+    id?: string
+    fullName: string
+    email: string
+    phone: string
+    academicInfo: string
+    coverLetter: string
+    documents?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutScholarshipApplicationsInput
   }
 
-  export type DiscussionUpdateToOneWithWhereWithoutBookmarksInput = {
-    where?: DiscussionWhereInput
-    data: XOR<DiscussionUpdateWithoutBookmarksInput, DiscussionUncheckedUpdateWithoutBookmarksInput>
+  export type ScholarshipApplicationUncheckedCreateWithoutScholarshipInput = {
+    id?: string
+    userId: string
+    fullName: string
+    email: string
+    phone: string
+    academicInfo: string
+    coverLetter: string
+    documents?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type DiscussionUpdateWithoutBookmarksInput = {
+  export type ScholarshipApplicationCreateOrConnectWithoutScholarshipInput = {
+    where: ScholarshipApplicationWhereUniqueInput
+    create: XOR<ScholarshipApplicationCreateWithoutScholarshipInput, ScholarshipApplicationUncheckedCreateWithoutScholarshipInput>
+  }
+
+  export type ScholarshipApplicationCreateManyScholarshipInputEnvelope = {
+    data: ScholarshipApplicationCreateManyScholarshipInput | ScholarshipApplicationCreateManyScholarshipInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ScholarshipApplicationUpsertWithWhereUniqueWithoutScholarshipInput = {
+    where: ScholarshipApplicationWhereUniqueInput
+    update: XOR<ScholarshipApplicationUpdateWithoutScholarshipInput, ScholarshipApplicationUncheckedUpdateWithoutScholarshipInput>
+    create: XOR<ScholarshipApplicationCreateWithoutScholarshipInput, ScholarshipApplicationUncheckedCreateWithoutScholarshipInput>
+  }
+
+  export type ScholarshipApplicationUpdateWithWhereUniqueWithoutScholarshipInput = {
+    where: ScholarshipApplicationWhereUniqueInput
+    data: XOR<ScholarshipApplicationUpdateWithoutScholarshipInput, ScholarshipApplicationUncheckedUpdateWithoutScholarshipInput>
+  }
+
+  export type ScholarshipApplicationUpdateManyWithWhereWithoutScholarshipInput = {
+    where: ScholarshipApplicationScalarWhereInput
+    data: XOR<ScholarshipApplicationUpdateManyMutationInput, ScholarshipApplicationUncheckedUpdateManyWithoutScholarshipInput>
+  }
+
+  export type JobApplicationCreateWithoutJobInput = {
+    id?: string
+    fullName: string
+    email: string
+    phone: string
+    coverLetter: string
+    resume?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutJobApplicationsInput
+  }
+
+  export type JobApplicationUncheckedCreateWithoutJobInput = {
+    id?: string
+    userId: string
+    fullName: string
+    email: string
+    phone: string
+    coverLetter: string
+    resume?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type JobApplicationCreateOrConnectWithoutJobInput = {
+    where: JobApplicationWhereUniqueInput
+    create: XOR<JobApplicationCreateWithoutJobInput, JobApplicationUncheckedCreateWithoutJobInput>
+  }
+
+  export type JobApplicationCreateManyJobInputEnvelope = {
+    data: JobApplicationCreateManyJobInput | JobApplicationCreateManyJobInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type JobApplicationUpsertWithWhereUniqueWithoutJobInput = {
+    where: JobApplicationWhereUniqueInput
+    update: XOR<JobApplicationUpdateWithoutJobInput, JobApplicationUncheckedUpdateWithoutJobInput>
+    create: XOR<JobApplicationCreateWithoutJobInput, JobApplicationUncheckedCreateWithoutJobInput>
+  }
+
+  export type JobApplicationUpdateWithWhereUniqueWithoutJobInput = {
+    where: JobApplicationWhereUniqueInput
+    data: XOR<JobApplicationUpdateWithoutJobInput, JobApplicationUncheckedUpdateWithoutJobInput>
+  }
+
+  export type JobApplicationUpdateManyWithWhereWithoutJobInput = {
+    where: JobApplicationScalarWhereInput
+    data: XOR<JobApplicationUpdateManyMutationInput, JobApplicationUncheckedUpdateManyWithoutJobInput>
+  }
+
+  export type UserCreateWithoutScholarshipApplicationsInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    password?: string | null
+    image?: string | null
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    discussions?: DiscussionCreateNestedManyWithoutAuthorInput
+    replies?: ReplyCreateNestedManyWithoutAuthorInput
+    reviews?: ReviewCreateNestedManyWithoutUserInput
+    votes?: VoteCreateNestedManyWithoutUserInput
+    bookmarks?: BookmarkCreateNestedManyWithoutUserInput
+    jobApplications?: JobApplicationCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutScholarshipApplicationsInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    password?: string | null
+    image?: string | null
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    discussions?: DiscussionUncheckedCreateNestedManyWithoutAuthorInput
+    replies?: ReplyUncheckedCreateNestedManyWithoutAuthorInput
+    reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
+    votes?: VoteUncheckedCreateNestedManyWithoutUserInput
+    bookmarks?: BookmarkUncheckedCreateNestedManyWithoutUserInput
+    jobApplications?: JobApplicationUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutScholarshipApplicationsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutScholarshipApplicationsInput, UserUncheckedCreateWithoutScholarshipApplicationsInput>
+  }
+
+  export type ScholarshipCreateWithoutApplicationsInput = {
+    id?: string
+    scholarship_id: string
+    title: string
+    sponsor: string
+    description: string
+    deadline: Date | string
+    amount: string
+    eligibility: string
+    location: string
+    tags?: ScholarshipCreatetagsInput | string[]
+    posted_on: Date | string
+  }
+
+  export type ScholarshipUncheckedCreateWithoutApplicationsInput = {
+    id?: string
+    scholarship_id: string
+    title: string
+    sponsor: string
+    description: string
+    deadline: Date | string
+    amount: string
+    eligibility: string
+    location: string
+    tags?: ScholarshipCreatetagsInput | string[]
+    posted_on: Date | string
+  }
+
+  export type ScholarshipCreateOrConnectWithoutApplicationsInput = {
+    where: ScholarshipWhereUniqueInput
+    create: XOR<ScholarshipCreateWithoutApplicationsInput, ScholarshipUncheckedCreateWithoutApplicationsInput>
+  }
+
+  export type UserUpsertWithoutScholarshipApplicationsInput = {
+    update: XOR<UserUpdateWithoutScholarshipApplicationsInput, UserUncheckedUpdateWithoutScholarshipApplicationsInput>
+    create: XOR<UserCreateWithoutScholarshipApplicationsInput, UserUncheckedCreateWithoutScholarshipApplicationsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutScholarshipApplicationsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutScholarshipApplicationsInput, UserUncheckedUpdateWithoutScholarshipApplicationsInput>
+  }
+
+  export type UserUpdateWithoutScholarshipApplicationsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    author?: UserUpdateOneRequiredWithoutDiscussionsNestedInput
-    replies?: ReplyUpdateManyWithoutDiscussionNestedInput
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    discussions?: DiscussionUpdateManyWithoutAuthorNestedInput
+    replies?: ReplyUpdateManyWithoutAuthorNestedInput
+    reviews?: ReviewUpdateManyWithoutUserNestedInput
+    votes?: VoteUpdateManyWithoutUserNestedInput
+    bookmarks?: BookmarkUpdateManyWithoutUserNestedInput
+    jobApplications?: JobApplicationUpdateManyWithoutUserNestedInput
   }
 
-  export type DiscussionUncheckedUpdateWithoutBookmarksInput = {
+  export type UserUncheckedUpdateWithoutScholarshipApplicationsInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    discussions?: DiscussionUncheckedUpdateManyWithoutAuthorNestedInput
+    replies?: ReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
+    votes?: VoteUncheckedUpdateManyWithoutUserNestedInput
+    bookmarks?: BookmarkUncheckedUpdateManyWithoutUserNestedInput
+    jobApplications?: JobApplicationUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type ScholarshipUpsertWithoutApplicationsInput = {
+    update: XOR<ScholarshipUpdateWithoutApplicationsInput, ScholarshipUncheckedUpdateWithoutApplicationsInput>
+    create: XOR<ScholarshipCreateWithoutApplicationsInput, ScholarshipUncheckedCreateWithoutApplicationsInput>
+    where?: ScholarshipWhereInput
+  }
+
+  export type ScholarshipUpdateToOneWithWhereWithoutApplicationsInput = {
+    where?: ScholarshipWhereInput
+    data: XOR<ScholarshipUpdateWithoutApplicationsInput, ScholarshipUncheckedUpdateWithoutApplicationsInput>
+  }
+
+  export type ScholarshipUpdateWithoutApplicationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    scholarship_id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    authorId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    replies?: ReplyUncheckedUpdateManyWithoutDiscussionNestedInput
+    sponsor?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    deadline?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: StringFieldUpdateOperationsInput | string
+    eligibility?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    tags?: ScholarshipUpdatetagsInput | string[]
+    posted_on?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ScholarshipUncheckedUpdateWithoutApplicationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    scholarship_id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    sponsor?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    deadline?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: StringFieldUpdateOperationsInput | string
+    eligibility?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    tags?: ScholarshipUpdatetagsInput | string[]
+    posted_on?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserCreateWithoutJobApplicationsInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    password?: string | null
+    image?: string | null
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    discussions?: DiscussionCreateNestedManyWithoutAuthorInput
+    replies?: ReplyCreateNestedManyWithoutAuthorInput
+    reviews?: ReviewCreateNestedManyWithoutUserInput
+    votes?: VoteCreateNestedManyWithoutUserInput
+    bookmarks?: BookmarkCreateNestedManyWithoutUserInput
+    scholarshipApplications?: ScholarshipApplicationCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutJobApplicationsInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    password?: string | null
+    image?: string | null
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    discussions?: DiscussionUncheckedCreateNestedManyWithoutAuthorInput
+    replies?: ReplyUncheckedCreateNestedManyWithoutAuthorInput
+    reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
+    votes?: VoteUncheckedCreateNestedManyWithoutUserInput
+    bookmarks?: BookmarkUncheckedCreateNestedManyWithoutUserInput
+    scholarshipApplications?: ScholarshipApplicationUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutJobApplicationsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutJobApplicationsInput, UserUncheckedCreateWithoutJobApplicationsInput>
+  }
+
+  export type JobCreateWithoutApplicationsInput = {
+    id?: string
+    job_id: string
+    job_title: string
+    company_name: string
+    company_logo: string
+    date: Date | string
+    location: string
+    position: string
+    salary_range: JsonNullValueInput | InputJsonValue
+    job_tags?: JobCreatejob_tagsInput | string[]
+    job_description: string
+    posted_on: Date | string
+    deadline: Date | string
+  }
+
+  export type JobUncheckedCreateWithoutApplicationsInput = {
+    id?: string
+    job_id: string
+    job_title: string
+    company_name: string
+    company_logo: string
+    date: Date | string
+    location: string
+    position: string
+    salary_range: JsonNullValueInput | InputJsonValue
+    job_tags?: JobCreatejob_tagsInput | string[]
+    job_description: string
+    posted_on: Date | string
+    deadline: Date | string
+  }
+
+  export type JobCreateOrConnectWithoutApplicationsInput = {
+    where: JobWhereUniqueInput
+    create: XOR<JobCreateWithoutApplicationsInput, JobUncheckedCreateWithoutApplicationsInput>
+  }
+
+  export type UserUpsertWithoutJobApplicationsInput = {
+    update: XOR<UserUpdateWithoutJobApplicationsInput, UserUncheckedUpdateWithoutJobApplicationsInput>
+    create: XOR<UserCreateWithoutJobApplicationsInput, UserUncheckedCreateWithoutJobApplicationsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutJobApplicationsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutJobApplicationsInput, UserUncheckedUpdateWithoutJobApplicationsInput>
+  }
+
+  export type UserUpdateWithoutJobApplicationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    discussions?: DiscussionUpdateManyWithoutAuthorNestedInput
+    replies?: ReplyUpdateManyWithoutAuthorNestedInput
+    reviews?: ReviewUpdateManyWithoutUserNestedInput
+    votes?: VoteUpdateManyWithoutUserNestedInput
+    bookmarks?: BookmarkUpdateManyWithoutUserNestedInput
+    scholarshipApplications?: ScholarshipApplicationUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutJobApplicationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    discussions?: DiscussionUncheckedUpdateManyWithoutAuthorNestedInput
+    replies?: ReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
+    votes?: VoteUncheckedUpdateManyWithoutUserNestedInput
+    bookmarks?: BookmarkUncheckedUpdateManyWithoutUserNestedInput
+    scholarshipApplications?: ScholarshipApplicationUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type JobUpsertWithoutApplicationsInput = {
+    update: XOR<JobUpdateWithoutApplicationsInput, JobUncheckedUpdateWithoutApplicationsInput>
+    create: XOR<JobCreateWithoutApplicationsInput, JobUncheckedCreateWithoutApplicationsInput>
+    where?: JobWhereInput
+  }
+
+  export type JobUpdateToOneWithWhereWithoutApplicationsInput = {
+    where?: JobWhereInput
+    data: XOR<JobUpdateWithoutApplicationsInput, JobUncheckedUpdateWithoutApplicationsInput>
+  }
+
+  export type JobUpdateWithoutApplicationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    job_id?: StringFieldUpdateOperationsInput | string
+    job_title?: StringFieldUpdateOperationsInput | string
+    company_name?: StringFieldUpdateOperationsInput | string
+    company_logo?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    location?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    salary_range?: JsonNullValueInput | InputJsonValue
+    job_tags?: JobUpdatejob_tagsInput | string[]
+    job_description?: StringFieldUpdateOperationsInput | string
+    posted_on?: DateTimeFieldUpdateOperationsInput | Date | string
+    deadline?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JobUncheckedUpdateWithoutApplicationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    job_id?: StringFieldUpdateOperationsInput | string
+    job_title?: StringFieldUpdateOperationsInput | string
+    company_name?: StringFieldUpdateOperationsInput | string
+    company_logo?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    location?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    salary_range?: JsonNullValueInput | InputJsonValue
+    job_tags?: JobUpdatejob_tagsInput | string[]
+    job_description?: StringFieldUpdateOperationsInput | string
+    posted_on?: DateTimeFieldUpdateOperationsInput | Date | string
+    deadline?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AccountCreateManyUserInput = {
@@ -19058,21 +22685,53 @@ export namespace Prisma {
 
   export type ReviewCreateManyUserInput = {
     id?: string
+    title: string
     content: string
     rating: number
+    category: string
     createdAt?: Date | string
   }
 
   export type VoteCreateManyUserInput = {
     id?: string
-    reviewId?: string | null
-    replyId?: string | null
+    itemId: string
+    type: string
     value: number
+    createdAt?: Date | string
   }
 
   export type BookmarkCreateManyUserInput = {
     id?: string
-    discussionId?: string | null
+    itemId?: string | null
+    type?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ScholarshipApplicationCreateManyUserInput = {
+    id?: string
+    scholarshipId: string
+    fullName: string
+    email: string
+    phone: string
+    academicInfo: string
+    coverLetter: string
+    documents?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type JobApplicationCreateManyUserInput = {
+    id?: string
+    jobId: string
+    fullName: string
+    email: string
+    phone: string
+    coverLetter: string
+    resume?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -19142,7 +22801,6 @@ export namespace Prisma {
     category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     replies?: ReplyUpdateManyWithoutDiscussionNestedInput
-    bookmarks?: BookmarkUpdateManyWithoutDiscussionNestedInput
   }
 
   export type DiscussionUncheckedUpdateWithoutAuthorInput = {
@@ -19152,7 +22810,6 @@ export namespace Prisma {
     category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     replies?: ReplyUncheckedUpdateManyWithoutDiscussionNestedInput
-    bookmarks?: BookmarkUncheckedUpdateManyWithoutDiscussionNestedInput
   }
 
   export type DiscussionUncheckedUpdateManyWithoutAuthorInput = {
@@ -19170,7 +22827,6 @@ export namespace Prisma {
     discussion?: DiscussionUpdateOneRequiredWithoutRepliesNestedInput
     parent?: ReplyUpdateOneWithoutChildrenNestedInput
     children?: ReplyUpdateManyWithoutParentNestedInput
-    votes?: VoteUpdateManyWithoutReplyNestedInput
   }
 
   export type ReplyUncheckedUpdateWithoutAuthorInput = {
@@ -19180,7 +22836,6 @@ export namespace Prisma {
     parentId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     children?: ReplyUncheckedUpdateManyWithoutParentNestedInput
-    votes?: VoteUncheckedUpdateManyWithoutReplyNestedInput
   }
 
   export type ReplyUncheckedUpdateManyWithoutAuthorInput = {
@@ -19193,61 +22848,155 @@ export namespace Prisma {
 
   export type ReviewUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    votes?: VoteUpdateManyWithoutReviewNestedInput
   }
 
   export type ReviewUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    votes?: VoteUncheckedUpdateManyWithoutReviewNestedInput
   }
 
   export type ReviewUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type VoteUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    itemId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
     value?: IntFieldUpdateOperationsInput | number
-    review?: ReviewUpdateOneWithoutVotesNestedInput
-    reply?: ReplyUpdateOneWithoutVotesNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type VoteUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    reviewId?: NullableStringFieldUpdateOperationsInput | string | null
-    replyId?: NullableStringFieldUpdateOperationsInput | string | null
+    itemId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
     value?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type VoteUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    reviewId?: NullableStringFieldUpdateOperationsInput | string | null
-    replyId?: NullableStringFieldUpdateOperationsInput | string | null
+    itemId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
     value?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BookmarkUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    discussion?: DiscussionUpdateOneWithoutBookmarksNestedInput
+    itemId?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BookmarkUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    discussionId?: NullableStringFieldUpdateOperationsInput | string | null
+    itemId?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BookmarkUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    discussionId?: NullableStringFieldUpdateOperationsInput | string | null
+    itemId?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ScholarshipApplicationUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    academicInfo?: StringFieldUpdateOperationsInput | string
+    coverLetter?: StringFieldUpdateOperationsInput | string
+    documents?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    scholarship?: ScholarshipUpdateOneRequiredWithoutApplicationsNestedInput
+  }
+
+  export type ScholarshipApplicationUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    scholarshipId?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    academicInfo?: StringFieldUpdateOperationsInput | string
+    coverLetter?: StringFieldUpdateOperationsInput | string
+    documents?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ScholarshipApplicationUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    scholarshipId?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    academicInfo?: StringFieldUpdateOperationsInput | string
+    coverLetter?: StringFieldUpdateOperationsInput | string
+    documents?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JobApplicationUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    coverLetter?: StringFieldUpdateOperationsInput | string
+    resume?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    job?: JobUpdateOneRequiredWithoutApplicationsNestedInput
+  }
+
+  export type JobApplicationUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    jobId?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    coverLetter?: StringFieldUpdateOperationsInput | string
+    resume?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JobApplicationUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    jobId?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    coverLetter?: StringFieldUpdateOperationsInput | string
+    resume?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ReplyCreateManyDiscussionInput = {
@@ -19258,11 +23007,6 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
-  export type BookmarkCreateManyDiscussionInput = {
-    id?: string
-    userId: string
-  }
-
   export type ReplyUpdateWithoutDiscussionInput = {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
@@ -19270,7 +23014,6 @@ export namespace Prisma {
     author?: UserUpdateOneRequiredWithoutRepliesNestedInput
     parent?: ReplyUpdateOneWithoutChildrenNestedInput
     children?: ReplyUpdateManyWithoutParentNestedInput
-    votes?: VoteUpdateManyWithoutReplyNestedInput
   }
 
   export type ReplyUncheckedUpdateWithoutDiscussionInput = {
@@ -19280,7 +23023,6 @@ export namespace Prisma {
     parentId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     children?: ReplyUncheckedUpdateManyWithoutParentNestedInput
-    votes?: VoteUncheckedUpdateManyWithoutReplyNestedInput
   }
 
   export type ReplyUncheckedUpdateManyWithoutDiscussionInput = {
@@ -19291,34 +23033,12 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type BookmarkUpdateWithoutDiscussionInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    user?: UserUpdateOneRequiredWithoutBookmarksNestedInput
-  }
-
-  export type BookmarkUncheckedUpdateWithoutDiscussionInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type BookmarkUncheckedUpdateManyWithoutDiscussionInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-  }
-
   export type ReplyCreateManyParentInput = {
     id?: string
     content: string
     authorId: string
     discussionId: string
     createdAt?: Date | string
-  }
-
-  export type VoteCreateManyReplyInput = {
-    id?: string
-    userId: string
-    reviewId?: string | null
-    value: number
   }
 
   export type ReplyUpdateWithoutParentInput = {
@@ -19328,7 +23048,6 @@ export namespace Prisma {
     author?: UserUpdateOneRequiredWithoutRepliesNestedInput
     discussion?: DiscussionUpdateOneRequiredWithoutRepliesNestedInput
     children?: ReplyUpdateManyWithoutParentNestedInput
-    votes?: VoteUpdateManyWithoutReplyNestedInput
   }
 
   export type ReplyUncheckedUpdateWithoutParentInput = {
@@ -19338,7 +23057,6 @@ export namespace Prisma {
     discussionId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     children?: ReplyUncheckedUpdateManyWithoutParentNestedInput
-    votes?: VoteUncheckedUpdateManyWithoutReplyNestedInput
   }
 
   export type ReplyUncheckedUpdateManyWithoutParentInput = {
@@ -19349,53 +23067,112 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type VoteUpdateWithoutReplyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    value?: IntFieldUpdateOperationsInput | number
-    user?: UserUpdateOneRequiredWithoutVotesNestedInput
-    review?: ReviewUpdateOneWithoutVotesNestedInput
-  }
-
-  export type VoteUncheckedUpdateWithoutReplyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    reviewId?: NullableStringFieldUpdateOperationsInput | string | null
-    value?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type VoteUncheckedUpdateManyWithoutReplyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    reviewId?: NullableStringFieldUpdateOperationsInput | string | null
-    value?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type VoteCreateManyReviewInput = {
+  export type ScholarshipApplicationCreateManyScholarshipInput = {
     id?: string
     userId: string
-    replyId?: string | null
-    value: number
+    fullName: string
+    email: string
+    phone: string
+    academicInfo: string
+    coverLetter: string
+    documents?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type VoteUpdateWithoutReviewInput = {
+  export type ScholarshipApplicationUpdateWithoutScholarshipInput = {
     id?: StringFieldUpdateOperationsInput | string
-    value?: IntFieldUpdateOperationsInput | number
-    user?: UserUpdateOneRequiredWithoutVotesNestedInput
-    reply?: ReplyUpdateOneWithoutVotesNestedInput
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    academicInfo?: StringFieldUpdateOperationsInput | string
+    coverLetter?: StringFieldUpdateOperationsInput | string
+    documents?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutScholarshipApplicationsNestedInput
   }
 
-  export type VoteUncheckedUpdateWithoutReviewInput = {
+  export type ScholarshipApplicationUncheckedUpdateWithoutScholarshipInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    replyId?: NullableStringFieldUpdateOperationsInput | string | null
-    value?: IntFieldUpdateOperationsInput | number
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    academicInfo?: StringFieldUpdateOperationsInput | string
+    coverLetter?: StringFieldUpdateOperationsInput | string
+    documents?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type VoteUncheckedUpdateManyWithoutReviewInput = {
+  export type ScholarshipApplicationUncheckedUpdateManyWithoutScholarshipInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    replyId?: NullableStringFieldUpdateOperationsInput | string | null
-    value?: IntFieldUpdateOperationsInput | number
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    academicInfo?: StringFieldUpdateOperationsInput | string
+    coverLetter?: StringFieldUpdateOperationsInput | string
+    documents?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JobApplicationCreateManyJobInput = {
+    id?: string
+    userId: string
+    fullName: string
+    email: string
+    phone: string
+    coverLetter: string
+    resume?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type JobApplicationUpdateWithoutJobInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    coverLetter?: StringFieldUpdateOperationsInput | string
+    resume?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutJobApplicationsNestedInput
+  }
+
+  export type JobApplicationUncheckedUpdateWithoutJobInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    coverLetter?: StringFieldUpdateOperationsInput | string
+    resume?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JobApplicationUncheckedUpdateManyWithoutJobInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    coverLetter?: StringFieldUpdateOperationsInput | string
+    resume?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
