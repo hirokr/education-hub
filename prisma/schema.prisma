@@ -67,11 +67,10 @@ model Discussion {
   content   String
   category  String?
   authorId  String
-  createdAt DateTime   @default(now())
+  // Duplicate field removed
   bookmarks Bookmark[]
   author    User       @relation(fields: [authorId], references: [id])
   replies   Reply[]
-
   createdAt DateTime   @default(now())
 }
 
@@ -80,18 +79,13 @@ model Reply {
   content      String
   authorId     String
   discussionId String
-  parentId     String?
+  parentId     String? @unique
 
   author     User       @relation(fields: [authorId], references: [id])
   discussion Discussion @relation(fields: [discussionId], references: [id])
   parent     Reply?     @relation("ReplyToReply", fields: [parentId], references: [id])
   children   Reply[]    @relation("ReplyToReply")
   createdAt  DateTime   @default(now())
-  createdAt    DateTime   @default(now())
-  author       User       @relation(fields: [authorId], references: [id])
-  discussion   Discussion @relation(fields: [discussionId], references: [id])
-  parent       Reply?     @relation("ReplyToReply", fields: [parentId], references: [id])
-  children     Reply[]    @relation("ReplyToReply")
   votes        Vote[]
 }
 
