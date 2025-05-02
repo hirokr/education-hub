@@ -48,7 +48,8 @@ Do not include the candidate's contact information or date.
     })
 
     // Extract the response content
-    const coverLetter = response.content
+    const coverLetter = response.choices[0].message.content
+    // console.log(response.choices[0].message)
 
     return NextResponse.json({ coverLetter })
   } catch (error) {

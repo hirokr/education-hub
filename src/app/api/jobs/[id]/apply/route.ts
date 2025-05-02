@@ -3,13 +3,16 @@ import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { writeFile } from 'fs/promises';
 import { join } from 'path';
+import { sendApplicationConfirmationEmail } from '@/lib/email';
 
 export async function POST(
   request: Request,
   { params }: { params: { id: string } }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
+    
     if (!session?.user) {
       return new NextResponse('Unauthorized', { status: 401 });
     }
@@ -17,14 +20,14 @@ export async function POST(
     const job = await prisma.job.findFirst({
       where: {
         OR: [
-          { id: params.id },
-          { job_id: params.id }
+          { id: id },
+          { job_id: id }
         ]
       }
     });
 
     if (!job) {
-      console.error('Job not found with ID:', params.id);
+      console.error('Job not found with ID:', id);
       return new NextResponse('Job not found', { status: 404 });
     }
 
@@ -58,6 +61,14 @@ export async function POST(
         resume: `/uploads/${fileName}`,
       },
     });
+
+    // Send confirmation email
+    await sendApplicationConfirmationEmail(
+      email,
+      'job',
+      job.job_title,
+      fullName
+    );
 
     return NextResponse.json(application);
   } catch (error) {

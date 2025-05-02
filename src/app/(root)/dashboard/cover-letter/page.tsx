@@ -77,6 +77,7 @@ export default function CoverLetterPage() {
       }
 
       const data = await response.json();
+      console.log(data)
       setCoverLetter(data.coverLetter);
 
       toast("Cover letter generated", {
@@ -185,7 +186,7 @@ export default function CoverLetterPage() {
                           variant='outline'
                           size='sm'
                           onClick={handleDownload}
-                          className='flex items-center gap-1'
+                          className='flex items-center gap-1 bg-amber-900'
                         >
                           <Download className='h-4 w-4' />
                           Download

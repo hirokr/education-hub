@@ -35,16 +35,16 @@ const GetUser: React.FC<{ setIsMobileMenuOpen: (value: boolean) => void }> = ({
             <DropdownMenuItem>Profile</DropdownMenuItem>
           </Link>
           <Link href='/dashboard/upload'>
-            <DropdownMenuItem>Upload Resume </DropdownMenuItem>
+            <DropdownMenuItem>Upload</DropdownMenuItem>
           </Link>
           <Link href='/dashboard/analyze'>
-            <DropdownMenuItem>Analyse Resume</DropdownMenuItem>
-          </Link>
-          <Link href='/dashboard/cover-letter'>
-            <DropdownMenuItem>Get Cover letter</DropdownMenuItem>
+            <DropdownMenuItem>Analyse </DropdownMenuItem>
           </Link>
           <Link href='/dashboard/career-roadmap'>
-            <DropdownMenuItem>Make Roadmap</DropdownMenuItem>
+            <DropdownMenuItem>Make a roadmap </DropdownMenuItem>
+          </Link>
+          <Link href='/dashboard/cover-letter'>
+            <DropdownMenuItem>Generate Cover letter </DropdownMenuItem>
           </Link>
           <NavbarButton
             onClick={() => {
