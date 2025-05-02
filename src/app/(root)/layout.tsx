@@ -6,9 +6,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div
-      className="mt-20"
-    >
+    <div className="mt-20">
       {children}
     </div>
   );

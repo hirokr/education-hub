@@ -5,7 +5,7 @@ import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "../providers/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { Header } from "@/components/global/Header";
-
+ 
 const openSans = Open_Sans({
   variable: "--font-geist-mono",
   subsets: ["latin"],

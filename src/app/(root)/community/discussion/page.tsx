@@ -1,14 +1,12 @@
 "use client";
 import DiscussionForm from "@/components/DiscussionForm";
-import DiscussionList from "@/components/DiscussionList";
 import { useSession } from "next-auth/react";
 import React from "react";
-import { useEffect } from "react";
+import { toast } from "sonner";
 
 
 export default function DiscussionPage() {
   const { data: session } = useSession();
-  const [data, setData] = React.useState([]);
   const userId = session?.user?.id;
 
   
@@ -21,40 +19,23 @@ export default function DiscussionPage() {
       body: JSON.stringify({ title, content, category, authorId: userId }),
     });
     if (!response.ok) {
-      throw new Error("Failed to post discussion");
+      toast.error("Failed to post discussion. Please try again.");
+      return;
+
     }
-    await fetchDiscussions();
     const newDiscussion = await response.json();  
+    toast.success("Discussion posted successfully!");
     return newDiscussion;
   }
 
   
-const fetchDiscussions = async () => {
-      const response = await fetch("/api/community/discussion", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      if (!response.ok) {
-        throw new Error("Failed to fetch discussions");
-      }
-      
-      const discussions = await response.json();
-      console.log(discussions);
-      setData(discussions);
-    };
 
- useEffect(() => {
-   fetchDiscussions();
- }, []);
 
   return (
     <div className="max-w-3xl mx-auto p-4 mt-20
     ">
       <h1 className="text-3xl font-bold mb-6">Community Discussions</h1>
       <DiscussionForm onPost ={postDiscussion}/>
-      <DiscussionList data={data} />
     </div>
   );
 }
