@@ -1,75 +1,80 @@
 "use client";
-
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
-import { toast } from "sonner";
+import {
+  useAddBookmarkMutation,
+  useRemoveBookmarkMutation,
+  useCheckBookmarkQuery,
+} from "@/features/marked/markedApi";
 import { Bookmark, BookmarkCheck } from "lucide-react";
 
-type Props = {
-  itemId: string; // Review or Discussion ID
-  itemType: "review" | "discussion";
-};
+interface BookmarkButtonProps {
+  itemId: string;
+  itemType: "discussion" | "review";
+  initialBookmarked?: boolean; // Optional
+  onToggle?: () => void;
+}
 
-const BookmarkButton = ({ itemId, itemType }: Props) => {
+const BookmarkButton: React.FC<BookmarkButtonProps> = ({
+  itemId,
+  itemType,
+  initialBookmarked,
+  onToggle,
+}) => {
   const { data: session } = useSession();
   const userId = session?.user?.id;
-  const [bookmarked, setBookmarked] = useState(false);
-  const [loading, setLoading] = useState(false);
 
-  // Fetch bookmark status from the server on component mount
+  const { data: bookmarkStatus, isLoading } = useCheckBookmarkQuery(
+    { userId: userId || "", itemId, type: itemType },
+    { skip: !userId || initialBookmarked != null }
+  );
+
+  const [isBookmarked, setIsBookmarked] = useState<boolean>(
+    initialBookmarked ?? false
+  );
+
+  // Sync with initialBookmarked (important for dynamic props)
   useEffect(() => {
-    if (!userId) return; // Do nothing if user is not logged in
-    const fetchBookmarkStatus = async () => {
-      try {
-        const res = await fetch(
-          `/api/community/bookmark/status?userId=${userId}&itemId=${itemId}&type=${itemType}`,
-        );
-        const data = await res.json();
-        setBookmarked(data.bookmarked);
-      } catch (err) {
-        console.error("Error fetching bookmark status:", err);
-      }
-    };
-    fetchBookmarkStatus();
-  }, [userId, itemId]);
+    if (initialBookmarked !== undefined) {
+      setIsBookmarked(initialBookmarked);
+    }
+  }, [initialBookmarked]);
 
-  // Toggle the bookmark status
+  // Sync with backend query only if initialBookmarked is not provided
+  useEffect(() => {
+    if (initialBookmarked === undefined && bookmarkStatus !== undefined) {
+      setIsBookmarked(bookmarkStatus.bookmarked);
+    }
+  }, [initialBookmarked, bookmarkStatus]);
+
+  const [addBookmark] = useAddBookmarkMutation();
+  const [removeBookmark] = useRemoveBookmarkMutation();
+
   const toggleBookmark = async () => {
-    if (!userId) {
-      toast("Please log in to bookmark.");
-      return;
-    }
-
-    setLoading(true);
-
+    if (!userId) return;
     try {
-      const res = await fetch("/api/community/bookmark", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ itemId, userId, type: itemType }),
-      });
-
-      if (!res.ok) throw new Error("Bookmark toggle failed");
-
-      const result = await res.json();
-      setBookmarked(result.bookmarked);
-      toast(result.bookmarked ? "Bookmarked!" : "Removed from bookmarks.");
+      if (isBookmarked) {
+        await removeBookmark({ userId, itemId, type: itemType }).unwrap();
+        setIsBookmarked(false);
+      } else {
+        await addBookmark({ userId, itemId, type: itemType }).unwrap();
+        setIsBookmarked(true);
+      }
+      onToggle?.();
     } catch (err) {
-      console.error("Bookmark toggle error:", err);
-      toast("Something went wrong.");
+      console.error("Bookmark error:", err);
     }
-
-    setLoading(false);
   };
 
+  if (isLoading && initialBookmarked === undefined) return null;
+
   return (
-    <button
-      onClick={toggleBookmark}
-      disabled={loading}
-      className="text-blue-500 hover:text-blue-700"
-      title={bookmarked ? "Remove Bookmark" : "Add to Bookmark"}
-    >
-      {bookmarked ? <BookmarkCheck size={20} /> : <Bookmark size={20} />}
+    <button onClick={toggleBookmark} title={isBookmarked ? "Remove" : "Add"}>
+      {isBookmarked ? (
+        <BookmarkCheck className="text-blue-600" />
+      ) : (
+        <Bookmark className="text-gray-400" />
+      )}
     </button>
   );
 };

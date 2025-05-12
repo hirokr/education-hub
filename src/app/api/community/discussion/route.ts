@@ -1,7 +1,6 @@
 // File: pages/api/discussions/index.ts
 import { NextRequest, NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();
+import { prisma } from "@/lib/prisma";
 
 export async function POST(req: NextRequest) {
   try {
@@ -15,6 +14,8 @@ export async function POST(req: NextRequest) {
     console.log(discussions);
     return NextResponse.json(discussions, { status: 201 });
   } catch (error) {
+    console.log(error);
+    
     return NextResponse.json(
       {
         error:

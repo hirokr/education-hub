@@ -38,6 +38,10 @@ export function Header() {
       name: "Scholarship",
       link: "/scholarships",
     },
+    {
+      name: "Resources",
+      link: "/resources",
+    }
   ];
 
 

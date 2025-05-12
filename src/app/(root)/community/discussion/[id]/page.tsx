@@ -27,7 +27,7 @@ export default async function DiscussionPage({
     <>
       <div className='p-6 space-y-4'>
         <h1 className='text-3xl font-bold'>{discussion.title}</h1>
-        <p className='text-gray-700'>{discussion.content}</p>
+        <p className='text-white'>{discussion.content}</p>
         <p className='text-sm text-gray-500'>
           Posted by {discussion.author.name}
         </p>

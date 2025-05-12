@@ -35,7 +35,7 @@ export default function DiscussionPage() {
     <div className="max-w-3xl mx-auto p-4 mt-20
     ">
       <h1 className="text-3xl font-bold mb-6">Community Discussions</h1>
-      <DiscussionForm onPost ={postDiscussion}/>
+      <DiscussionForm />
     </div>
   );
 }

@@ -1,25 +1,68 @@
-"use client";
-
+import { usePostDiscussionMutation } from "@/features/discussion/discussionApi";
+import { toast } from "sonner";
+import { useSession } from "next-auth/react";
 import { useState } from "react";
+import Select from "react-select";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
-import Select from "react-select";
+import { StylesConfig } from "react-select";
 
+export default function DiscussionForm() {
+  const [postDiscussion] = usePostDiscussionMutation();
+  const { data: session } = useSession();
+  const userId = session?.user?.id;
 
-export default function DiscussionForm({ onPost }: { onPost: (title: string, content: string, category: string) => void }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [category, setCategory] = useState("");
 
+
+  const customStyles: StylesConfig<{ value: string; label: string }, false> = {
+    control: (base) => ({
+      ...base,
+      backgroundColor: "", // black background
+      borderColor: "#333", // optional: dark border
+      color: "#fff", // text color inside control
+    }),
+    singleValue: (base) => ({
+      ...base,
+      color: "#fff", // selected item text color
+    }),
+    menu: (base) => ({
+      ...base,
+      backgroundColor: "#000", // dropdown background
+    }),
+    option: (base, state) => ({
+      ...base,
+      backgroundColor: state.isFocused ? "#111" : "#000", // focused vs normal
+      color: "#fff", // option text color
+      cursor: "pointer",
+    }),
+    placeholder: (base) => ({
+      ...base,
+      color: "#aaa", // placeholder color
+    }),
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(title, content, category);
-    onPost(title, content, category);
-    setTitle("");
-    setContent("");
+    try {
+      await postDiscussion({
+        title,
+        content,
+        category,
+        authorId: userId,
+      }).unwrap();
+      toast.success("Discussion posted successfully!");
+      setTitle("");
+      setContent("");
+      setCategory("");
+    } catch (error) {
+      toast.error("Failed to post discussion. Please try again.");
+    }
   };
-  
+
   const categories = [
     "Tech",
     "Education",
@@ -67,7 +110,7 @@ export default function DiscussionForm({ onPost }: { onPost: (title: string, con
   return (
     <form
       onSubmit={handleSubmit}
-      className=" p-6 rounded-xl shadow-md space-y-4"
+      className="p-6 rounded-xl shadow-md space-y-4"
     >
       <h2 className="text-xl font-semibold">Start a New Discussion</h2>
 
@@ -76,43 +119,22 @@ export default function DiscussionForm({ onPost }: { onPost: (title: string, con
         placeholder="Enter a title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className="w-full p-2 border rounded-md"
         required
       />
+
       <Select
         options={categoryOptions}
         value={categoryOptions.find((opt) => opt.value === category)}
         onChange={(selected) => setCategory(selected?.value || "")}
         placeholder="Select a category"
-        styles={{
-          control: (base) => ({
-            ...base,
-            backgroundColor: "#141414", // Tailwind bg-gray-800
-            color: "white",
-            borderColor: "#4b5563", // Tailwind border-gray-600
-          }),
-          menu: (base) => ({
-            ...base,
-            backgroundColor: "#1f2937",
-            color: "white",
-          }),
-          singleValue: (base) => ({
-            ...base,
-            color: "white",
-          }),
-          option: (base, state) => ({
-            ...base,
-            backgroundColor: state.isFocused ? "#374151" : "#1f2937", // hover bg-gray-700
-            color: "white",
-          }),
-        }}
+        styles={customStyles}
       />
 
       <Textarea
         placeholder="Write your discussion..."
         value={content}
         onChange={(e) => setContent(e.target.value)}
-        className="w-full p-2 border rounded-md min-h-[120px]"
+        className="min-h-[120px]"
         required
       />
 

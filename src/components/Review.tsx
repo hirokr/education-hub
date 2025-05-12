@@ -1,10 +1,16 @@
+"use client";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
+import {
+  useGetReviewsQuery,
+  useAddReviewMutation,
+} from "@/features/review/reviewApi";
 import BookmarkButton from "./BookMark";
-import BookMark from "./BookMark";
 import VoteButton from "./VoteButton";
+import { useGetBookmarksQuery } from "@/features/marked/markedApi";
+import { Skeleton } from "./ui/skeleton";
 
-// Mock API functions (replace these with actual API calls)
+// Static items for selection (mock data)
 const fetchInitialItems = async () => {
   return [
     { id: 1, type: "Course", name: "Introduction to Machine Learning" },
@@ -25,166 +31,152 @@ const fetchInitialItems = async () => {
   ];
 };
 
-const fetchReviews = async () => {
- try {
-    const response = await fetch("/api/community/review");
-    if (!response.ok) {
-      throw new Error("Failed to fetch reviews");
-    }
-    const data = await response.json();
-    return data;
-  } catch (error) { 
-    console.error("Error fetching reviews:", error);
-    return [];
-  } 
+interface ReviewType {
+  id: string;
+  title: string;
+  rating: number;
+  content: string;
+  category: string;
+  authorId: string;
+}
+
+interface SelectedItem {
+  id: number;
+  type: string;
+  name: string;
+}
+
+type BookmarkType = {
+  itemId: string;
+  type: string;
+  userId: string;
+  createdAt: string;
 };
-
-
-const submitReview = async (review: any) => {
-  try {
-    const response = await fetch("/api/community/review", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(review),
-    });
-
-    if (!response.ok) {
-      throw new Error("Failed to submit review");
-    }
-
-    const data = await response.json();
-    console.log("Review submitted:", data);
-    return data;
-  } catch (error) {
-    console.error("Error submitting review:", error);
-  }
-};
-
 
 const ReviewComponent = () => {
-  const [selectedItem, setSelectedItem] = useState<any>(null); // Holds the selected item for review
-  const [rating, setRating] = useState<number>(0); // Holds the rating
-  const [reviewText, setReviewText] = useState<string>(""); // Holds the review text
-  const [reviews, setReviews] = useState<any[]>([]); // Stores the reviews for each item
-  const [items, setItems] = useState<any[]>([]); // Items fetched from API
-  const [searchTerm, setSearchTerm] = useState<string>(""); // Search term for filtering items
-  const [filterType, setFilterType] = useState<string>(""); // Filter by item type (Course, University, etc.)
+
+
+  const [selectedItem, setSelectedItem] = useState<SelectedItem | null>(null);
+  const [rating, setRating] = useState<number>(0);
+  const [reviewText, setReviewText] = useState<string>("");
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [items, setItems] = useState<SelectedItem[]>([]);
+
   const { data: session } = useSession();
-  const authorId = session?.user?.id; // Get the user ID from session
+  const authorId = session?.user?.id;
+
+    const userId = session?.user?.id;
+
+    const itemId = selectedItem?.id || ""; // Initialize itemId with selectedItem's id or an empty string
+    const itemType = selectedItem?.type as "discussion" | "review" || "review"; // Narrow down type to match the expected union type
+
+     const {
+        data: bookmarks,
+        isLoading,
+        isError,
+        refetch, // Use refetch to reload the bookmarks data
+      } = useGetBookmarksQuery(userId!, {
+        skip: !userId,
+        refetchOnMountOrArgChange: true,
+      });
+  
+  console.log(bookmarks, "bookmarks");
+      
+  const { data: reviews = [], isLoading: isReviewsLoading,isError: isReviewError } = useGetReviewsQuery();
+  const [addReview] = useAddReviewMutation();
 
   useEffect(() => {
     const loadItems = async () => {
-      const fetchedItems = await fetchInitialItems();
-      const fetchedReviews = await fetchReviews();
-      setReviews(fetchedReviews);
-      setItems(fetchedItems);
+      const initialItems = await fetchInitialItems();
+      setItems(initialItems);
     };
-
     loadItems();
   }, []);
 
-  const handleCardClick = (item: any) => {
-    setSelectedItem(item);
-  };
-
   const handleReviewSubmit = async () => {
-    if (!rating || !reviewText) return;
+    if (
+      !rating ||
+      !reviewText ||
+      !selectedItem?.name ||
+      !selectedItem?.type ||
+      !authorId
+    ) {
+      return;
+    }
 
     const newReview = {
       title: selectedItem.name,
       rating,
       category: selectedItem.type,
       content: reviewText,
-      authorId
+      authorId,
     };
 
-    // Simulate backend API call to save review
-    await submitReview(newReview);
-
-    // Update local state with the new review
-    setReviews((prevReviews) => [...prevReviews, newReview]);
+    await addReview(newReview);
 
     setRating(0);
     setReviewText("");
-    setSelectedItem(null); // Deselect item after review
+    setSelectedItem(null);
   };
 
-  const filteredItems = items.filter((item) => {
-    const matchesSearch = item.name
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase());
-    const matchesFilter = filterType ? item.type === filterType : true;
-    return matchesSearch && matchesFilter;
-  });
-
-  const displayItems = searchTerm ? filteredItems : items;
+  const filteredReviews = reviews.filter((review) =>
+    review.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Add Your Review</h1>
 
-      {/* Search and Filter */}
+      {/* Search bar */}
       <div className="mb-6 flex space-x-4">
         <input
           type="text"
-          placeholder="Search university, course, or scholarship..."
+          placeholder="Search reviews by title..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="p-2 border rounded"
+          className="p-2 border rounded w-full"
         />
-        <select
-          value={filterType}
-          onChange={(e) => setFilterType(e.target.value)}
-          className="p-2 border rounded bg-accent"
+        <button
+          onClick={() =>
+            setSelectedItem({ id: Date.now(), name: "", type: "" })
+          }
+          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
         >
-          <option value="">All Types</option>
-          <option value="Course">Course</option>
-          <option value="University">University</option>
-          <option value="Scholarship">Scholarship</option>
-        </select>
+          Create New Review
+        </button>
       </div>
 
-      {/* Cards for Courses, Universities, and Scholarships */}
-      {searchTerm && (
-        <div className="grid grid-cols-3 gap-4 mb-8">
-          {filteredItems.map((item) => (
-            <div
-              key={item.id}
-              onClick={() => handleCardClick(item)}
-              className="p-4 border rounded-lg cursor-pointer hover:bg-gray-200"
-            >
-              <h3 className="text-lg font-semibold">{item.name}</h3>
-              <p>{item.type}</p>
-            </div>
-          ))}
-          {filteredItems.length === 0 && (
-            <div className="col-span-3 text-center text-gray-500">
-              <p className="mb-2">No matching results found.</p>
-              <button
-                onClick={() =>
-                  setSelectedItem({
-                    id: Date.now(),
-                    name: searchTerm,
-                    type: "",
-                  })
-                }
-                className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
-              >
-                Create new review for "{searchTerm}"
-              </button>
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* Review Form for Selected Item */}
+      {/* Review form */}
       {selectedItem && (
         <div className="mt-6">
-          <h2 className="text-xl font-semibold mb-4">
-            Review for {selectedItem.name}
-          </h2>
+          <h2 className="text-xl font-semibold mb-4">New Review</h2>
+
+          <input
+            type="text"
+            placeholder="Title (e.g., Harvard University)"
+            value={selectedItem.name}
+            onChange={(e) =>
+              setSelectedItem((prev) =>
+                prev ? { ...prev, name: e.target.value } : null
+              )
+            }
+            className="w-full p-2 border rounded mb-4"
+          />
+
+          <select
+            value={selectedItem.type}
+            onChange={(e) =>
+              setSelectedItem((prev) =>
+                prev ? { ...prev, type: e.target.value } : null
+              )
+            }
+            className="w-full p-2 border rounded mb-4 bg-black"
+          >
+            <option value="">Select Type</option>
+            <option value="Course">Course</option>
+            <option value="University">University</option>
+            <option value="Scholarship">Scholarship</option>
+          </select>
 
           {/* Star Rating */}
           <div className="mb-4">
@@ -204,7 +196,6 @@ const ReviewComponent = () => {
             </div>
           </div>
 
-          {/* Review Text */}
           <textarea
             value={reviewText}
             onChange={(e) => setReviewText(e.target.value)}
@@ -212,7 +203,6 @@ const ReviewComponent = () => {
             className="w-full p-2 border rounded mb-4"
           />
 
-          {/* Submit Review */}
           <button
             onClick={handleReviewSubmit}
             className="bg-blue-500 text-white px-4 py-2 rounded"
@@ -222,43 +212,58 @@ const ReviewComponent = () => {
         </div>
       )}
 
-      {/* Display All Reviews */}
+      {/* Review List */}
       <div className="mt-8">
         <h2 className="text-xl font-semibold mb-4">Reviews</h2>
-
-        {reviews.filter((review) =>
-          review.title.toLowerCase().includes(searchTerm.toLowerCase())
-        ).length > 0 ? (
+        {isReviewsLoading ? (
+          <div className="flex justify-center items-center">
+            <Skeleton />
+          </div>
+        ) : isReviewError ? (
+          <div className="flex justify-center items-center">
+            <p className="text-red-500">Failed to load reviews.</p>
+          </div>
+        ) : filteredReviews.length > 0 ? (
           <div className="space-y-4">
-            {reviews
-              .filter((review) =>
-                review.title.toLowerCase().includes(searchTerm.toLowerCase())
-              )
-              .map((review, index) => (
-                <div key={index} className="p-4 border rounded-lg relative">
-                  <h3 className="text-lg font-semibold">{review.title}</h3>
+            {filteredReviews.map((review) => (
+              <div key={review.id} className="p-4 border rounded-lg relative">
+                <h3 className="text-lg font-semibold">{review.title}</h3>
+                <div className="flex">
                   <p>
                     Rating:{" "}
-                    {[...Array(review.rating)].map((_, i) => "★").join("")}
+                    {[...Array(review.rating)].map((_, i) => (
+                      <span key={i} className="text-yellow-400">
+                        ★
+                      </span>
+                    ))}
                   </p>
-                  <p>{review.content}</p>
-                  <div className="mt-2">
-                    <VoteButton 
-                      itemId={review.id} 
-                      type="review" 
-                      initialValue={review.totalVotes ?? 0}
-                      initialUserVote={review.userVote ?? 0} 
-                    />
-                  </div>
-                  
-                  <div className="absolute top-2 right-2">
-                    <BookMark
-                      itemId={review.id}
-                      itemType="review"
-                    />
-                  </div>
+                  <p>
+                    {[...Array(5 - review.rating)].map((_, i) => (
+                      <span key={i} className="text-gray-300">
+                        ★
+                      </span>
+                    ))}
+                  </p>
                 </div>
-              ))}
+                <p>{review.content}</p>
+                <div className="mt-2">
+                  <VoteButton itemId={review.id} type="review" />
+                </div>
+                <div className="absolute top-2 right-2">
+                  <BookmarkButton
+                    itemId={review.id}
+                    itemType="review"
+                    initialBookmarked={
+                      bookmarks?.some(
+                        (bookmark: BookmarkType) =>
+                          bookmark.itemId === review.id &&
+                          bookmark.type === "review"
+                      ) ?? false
+                    }
+                  />
+                </div>
+              </div>
+            ))}
           </div>
         ) : (
           <p className="text-gray-500">No reviews found for "{searchTerm}"</p>

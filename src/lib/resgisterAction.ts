@@ -2,10 +2,7 @@
 import { hash } from "bcryptjs";
 import { z } from "zod";
 import { registerSchema } from "@/lib/validation";
-import { PrismaClient } from "@prisma/client";
-// import {prisma} from "./prisma";
-
-const prisma =  new PrismaClient();
+import { prisma } from "@/lib/prisma";
 
 
 export async function registerUser(data: z.infer<typeof registerSchema>) {
