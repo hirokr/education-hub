@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
+
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "../providers/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { Header } from "@/components/global/Header";
- 
+
 const openSans = Open_Sans({
   variable: "--font-geist-mono",
   subsets: ["latin"],
@@ -25,6 +26,7 @@ export default function RootLayout({
   return (
     <html lang='en' suppressHydrationWarning>
       <body className={`${openSans.className} antialiased`} suppressHydrationWarning>
+ 
         <ThemeProvider
           attribute='class'
           defaultTheme='dark'
@@ -37,6 +39,7 @@ export default function RootLayout({
             <Toaster position="top-center" richColors closeButton />
           </SessionProvider>
         </ThemeProvider>
+ 
       </body>
     </html>
   );

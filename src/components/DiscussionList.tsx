@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import BookmarkButton from "@/components/BookMark"; // Import your reusable component
-
+import BookmarkButton from "@/components/BookMark"; 
+import { useGetBookmarksQuery } from "@/features/marked/markedApi";
 interface Discussion {
   id: string;
   title: string;
@@ -24,7 +24,20 @@ export default function DiscussionList({ data }: DiscussionListProps) {
   const userId = session?.user?.id;
   const [discussions, setDiscussions] = useState<Discussion[]>(data);
 
- 
+  const itemId = ""; // Initialize itemId with a default value or derive it as needed
+  const itemType = "discussion"; // Initialize itemType with the appropriate value
+
+    const {
+      data: bookmarks,
+      isLoading,
+      isError,
+      refetch, // Use refetch to reload the bookmarks data
+    } = useGetBookmarksQuery(userId!, {
+      skip: !userId,
+      refetchOnMountOrArgChange: true,
+    });
+    console.log(bookmarks, "bookmarks");
+    
 
   return (
     <div className="space-y-4 mt-6">
@@ -46,7 +59,17 @@ export default function DiscussionList({ data }: DiscussionListProps) {
           {/* Reusable BookmarkButton */}
           {userId && (
             <div className="absolute top-2 right-2">
-              <BookmarkButton itemId={d.id} itemType="discussion"  />
+              <BookmarkButton
+                itemId={d.id}
+                itemType="discussion"
+                initialBookmarked={
+                  bookmarks?.some(
+                    (bookmark: { itemId: string; type: string }) =>
+                      bookmark.itemId === d.id &&
+                      bookmark.type === "discussion"
+                  ) ?? false
+                }
+              />
             </div>
           )}
         </div>

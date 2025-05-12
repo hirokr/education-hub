@@ -45,9 +45,7 @@ export async function POST(req: Request) {
       include: {
         scholarship: true,
       },
-    }) as Prisma.SavedScholarshipGetPayload<{
-      include: { scholarship: true }
-    }>;
+    });
 
     return NextResponse.json({ scholarship: savedScholarship.scholarship });
   } catch (error) {
