@@ -9,7 +9,7 @@ export default function ResourcesLayout({
   return (
     <div className="flex min-h-screen">
       {/* Sidebar */}
-      <aside className="w-64 bg-gray-900 text-white p-6 fixed h-full">
+      <aside className="w-64 bg-sidebar-border text-sidebar-primary p-6 fixed h-full">
         <h1 className="text-xl font-bold mb-6">Resources</h1>
         <nav className="space-y-4">
           <Link
@@ -49,7 +49,7 @@ export default function ResourcesLayout({
       </aside>
 
       {/* Content */}
-      <main className="ml-64 p-8 w-full bg-black min-h-screen">
+      <main className="ml-64 p-8 w-full min-h-screen text-foreground bg-background">
         {children}
       </main>
     </div>
